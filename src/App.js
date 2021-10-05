@@ -1,5 +1,12 @@
 import React from 'react';
+import { RegisterInstructor } from './components/RegisterInstr';
 
 export const App = () => {
-  return <div>HIIII</div>;
+  
+  return (
+    <>
+      <RegisterInstructor />
+    </>
+  )
+    
 };
