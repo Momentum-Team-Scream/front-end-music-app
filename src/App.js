@@ -8,7 +8,6 @@ import {
 import { RegisterInstructor } from './components/RegisterInstr';
 import { Login } from './components/Login';
 import { Navbar } from './components/Navbar.js';
-import { AssignmentForm } from './components/AssignmentForm.js';
 
 export const App = () => {
   const [auth, setAuth] = useState('');
@@ -16,8 +15,8 @@ export const App = () => {
   return (
     <>
       <Router>
-        <Navbar />
-        <AssignmentForm />
+        <Navbar auth={auth} setAuth={setAuth} />
+
         <Switch>
           <Route
             path="/login"
