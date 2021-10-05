@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 
-export const Login = ({ setAuth }) => {
+export const Login = ({ auth, setAuth }) => {
     const [ username, setUsername ] = useState('')
     const [ password, setPassword ] = useState('')
     const history = useHistory()
@@ -28,11 +28,13 @@ export const Login = ({ setAuth }) => {
                 console.log(response)
                 if (response.data.auth_token) {
                     setAuth(response.data.auth_token)
-                    // history.push('/')
+                    history.push('/')
                 }
             })
     }
     
+    console.log(auth)
+
     return (
         <>
             <form className='form login-form' onSubmit={handleSubmit}>
