@@ -44,6 +44,25 @@ export const RegisterInstructor = () => {
         console.log(username)
         console.log(password)
         console.log(rePassword)
+
+        axios.post('https://music-mvp.herokuapp.com/auth/users/', 
+        {
+            "first_name": firstName,
+            "last_name": lastName,
+            "email": email,
+            "phone": phone,
+            "username": username,
+            "password": password,
+            "re_password": rePassword,
+            "emergency_contact_phone": "5555555555",
+            "emergency_contact_name": "unknown"
+        }).then(res => {
+            if (res.status === 201){
+                console.log('user created!')
+            } else {
+                console.log('something went wrong, please try again')
+            }
+        })
     }
 
     return (
