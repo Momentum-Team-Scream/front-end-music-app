@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RegisterInstructor } from './components/RegisterInstr';
+import { Login } from './components/Login';
 
 export const App = () => {
-  
+  const [auth, setAuth] = useState('')
+
   return (
     <>
-      <RegisterInstructor />
+      {/* <RegisterInstructor /> */}
+      <Login setAuth={setAuth}/>
     </>
   )
     
