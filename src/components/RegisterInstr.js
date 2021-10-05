@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import axios from 'axios'
 
-export const RegisterInstructor = () => {
+export const RegisterInstructor = ({ setAuth }) => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
@@ -9,6 +10,8 @@ export const RegisterInstructor = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [rePassword, setRePassword] = useState('')
+    const history = useHistory()
+
     
     const handleChange = (inputType, event) => {
         if (inputType === 'firstName'){
@@ -59,6 +62,15 @@ export const RegisterInstructor = () => {
         }).then(res => {
             if (res.status === 201){
                 console.log('user created!')
+                return axios.post('https://music-mvp.herokuapp.com/auth/token/login/', {
+                    username: username,
+                    password: password
+                }).then((data) => {
+                    if (data && data.data.auth_token) {
+                        setAuth(data.data.auth_token)
+                        history.push('/')
+                    }
+                })
             } else {
                 console.log('something went wrong, please try again')
             }
