@@ -1,9 +1,12 @@
+<<<<<<< HEAD
 import React from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import useLocalStorageState from 'use-local-storage-state';
 import { useState, useEffect } from 'react';
 import { LessonList } from './components/LessonList.js';
+import { RegisterInstructor } from './components/RegisterInstr';
+import { Login } from './components/Login';
 
 export const App = () => {
   const [auth, setAuth, { removeItem }] = useLocalStorageState('token', '');
@@ -34,14 +37,12 @@ export const App = () => {
         hii
         {/* <Header token={auth} setAuth={setAuth} clearStorage={removeItem} /> */}
         <Switch>
-          <Route
-            path="/upcoming"
-            component={() => <LessonList token={auth} username={username} />}
-          />
+          <Route path="/login" component={() => <Login auth={auth} setAuth={setAuth} />}/>
+          <Route path="/register" component={() => <RegisterInstructor setAuth={setAuth} />}/>
+          <Route path="/upcoming" component={() => <LessonList token={auth} username={username} />}/>
+          
         </Switch>
       </div>
     </Router>
   )
-  
-      
 };
