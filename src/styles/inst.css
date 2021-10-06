@@ -1,3 +1,9 @@
-.lessonPage {
+.lessonForm {
   background-color: darkcyan;
+  width: 45%;
+}
+
+.lessonList {
+  background-color: darkolivegreen;
+  width: 45%;
 }

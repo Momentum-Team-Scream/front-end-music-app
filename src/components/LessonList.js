@@ -41,13 +41,17 @@ export const LessonList = ({ token }) => {
 
     return (
         <div>
-            <div className="lessonPage">
-              <h4>Today is *Date*  </h4>
-              <p>Here are your lessons for today:</p>  
+            <div className="instPage">
               <div className="lessonList">
-                {token && <Lesson token={token}
-                    setSubmitted={setSubmitted}
-                  />}
+                <h4>Today is *Date*  </h4>
+                <p>Here are your lessons for today:</p>  
+                  {lessons.map((lesson, index) => (
+                    <p key={index}> {token && <Lesson lesson={lesson} token={token} setSubmitted={setSubmitted}/>}</p>
+                  )
+                  )}
+                  {/* {token && <Lesson token={token}
+                      setSubmitted={setSubmitted}
+                    />} */}
               </div>
               <div className="lessonForm">
               {token && <LessonForm token={token} setSubmitted={setSubmitted} />}

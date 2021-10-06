@@ -88,7 +88,7 @@ export const LessonForm = ({ token, setSubmitted }) => {
               onChange={(e) => handleChange('plan', e)}
             />
           <div>
-            <button className="button">Create Lesson</button>
+            <button className="btn btn-dark">Create Lesson</button>
           </div>
         </form>
       </div>

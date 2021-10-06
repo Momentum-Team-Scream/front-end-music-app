@@ -18,12 +18,12 @@ export const Lesson = ({ lesson, token, setSubmitted }) => {
     //       setSubmitted(true);
     //     });
     // }
-
     return (
-        <div>
-           <p>Lesson</p>
-           <p>Lesson</p>
-           <p>Lesson</p>
+        <div className="card">
+            <p>{lesson.student}</p>
+            <p>{lesson.lesson_date}</p>
+            <p>{lesson.lesson_time}</p>
+            <p>{lesson.plan}</p>
         </div>
     );
     }
