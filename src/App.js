@@ -6,13 +6,9 @@ import { useState, useEffect } from 'react';
 import { RegisterInstructor } from './components/RegisterInstr';
 import { Login } from './components/Login';
 import { Navbar } from './components/Navbar.js';
-<<<<<<< HEAD
 import { LessonList } from './components/LessonList.js';
 import { LessonDetail } from './components/LessonDetail.js';
 
-=======
-// import { AssignmentForm } from './components/AssignmentForm.js';
->>>>>>> c6738a1f8b525286c519c66b5091812ca2f0cb61
 
 export const App = () => {
   const [auth, setAuth, { removeItem }] = useLocalStorageState('auth', '');
@@ -44,22 +40,9 @@ export const App = () => {
       <div className="App">
         <Navbar auth={auth} setAuth={setAuth} />
         <Switch>
-<<<<<<< HEAD
           <Route exact path="/" render={() => auth 
             ? <Redirect to={{ pathname: '/upcoming' }}/> 
               : <Redirect to={{ pathname: '/login' }}/> }
-=======
-          <Route
-            exact
-            path="/"
-            render={() =>
-              auth ? (
-                <div>Lessons go here</div>
-              ) : (
-                <Redirect to={{ pathname: '/login' }} />
-              )
-            }
->>>>>>> c6738a1f8b525286c519c66b5091812ca2f0cb61
           />
           <Route path="/login" component={() => <Login auth={auth} setAuth={setAuth} />}/>
           <Route path="/register" component={() => <RegisterInstructor setAuth={setAuth} />}/>
