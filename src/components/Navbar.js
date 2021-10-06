@@ -10,15 +10,16 @@ export const Navbar = ({ auth, setAuth, clearStorage }) => {
           {auth ? (
             <>
               <div className="main-nav">
-                <p className="navbar-brand">MusicAppLogo</p>
-
+                <Link to="/" style={{ textDecoration: 'none' }}>
+                  <p className="navbar-brand">MusicAppLogo</p>
+                </Link>
                 <ul className="navbar-nav">
-                  <Link to="/students">
+                  <Link to="/students" style={{ textDecoration: 'none' }}>
                     <div className="nav-link text-white text-uppercase">
-                      <p>Students</p>
+                      <p className="link">Students</p>
                     </div>
                   </Link>
-                  <Link to="/mydocs">
+                  <Link to="/mydocs" style={{ textDecoration: 'none' }}>
                     <div className="nav-link text-white text-uppercase">
                       <p className="nav-doc">My Docs</p>
                     </div>
@@ -28,7 +29,7 @@ export const Navbar = ({ auth, setAuth, clearStorage }) => {
               <div className="end-nav text-white">
                 <div className="loggedin">
                   <div className="username">
-                    <p>Welcome, username!</p>
+                    <p>Welcome!</p>
                   </div>
                   <a
                     href
