@@ -1,9 +1,9 @@
+<<<<<<< HEAD
 import React from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import useLocalStorageState from 'use-local-storage-state';
 import { useState, useEffect } from 'react';
-
 import { RegisterInstructor } from './components/RegisterInstr';
 import { Login } from './components/Login';
 import { Navbar } from './components/Navbar.js';
@@ -12,6 +12,7 @@ import { LessonDetail } from './components/LessonDetail.js';
 
 
 export const App = () => {
+
   const [auth, setAuth, { removeItem }] = useLocalStorageState('token', '');
   const [username, setUsername] = useState('');
   const [user, setUser] = useLocalStorageState('user', {});
@@ -39,6 +40,10 @@ export const App = () => {
       <div className="App">
         <Navbar auth={auth} setAuth={setAuth} />
         <Switch>
+          <Route exact path="/" render={() => auth 
+            ? <div>Lessons go here</div>
+              : <Redirect to={{ pathname: '/login' }}/> }
+          />
           <Route path="/login" component={() => <Login auth={auth} setAuth={setAuth} />}/>
           <Route path="/register" component={() => <RegisterInstructor setAuth={setAuth} />}/>
           <Route path="/upcoming" component={() => <LessonList token={auth} />}/>
