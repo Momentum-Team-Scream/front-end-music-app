@@ -3,7 +3,7 @@ import axios from 'axios';
 import '../styles/lessonForm.css';
 
 
-export const LessonForm = ({ token, setSubmitted }) => {
+export const LessonForm = ({ auth, setSubmitted }) => {
     const [lesson_date, setLessonDate] = useState('');
     const [lesson_time, setLessonTime] = useState('');
     const [student, setStudent] = useState('');
@@ -13,7 +13,7 @@ export const LessonForm = ({ token, setSubmitted }) => {
       event.preventDefault();
       axios
         .post(
-          'https://music-mvp.herokuapp.com/api/lesson/add',
+          'https://music-mvp.herokuapp.com/api/lesson/',
           {
             lesson_date: lesson_date,
             lesson_time: lesson_time,
@@ -23,7 +23,7 @@ export const LessonForm = ({ token, setSubmitted }) => {
           {
             headers: {
               'Content-Type': 'application/json',
-              Authorization: `token ${token}`,
+              Authorization: `token ${auth}`,
             },
           }
         )

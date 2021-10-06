@@ -20,7 +20,7 @@ export const Lesson = ({ lesson, auth, setSubmitted }) => {
     // }
     return (
         <div className="card">
-            <p>{lesson.student}</p>
+            <p>{lesson.student_name}</p>
             <p>{lesson.lesson_date}</p>
             <p>{lesson.lesson_time}</p>
             <p>{lesson.plan}</p>

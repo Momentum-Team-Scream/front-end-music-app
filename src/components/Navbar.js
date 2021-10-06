@@ -1,8 +1,9 @@
+import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/navbar.css';
 
-export const Navbar = ({ auth, setAuth, clearStorage }) => {
+export const Navbar = ({ auth, user, setAuth, clearStorage }) => {
   return (
     <>
       <nav className="navbar navbar-dark bg-dark">
@@ -29,7 +30,7 @@ export const Navbar = ({ auth, setAuth, clearStorage }) => {
               <div className="end-nav text-white">
                 <div className="loggedin">
                   <div className="username">
-                    <p>Welcome!</p>
+                    <p>Welcome! </p>
                   </div>
                   <a
                     href

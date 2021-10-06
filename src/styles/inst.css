@@ -15,3 +15,9 @@
 .lessonCard {
   margin: 2%;
 }
+
+@media screen and (max-width: 800px) {
+  .column {
+    width: 100%;
+  }
+}

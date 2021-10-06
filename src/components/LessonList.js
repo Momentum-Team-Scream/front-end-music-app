@@ -26,11 +26,6 @@ export const LessonList = ({ auth }) => {
         .then((res) => setLessons(res.data));
       setSubmitted(false);
     } 
-    // else {
-    //   axios
-    //     .get(`https://music-mvp.herokuapp.com/api/upcoming/`)
-    //     .then((res) => setLessons(res.data));
-    // }
   }, [auth, submitted]);
 //   const handleSubmit = () => {
 //     axios

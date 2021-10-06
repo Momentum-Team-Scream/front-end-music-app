@@ -38,7 +38,7 @@ export const App = () => {
   return (
     <Router>
       <div className="App">
-        <Navbar auth={auth} setAuth={setAuth} />
+        <Navbar auth={auth} setAuth={setAuth } clearStorage={removeItem} />
         <Switch>
           <Route exact path="/" render={() => auth 
             ? <Redirect to={{ pathname: '/upcoming' }}/> 
@@ -47,7 +47,7 @@ export const App = () => {
           <Route path="/login" component={() => <Login auth={auth} setAuth={setAuth} />}/>
           <Route path="/register" component={() => <RegisterInstructor setAuth={setAuth} />}/>
           <Route path="/upcoming" component={() => <LessonList auth={auth} />}/>
-          <Route path="/lesson/:pk" component={(pk) => <LessonDetail props={pk} auth={auth} />}/>
+          <Route path="/lessons/:pk" component={(pk) => <LessonDetail props={pk} auth={auth} />}/>
           
         </Switch>
       </div>
