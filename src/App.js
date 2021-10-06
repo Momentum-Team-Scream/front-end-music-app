@@ -1,11 +1,12 @@
 import React from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import useLocalStorageState from 'use-local-storage-state';
 import { useState, useEffect } from 'react';
 
 import { RegisterInstructor } from './components/RegisterInstr';
 import { Login } from './components/Login';
+import { Navbar } from './components/Navbar.js';
 import { LessonList } from './components/LessonList.js';
 import { LessonDetail } from './components/LessonDetail.js';
 
@@ -36,8 +37,7 @@ export const App = () => {
   return (
     <Router>
       <div className="App">
-        hii
-        {/* <Header token={auth} setAuth={setAuth} clearStorage={removeItem} /> */}
+        <Navbar auth={auth} setAuth={setAuth} />
         <Switch>
           <Route path="/login" component={() => <Login auth={auth} setAuth={setAuth} />}/>
           <Route path="/register" component={() => <RegisterInstructor setAuth={setAuth} />}/>

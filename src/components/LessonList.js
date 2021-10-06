@@ -57,4 +57,3 @@ export const LessonList = ({ token }) => {
         </div>
     );
 }
-
