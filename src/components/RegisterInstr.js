@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
+import '../styles/register.css'
 
 export const RegisterInstructor = ({ setAuth }) => {
     const [firstName, setFirstName] = useState('')
