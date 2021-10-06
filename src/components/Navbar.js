@@ -5,7 +5,7 @@ import '../styles/navbar.css';
 export const Navbar = ({ auth, setAuth, clearStorage }) => {
   return (
     <>
-      <nav className="navbar navbar-light bg-light">
+      <nav className="navbar navbar-dark bg-dark">
         <div className="container-fluid">
           {auth ? (
             <>
@@ -13,19 +13,19 @@ export const Navbar = ({ auth, setAuth, clearStorage }) => {
                 <p className="navbar-brand">MusicAppLogo</p>
 
                 <ul className="navbar-nav">
-                  <div className="nav-item nav-link active">
-                    <Link to="/students">
+                  <Link to="/students">
+                    <div className="nav-link text-white text-uppercase">
                       <p>Students</p>
-                    </Link>
-                  </div>
-                  <div className="nav-item nav-link active">
-                    <Link to="/mydocs">
+                    </div>
+                  </Link>
+                  <Link to="/mydocs">
+                    <div className="nav-link text-white text-uppercase">
                       <p className="nav-doc">My Docs</p>
-                    </Link>
-                  </div>
+                    </div>
+                  </Link>
                 </ul>
               </div>
-              <div className="end-nav">
+              <div className="end-nav text-white">
                 <div className="loggedin">
                   <div className="username">
                     <p>Welcome, username!</p>
@@ -37,7 +37,7 @@ export const Navbar = ({ auth, setAuth, clearStorage }) => {
                       clearStorage('user');
                     }}
                   >
-                    <button type="button" className="btn btn-outline-dark">
+                    <button type="button" className="btn btn-outline-light">
                       Logout
                     </button>
                   </a>
