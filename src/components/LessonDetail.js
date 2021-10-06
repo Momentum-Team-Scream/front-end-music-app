@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 
-export const LessonDetail = ({ token, props, pk }) => {
+export const LessonDetail = ({ auth, props, pk }) => {
   const [lesson, setLesson] = useState({});
 //   const [answers, setAnswers] = useState([]);
   useEffect(() => {
@@ -14,7 +14,7 @@ export const LessonDetail = ({ token, props, pk }) => {
           {
             headers: {
               'Content-Type': 'application/json',
-              Authorization: `token ${token}`,
+              Authorization: `token ${auth}`,
             },
           }
         )
@@ -23,7 +23,7 @@ export const LessonDetail = ({ token, props, pk }) => {
         });
     }
     getLesson();
-  }, [props, token, pk]);
+  }, [props, auth, pk]);
 
   return (
     <>

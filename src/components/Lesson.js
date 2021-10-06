@@ -2,7 +2,7 @@
 // import { useState } from 'react';
 import axios from 'axios';
 
-export const Lesson = ({ lesson, token, setSubmitted }) => {
+export const Lesson = ({ lesson, auth, setSubmitted }) => {
     //   const id = event.target.id;
     //   return axios
     //     .delete(

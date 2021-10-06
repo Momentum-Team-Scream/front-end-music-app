@@ -5,32 +5,33 @@ import { Lesson } from './Lesson';
 import '../styles/inst.css';
 
 
-export const LessonList = ({ token }) => {
+export const LessonList = ({ auth }) => {
   const [lessons, setLessons] = useState([]);
   const [submitted, setSubmitted] = useState(false);
 
 //   const [search, setSearch] = useState([]);
 
   useEffect(() => {
-    if (token || submitted) {
+    if (auth || submitted) {
       axios
         .get(
           `https://music-mvp.herokuapp.com/api/upcoming/`,
           {
             headers: {
               'Content-Type': 'application/json',
-              Authorization: `token ${token}`,
+              Authorization: `token ${auth}`,
             },
           }
         )
         .then((res) => setLessons(res.data));
       setSubmitted(false);
-    } else {
-      axios
-        .get(`https://music-mvp.herokuapp.com/api/upcoming/`)
-        .then((res) => setLessons(res.data));
-    }
-  }, [token, submitted]);
+    } 
+    // else {
+    //   axios
+    //     .get(`https://music-mvp.herokuapp.com/api/upcoming/`)
+    //     .then((res) => setLessons(res.data));
+    // }
+  }, [auth, submitted]);
 //   const handleSubmit = () => {
 //     axios
 //       .get(
@@ -45,16 +46,12 @@ export const LessonList = ({ token }) => {
               <div className="lessonList">
                 <h4>Today is *Date*  </h4>
                 <p>Here are your lessons for today:</p>  
-                  {lessons.map((lesson, index) => (
-                    <p key={index}> {token && <Lesson lesson={lesson} token={token} setSubmitted={setSubmitted}/>}</p>
-                  )
-                  )}
-                  {/* {token && <Lesson token={token}
-                      setSubmitted={setSubmitted}
-                    />} */}
+                {lessons.map((lesson, index) => (
+                  <div className="lessonCard" key={index}> {auth && <Lesson lesson={lesson} auth={auth} setSubmitted={setSubmitted}/>}</div>
+                ))}
               </div>
               <div className="lessonForm">
-              {token && <LessonForm token={token} setSubmitted={setSubmitted} />}
+              {auth && <LessonForm auth={auth} setSubmitted={setSubmitted} />}
               </div>
             </div>
         </div>
