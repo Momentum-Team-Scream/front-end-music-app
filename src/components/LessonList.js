@@ -2,11 +2,13 @@ import React, { useState, useEffect }from 'react';
 import axios from 'axios'
 import { LessonForm } from './LessonForm';
 import { Lesson } from './Lesson';
+import '../styles/inst.css';
 
 
 export const LessonList = ({ token }) => {
   const [lessons, setLessons] = useState([]);
   const [submitted, setSubmitted] = useState(false);
+
 //   const [search, setSearch] = useState([]);
 
   useEffect(() => {
@@ -39,18 +41,15 @@ export const LessonList = ({ token }) => {
 
     return (
         <div>
-            <div>
-              <h4>instructor main page - rendered from lessonlist component</h4>
-            </div>
             <div className="lessonPage">
-              List of upcoming lessons below
+              <h4>Today is *Date*  </h4>
+              <p>Here are your lessons for today:</p>  
               <div className="lessonList">
                 {token && <Lesson token={token}
                     setSubmitted={setSubmitted}
                   />}
               </div>
               <div className="lessonForm">
-                add lesson form below
               {token && <LessonForm token={token} setSubmitted={setSubmitted} />}
               </div>
             </div>

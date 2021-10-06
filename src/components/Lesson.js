@@ -21,7 +21,9 @@ export const Lesson = ({ lesson, token, setSubmitted }) => {
 
     return (
         <div>
-           ... This text is rendered from the lesson component...
+           <p>Lesson</p>
+           <p>Lesson</p>
+           <p>Lesson</p>
         </div>
     );
     }

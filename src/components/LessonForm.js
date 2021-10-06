@@ -53,7 +53,7 @@ export const LessonForm = ({ token, setSubmitted }) => {
   
     return (
       <div className="form-group">
-        <h3> Add a new lesson here! </h3>
+        <h4> Create a new lesson here! </h4>
         <form className="form-lessonForm" onSubmit={handleSubmit}>
           <label className="label">Lesson Date: </label>
             <input
