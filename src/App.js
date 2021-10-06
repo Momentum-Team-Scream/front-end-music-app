@@ -9,9 +9,10 @@ import useLocalStorageState from 'use-local-storage-state';
 import { RegisterInstructor } from './components/RegisterInstr';
 import { Login } from './components/Login';
 import { Navbar } from './components/Navbar.js';
+// import { AssignmentForm } from './components/AssignmentForm.js';
 
 export const App = () => {
-  const [auth, setAuth, {removeItem} ] = useLocalStorageState('auth', '');
+  const [auth, setAuth, { removeItem }] = useLocalStorageState('auth', '');
 
   return (
     <>
@@ -19,11 +20,16 @@ export const App = () => {
         <Navbar auth={auth} setAuth={setAuth} clearStorage={removeItem} />
 
         <Switch>
-          <Route 
-            exact path="/"
-            render={() => auth 
-              ? <div>Lessons go here</div>
-              : <Redirect to={{ pathname: '/login' }}/> }
+          <Route
+            exact
+            path="/"
+            render={() =>
+              auth ? (
+                <div>Lessons go here</div>
+              ) : (
+                <Redirect to={{ pathname: '/login' }} />
+              )
+            }
           />
           <Route
             path="/login"
