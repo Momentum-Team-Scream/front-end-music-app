@@ -9,6 +9,7 @@ import useLocalStorageState from 'use-local-storage-state';
 import { RegisterInstructor } from './components/RegisterInstr';
 import { Login } from './components/Login';
 import { Navbar } from './components/Navbar.js';
+import { RegisterStu } from './components/RegisterStu';
 
 export const App = () => {
   const [auth, setAuth, {removeItem} ] = useLocalStorageState('auth', '');
@@ -32,6 +33,10 @@ export const App = () => {
           <Route
             path="/register"
             component={() => <RegisterInstructor setAuth={setAuth} />}
+          />
+          <Route 
+            path="/student-registration"
+            component={() => <RegisterStu setAuth={setAuth} />}
           />
         </Switch>
       </Router>
