@@ -42,15 +42,17 @@ export const LessonList = ({ token }) => {
             <div>
               <h4>instructor main page - rendered from lessonlist component</h4>
             </div>
-            <div>
+            <div className="lessonPage">
               List of upcoming lessons below
-            {token && <Lesson token={token}
-                setSubmitted={setSubmitted}
-              />}
-            </div>
-            <div>
-              add lesson form below
-            {token && <LessonForm token={token} setSubmitted={setSubmitted} />}
+              <div className="lessonList">
+                {token && <Lesson token={token}
+                    setSubmitted={setSubmitted}
+                  />}
+              </div>
+              <div className="lessonForm">
+                add lesson form below
+              {token && <LessonForm token={token} setSubmitted={setSubmitted} />}
+              </div>
             </div>
         </div>
     );

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 
 
+
 export const LessonForm = ({ token, setSubmitted }) => {
     const [lesson_date, setLessonDate] = useState('');
     const [lesson_time, setLessonTime] = useState('');
@@ -52,37 +53,42 @@ export const LessonForm = ({ token, setSubmitted }) => {
   
     return (
       <div className="form-group">
-        <form className="lessonForm" onSubmit={handleSubmit}>
-          <label className="uk-form-label">Lesson Date: </label>
+        <h3> Add a new lesson here! </h3>
+        <form className="form-lessonForm" onSubmit={handleSubmit}>
+          <label className="label">Lesson Date: </label>
             <input
+              className="input form-control"
               placeholder="Enter date of lesson"
               type="date"
               value={lesson_date}
               onChange={(e) => handleChange('lesson_date', e)}
             />
             
-          <label className="uk-form-label">Lesson Time: </label>
+          <label className="label">Lesson Time: </label>
             <input
+            className="input form-control"
             type="time"
             value={lesson_time}
             onChange={(e) => handleChange('lesson_time', e)}
           />  
-          <label className="uk-form-label">Student</label>
+          <label className="label">Student</label>
             <input
+              className="input form-control"
               placeholder="Enter student"
               type="text"
               value={student}
               onChange={(e) => handleChange('student', e)}
             />
-          <label className="uk-form-label">Plan</label>
+          <label className="label">Plan</label>
             <input
+              className="input form-control"
               placeholder="Enter lesson plan notes"
               type="text"
               value={plan}
               onChange={(e) => handleChange('plan', e)}
             />
-          <div className="button">
-            <button className="uk-button">Create Lesson</button>
+          <div>
+            <button className="button">Create Lesson</button>
           </div>
         </form>
       </div>
