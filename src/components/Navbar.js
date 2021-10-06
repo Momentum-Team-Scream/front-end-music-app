@@ -5,30 +5,31 @@ import '../styles/navbar.css';
 export const Navbar = ({ auth, setAuth, clearStorage }) => {
   return (
     <>
-      <nav className="navbar navbar-light bg-light">
+      <nav className="navbar navbar-dark bg-dark">
         <div className="container-fluid">
           {auth ? (
             <>
               <div className="main-nav">
-                <p className="navbar-brand">MusicAppLogo</p>
-
+                <Link to="/" style={{ textDecoration: 'none' }}>
+                  <p className="navbar-brand">MusicAppLogo</p>
+                </Link>
                 <ul className="navbar-nav">
-                  <div className="nav-item nav-link active">
-                    <Link to="/students">
-                      <p>Students</p>
-                    </Link>
-                  </div>
-                  <div className="nav-item nav-link active">
-                    <Link to="/mydocs">
+                  <Link to="/students" style={{ textDecoration: 'none' }}>
+                    <div className="nav-link text-white text-uppercase">
+                      <p className="link">Students</p>
+                    </div>
+                  </Link>
+                  <Link to="/mydocs" style={{ textDecoration: 'none' }}>
+                    <div className="nav-link text-white text-uppercase">
                       <p className="nav-doc">My Docs</p>
-                    </Link>
-                  </div>
+                    </div>
+                  </Link>
                 </ul>
               </div>
-              <div className="end-nav">
+              <div className="end-nav text-white">
                 <div className="loggedin">
                   <div className="username">
-                    <p>Welcome, username!</p>
+                    <p>Welcome!</p>
                   </div>
                   <a
                     href
@@ -37,7 +38,7 @@ export const Navbar = ({ auth, setAuth, clearStorage }) => {
                       clearStorage('user');
                     }}
                   >
-                    <button type="button" className="btn btn-outline-dark">
+                    <button type="button" className="btn btn-outline-light">
                       Logout
                     </button>
                   </a>
