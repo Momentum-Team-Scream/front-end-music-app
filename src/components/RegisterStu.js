@@ -50,7 +50,7 @@ export const RegisterStu = ({ setAuth }) => {
         event.preventDefault()
         console.log('form submitted!')
 
-        axios.post('https://music-mvp.herokuapp.com/auth/users/', 
+        axios.post('', 
         {
             "first_name": firstName,
             "last_name": lastName,
