@@ -24,3 +24,34 @@
   width: 30%;
   margin-right: 1%;
 }
+
+.lessonNotes {
+  width: 100%;
+}
+
+.planningNote {
+  float: left;
+  width: 48%;
+  margin-top: 2%;
+  margin-left: 1%;
+  text-align: center;
+  /* border-style: solid; */
+}
+
+.plan {
+  border-style: solid;
+  text-align: left;
+}
+
+.studentAssignment {
+  float: right;
+  width: 48%;
+  margin-top: 2%;
+  margin-right: 1%;
+  text-align: center;
+}
+
+.assignment {
+  border-style: solid;
+  text-align: left;
+}
