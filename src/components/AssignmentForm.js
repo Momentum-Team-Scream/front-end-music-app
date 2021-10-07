@@ -14,8 +14,8 @@ export const AssignmentForm = ({ auth }) => {
       .post(
         'https://music-mvp.herokuapp.com/api/note/',
         {
-          body: 'Practice your scales',
-          lesson: 22,
+          body: body,
+          lesson: 26,
           is_assignment: true,
         },
         {
