@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import '../styles/login.css'
@@ -19,9 +19,9 @@ export const Login = ({ auth, setAuth, isInstructor, setIsInstructor }) => {
         }
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
-        axios.post('https://music-mvp.herokuapp.com/auth/token/login/',
+        await axios.post('https://music-mvp.herokuapp.com/auth/token/login/',
             {
                 username: username,
                 password: password
@@ -29,21 +29,32 @@ export const Login = ({ auth, setAuth, isInstructor, setIsInstructor }) => {
             .then(response => {
                 if (response.data.auth_token) {
                     setAuth(response.data.auth_token)
-                    axios.get('https://music-mvp.herokuapp.com/auth/users/me', {
-                        headers: {
-                            Authorization: `token ${auth}`
-                        }
-                    })
-                    .then(res => {
-                        console.log(res)
-                        
-                    })
+                    
+                    
                     // history.push('/')
                 }
             })
     }
     
+    useEffect(() => {
+
+        axios.get('https://music-mvp.herokuapp.com/auth/users/me/', {
+            headers: {
+                Authorization: `token ${auth}`
+            }
+        })
+        .then(res => {
+            console.log(res.data.is_instructor)
+            if (res.data.is_instructor === true){
+                setIsInstructor = 'true'
+            }
+            
+        })
+
+    }, [auth])
+
     console.log(auth)
+    console.log(isInstructor)
 
     return (
         <>

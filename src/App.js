@@ -16,7 +16,7 @@ import { RegisterStu } from './components/RegisterStu';
 
 export const App = () => {
   const [auth, setAuth, { removeItem }] = useLocalStorageState('auth', '');
-  const [isInstructor, setIsInstructor, {removeItem}] = useLocalStorageState('isInstructor', '')
+  const [isInstructor, setIsInstructor] = useLocalStorageState('isInstructor', '')
 
   return (
     <>
