@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../styles/lessonDetail.css';
+import userEvent from '@testing-library/user-event';
+import { AssignmentForm } from './AssignmentForm.js';
 
 
 export const LessonDetail = ({ auth, props, pk }) => {
@@ -65,9 +67,13 @@ export const LessonDetail = ({ auth, props, pk }) => {
                 <h4>Student Assignment</h4>
                 <div className="assignment">
                     
-                    {lesson.note && !!lesson.note.length && String(lesson.note[0].body)}
-                    
-                     {/* {auth && <AssignmentForm token={auth} setsubmitted={setSubmitted}/> */}
+                    {lesson.note && !!lesson.note.length ?
+                     String(lesson.note[0].body)
+                     :
+                     <>
+                    <AssignmentForm token={auth} setsubmitted={setSubmitted}/> 
+                    </>
+                     }
                 </div>
             </div>
           </div>
