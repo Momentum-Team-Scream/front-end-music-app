@@ -4,7 +4,7 @@ import axios from 'axios'
 import '../styles/login.css'
 
 
-export const Login = ({ auth, setAuth }) => {
+export const Login = ({ auth, setAuth, isInstructor, setIsInstructor }) => {
     const [ username, setUsername ] = useState('')
     const [ password, setPassword ] = useState('')
     const history = useHistory()
@@ -27,10 +27,18 @@ export const Login = ({ auth, setAuth }) => {
                 password: password
             })
             .then(response => {
-                console.log(response)
                 if (response.data.auth_token) {
                     setAuth(response.data.auth_token)
-                    history.push('/')
+                    axios.get('https://music-mvp.herokuapp.com/auth/users/me', {
+                        headers: {
+                            Authorization: `token ${auth}`
+                        }
+                    })
+                    .then(res => {
+                        console.log(res)
+                        
+                    })
+                    // history.push('/')
                 }
             })
     }
