@@ -6,6 +6,7 @@ import '../styles/lessonDetail.css';
 
 export const LessonDetail = ({ auth, props, pk }) => {
   const [lesson, setLesson] = useState({});
+  const [submitted, setSubmitted] = useState(false);
 //   const [note, setNote] = useState([]);
   useEffect(() => {
     async function getLesson() {
@@ -63,7 +64,10 @@ export const LessonDetail = ({ auth, props, pk }) => {
             <div className="studentAssignment">
                 <h4>Student Assignment</h4>
                 <div className="assignment">
-                {lesson.note && String(lesson.note[0].body)}
+                    
+                    {lesson.note && !!lesson.note.length && String(lesson.note[0].body)}
+                    
+                     {/* {auth && <AssignmentForm token={auth} setsubmitted={setSubmitted}/> */}
                 </div>
             </div>
           </div>
