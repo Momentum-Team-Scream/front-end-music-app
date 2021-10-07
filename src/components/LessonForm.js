@@ -13,7 +13,7 @@ export const LessonForm = ({ auth, setSubmitted }) => {
       event.preventDefault();
       axios
         .post(
-          'https://music-mvp.herokuapp.com/api/lesson/',
+          'https://music-mvp.herokuapp.com/api/lessons/',
           {
             lesson_date: lesson_date,
             lesson_time: lesson_time,

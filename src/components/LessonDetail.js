@@ -6,7 +6,6 @@ import '../styles/lessonDetail.css';
 
 export const LessonDetail = ({ auth, props, pk }) => {
   const [lesson, setLesson] = useState({});
-  const url = "https://www.zoom.com"
 //   const [answers, setAnswers] = useState([]);
   useEffect(() => {
     async function getLesson() {
@@ -30,16 +29,16 @@ export const LessonDetail = ({ auth, props, pk }) => {
 
   return (
     <>
-      <div className="lessonDetails">
+    <div className="lessonDetails">
         <div className="lessonCardCont">
           <div className="lessonDetailHeader">
             <p> {lesson.student}'s lesson' on {lesson.lesson_date} </p>
             <a onClick={() => {
-                    window.open("https://www.zoom.com");
+                    window.open("https://meet.jit.si/AllegedOrangesPlayImpolitely");
                 }}
                 >
                 <button type="button" className="btn lsnbtn btn-dark">
-                      Start Lesson
+                    Start Lesson
                 </button>
             </a>
             <a
@@ -53,11 +52,18 @@ export const LessonDetail = ({ auth, props, pk }) => {
                 </button>
             </a>
           </div>
-          <div className="planning-notes">
-            {lesson.plan}
+          <div className="lessonNotes">
+            <div className="planningNote">
+                <h4>Lesson Plan</h4>
+                {lesson.plan}
+            </div>
+            <div className="studentAssignment">
+                <h4>Student Assignment</h4>
+                {/* {lesson.note} */}
+            </div>
           </div>
         </div>
-        </div>
+    </div>
     </>
   );
 };
