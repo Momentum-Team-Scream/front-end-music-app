@@ -9,12 +9,22 @@ import { LessonList } from './components/LessonList.js';
 import { LessonDetail } from './components/LessonDetail.js';
 import { Navigation } from './components/Navigation.js';
 import { StudentList } from './components/StudentList.js';
+import { RegisterStu } from './components/RegisterStu';
 
 // import { AssignmentForm } from './components/AssignmentForm.js';
 
 
 export const App = () => {
-  const [auth, setAuth, { removeItem }] = useLocalStorageState('auth', '');
+  const [auth, setAuth, authStorageOptions] = useLocalStorageState('auth', '')
+  const [instructor, setInstructor, instructorStorageOptions] = useLocalStorageState('instructor', false)
+  const removeAuth = authStorageOptions['removeItem']
+  const removeInstructor = instructorStorageOptions['removeItem']
+
+  const clearStorage = (() => {
+    removeAuth()
+    removeInstructor()
+  })
+
 
   // const [auth, setAuth, { removeItem }] = useLocalStorageState('token', '');
   // const [username, setUsername] = useState('');
@@ -41,15 +51,31 @@ export const App = () => {
   return (
     <Router>
       <div className="App">
-        <Navigation auth={auth} setAuth={setAuth } clearStorage={removeItem} />
+        <Navigation auth={auth} setAuth={setAuth } clearStorage={clearStorage} instructor={instructor}/>
         <Switch>
-          <Route exact path="/" render={() => auth 
-            ? <Redirect to={{ pathname: '/home' }}/> 
-              : <Redirect to={{ pathname: '/login' }}/> }
+          <Route
+            exact
+            path="/"
+            render={() =>
+              auth && instructor ? (
+                <LessonList auth={auth} />
+              ) : (
+                <Redirect to={{ pathname: '/login' }} />
+              )
+            }
           />
-          <Route path="/login" component={() => <Login auth={auth} setAuth={setAuth} />}/>
-          <Route path="/register" component={() => <RegisterInstructor setAuth={setAuth} />}/>
-          <Route path="/home" component={() => <LessonList auth={auth} />}/>
+          <Route
+            path="/login"
+            component={() => <Login auth={auth} setAuth={setAuth} instructor={instructor} setInstructor={setInstructor} />}
+          />
+          <Route
+            path="/register"
+            component={() => <RegisterInstructor setAuth={setAuth} setInstructor={setInstructor}/>}
+          />
+          <Route 
+            path="/student-registration"
+            component={() => <RegisterStu setAuth={setAuth} />}
+          />
           <Route path="/lessons/:pk" component={(pk) => <LessonDetail props={pk} auth={auth} />}/>
           <Route
             path="/students"

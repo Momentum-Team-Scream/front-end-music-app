@@ -3,11 +3,13 @@ import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import '../styles/register.css'
 
-export const RegisterInstructor = ({ setAuth, setInstructor }) => {
+export const RegisterStu = ({ setAuth }) => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
+    const [emerName, setEmerName] = useState('')
+    const [emerNumber, setEmerNumber] = useState('')
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [rePassword, setRePassword] = useState('')
@@ -27,6 +29,12 @@ export const RegisterInstructor = ({ setAuth, setInstructor }) => {
         if (inputType === 'phone'){
             setPhone(event.target.value)
         }
+        if (inputType === 'emerName'){
+            setEmerName(event.target.value)
+        }
+        if (inputType === 'emerNumber'){
+            setEmerNumber(event.target.value)
+        }
         if (inputType === 'username'){
             setUsername(event.target.value)
         }
@@ -42,7 +50,7 @@ export const RegisterInstructor = ({ setAuth, setInstructor }) => {
         event.preventDefault()
         console.log('form submitted!')
 
-        axios.post('https://music-mvp.herokuapp.com/auth/users/', 
+        axios.post('', 
         {
             "first_name": firstName,
             "last_name": lastName,
@@ -51,8 +59,8 @@ export const RegisterInstructor = ({ setAuth, setInstructor }) => {
             "username": username,
             "password": password,
             "re_password": rePassword,
-            "emergency_contact_phone": '999999999',
-            "emergency_contact_name": 'unknown'
+            "emergency_contact_phone": emerNumber,
+            "emergency_contact_name": emerName
         }).then(res => {
             if (res.status === 201){
                 console.log('user created!')
@@ -62,23 +70,21 @@ export const RegisterInstructor = ({ setAuth, setInstructor }) => {
                 }).then((data) => {
                     if (data && data.data.auth_token) {
                         setAuth(data.data.auth_token)
-                        setInstructor(true)
                         history.push('/')
                     }
                 })
             } else {
                 console.log('something went wrong, please try again')
             }
-            console.log(res)
         })
     }
 
     return (
         <>
             <form className='form register-form' onSubmit={handleSubmit}>
-                <h2>Create your Instructor Account</h2>
+            <h2>Create your Student Account</h2>
                 <div className="personal-info">
-                    <p>Enter your contact information (this will be visible to your students)</p>
+                    <p>Enter your contact information (this will be visible to your instructor)</p>
                     <label className="label">First Name</label>
                     <input
                         className="input form-control"
@@ -111,9 +117,27 @@ export const RegisterInstructor = ({ setAuth, setInstructor }) => {
                         className="input form-control"
                         type="number"
                         aria-label="phone"
-                        aria-required="true"
+                        aria-required="false"
                         value={phone}
                         onChange={(event) => handleChange('phone', event)}
+                    />
+                    <label className="label">Emergency Contact Name</label>
+                    <input
+                        className="input form-control"
+                        type="text"
+                        aria-label="emergency contact name"
+                        aria-required="true"
+                        value={emerName}
+                        onChange={(event) => handleChange('emerName', event)}
+                    />
+                    <label className="label">Emergency Contact Phone</label>
+                    <input
+                        className="input form-control"
+                        type="number"
+                        aria-label="emergency contact phone"
+                        aria-required="true"
+                        value={emerNumber}
+                        onChange={(event) => handleChange('emerNumber', event)}
                     />
                 </div>
                 <div className="user-pw">

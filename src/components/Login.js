@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import '../styles/login.css'
 
 
-export const Login = ({ auth, setAuth }) => {
+export const Login = ({ auth, setAuth, instructor, setInstructor }) => {
     const [ username, setUsername ] = useState('')
     const [ password, setPassword ] = useState('')
     const history = useHistory()
@@ -19,23 +19,48 @@ export const Login = ({ auth, setAuth }) => {
         }
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
-        axios.post('https://music-mvp.herokuapp.com/auth/token/login/',
+        await axios.post('https://music-mvp.herokuapp.com/auth/token/login/',
             {
                 username: username,
                 password: password
             })
             .then(response => {
-                console.log(response)
                 if (response.data.auth_token) {
                     setAuth(response.data.auth_token)
-                    history.push('/')
                 }
             })
     }
     
-    console.log(auth)
+    useEffect(() => {
+        let isMounted = true
+        
+        axios.get('https://music-mvp.herokuapp.com/auth/users/me/', {
+            headers: {
+                Authorization: `token ${auth}`
+            }
+        })
+        .then(res => {
+            if (isMounted){
+                console.log(res.data.is_instructor)
+                if (res.status === 200){
+                    if (res.data.is_instructor === true){
+                        setInstructor(true)
+                        history.push('/')
+                    } 
+                }
+            }
+        })
+
+        return () => {
+            isMounted = false
+        }
+                
+
+    }, [auth])
+
+    console.log(instructor)
 
     return (
         <>
