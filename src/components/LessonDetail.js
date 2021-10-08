@@ -9,8 +9,9 @@ import { AssignmentForm } from './AssignmentForm.js';
 export const LessonDetail = ({ auth, props, pk }) => {
   const [lesson, setLesson] = useState({});
   const [submitted, setSubmitted] = useState(false);
-//   const [note, setNote] = useState([]);
+
   useEffect(() => {
+    if(auth || submitted) {
     async function getLesson() {
       await axios
         .get(
@@ -25,11 +26,11 @@ export const LessonDetail = ({ auth, props, pk }) => {
         )
         .then((response) => {
           setLesson(response.data);
-        //   setNote(response.data.note)
         });
     }
     getLesson();
-  }, [props, auth, pk]);
+    setSubmitted(false);
+  }}, [props, auth, submitted, pk]);
 
   return (
     <>
@@ -68,11 +69,11 @@ export const LessonDetail = ({ auth, props, pk }) => {
                 <div className="assignment">
                     
                     {lesson.note && !!lesson.note.length ?
-                     String(lesson.note[0].body)
-                     :
-                     <>
-                    <AssignmentForm token={auth} setsubmitted={setSubmitted}/> 
-                    </>
+                        String(lesson.note[0].body)
+                        :
+                        <>
+                        <AssignmentForm auth={auth} setSubmitted={setSubmitted}/> 
+                        </>
                      }
                 </div>
             </div>

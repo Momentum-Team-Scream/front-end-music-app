@@ -9,14 +9,13 @@ export const AssignmentForm = ({ auth }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('CLICK');
     axios
       .post(
         'https://music-mvp.herokuapp.com/api/note/',
         {
           body: body,
           lesson: `${pk}`,
-          is_assignment: true,
+          is_assignment: true
         },
         {
           headers: {
@@ -52,7 +51,7 @@ export const AssignmentForm = ({ auth }) => {
         ></textarea>
         <div className="button">
           <button type="submit" className="btn btn-dark">
-            Send note to student
+            Save assignment
           </button>
         </div>
       </form>
