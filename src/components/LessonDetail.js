@@ -34,7 +34,8 @@ export const LessonDetail = ({ auth, props, pk }) => {
     <div className="lessonDetails">
         <div className="lessonCardCont">
           <div className="lessonDetailHeader">
-            <p> {lesson.student}'s lesson' on {lesson.lesson_date} </p>
+            <h4> {lesson.student}'s lesson
+            on {lesson.lesson_date} </h4>
             <a onClick={() => {
                     window.open("https://meet.jit.si/AllegedOrangesPlayImpolitely");
                 }}
@@ -66,6 +67,7 @@ export const LessonDetail = ({ auth, props, pk }) => {
                 <div className="assignment">
                     
                     {lesson.note && !!lesson.note.length ?
+                        
                         String(lesson.note[0].body)
                         :
                         <>

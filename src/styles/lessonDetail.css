@@ -2,26 +2,29 @@
   float: left;
   background-color: darkcyan;
   width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
-.lessonDetailHeader p {
+.lessonDetailHeader h4 {
   float: left;
   background-color: darkcyan;
-  width: 30%;
+  width: 45%;
   margin-left: 1%;
+  color: white;
 }
 
 .lessonDetailHeader .lsnbtn {
   float: center;
   background-color: darkcyan;
-  width: 30%;
+  width: 25%;
   margin-right: 1%;
 }
 
 .lessonDetailHeader .docbtn {
   float: right;
   background-color: darkcyan;
-  width: 30%;
+  width: 25%;
   margin-right: 1%;
 }
 
