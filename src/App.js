@@ -44,12 +44,12 @@ export const App = () => {
         <Navigation auth={auth} setAuth={setAuth } clearStorage={removeItem} />
         <Switch>
           <Route exact path="/" render={() => auth 
-            ? <Redirect to={{ pathname: '/upcoming' }}/> 
+            ? <Redirect to={{ pathname: '/home' }}/> 
               : <Redirect to={{ pathname: '/login' }}/> }
           />
           <Route path="/login" component={() => <Login auth={auth} setAuth={setAuth} />}/>
           <Route path="/register" component={() => <RegisterInstructor setAuth={setAuth} />}/>
-          <Route path="/upcoming" component={() => <LessonList auth={auth} />}/>
+          <Route path="/home" component={() => <LessonList auth={auth} />}/>
           <Route path="/lessons/:pk" component={(pk) => <LessonDetail props={pk} auth={auth} />}/>
           <Route
             path="/students"

@@ -8,11 +8,8 @@ import { AssignmentForm } from './AssignmentForm.js';
 
 export const LessonDetail = ({ auth, props, pk }) => {
   const [lesson, setLesson] = useState({});
-  const [note, setNote] = useState([]);
-  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    if(auth || submitted) {
     async function getLesson() {
       await axios
         .get(
@@ -27,12 +24,10 @@ export const LessonDetail = ({ auth, props, pk }) => {
         )
         .then((response) => {
           setLesson(response.data);
-          setNote(response.data.note);
         });
     }
     getLesson();
-    setSubmitted(false);
-  }}, [props, auth, submitted, pk]);
+  }, [props, auth, pk]);
 
   return (
     <>
@@ -74,7 +69,7 @@ export const LessonDetail = ({ auth, props, pk }) => {
                         String(lesson.note[0].body)
                         :
                         <>
-                        <AssignmentForm auth={auth} setSubmitted={setSubmitted}/> 
+                        <AssignmentForm auth={auth} /> 
                         </>
                      }
                 </div>
