@@ -30,8 +30,7 @@ export const Navigation = ({ auth, setAuth, clearStorage, instructor }) => {
                   <a
                     href
                     onClick={() => {
-                      clearStorage('auth');
-                      clearStorage('instructor');
+                      clearStorage()
                     }}
                   >
                     <Button as={Link} to={'/'} variant="secondary" size="sm">

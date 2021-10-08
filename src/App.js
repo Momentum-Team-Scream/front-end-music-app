@@ -15,8 +15,15 @@ import { RegisterStu } from './components/RegisterStu';
 
 
 export const App = () => {
-  const [auth, setAuth, {removeItem}] = useLocalStorageState('auth', '');
-  const [instructor, setInstructor] = useLocalStorageState('instructor', '');
+  const [auth, setAuth, authStorageOptions] = useLocalStorageState('auth', '')
+  const [instructor, setInstructor, instructorStorageOptions] = useLocalStorageState('instructor', false)
+  const removeAuth = authStorageOptions['removeItem']
+  const removeInstructor = instructorStorageOptions['removeItem']
+
+  const clearStorage = (() => {
+    removeAuth()
+    removeInstructor()
+  })
 
 
   // const [auth, setAuth, { removeItem }] = useLocalStorageState('token', '');
@@ -44,7 +51,7 @@ export const App = () => {
   return (
     <Router>
       <div className="App">
-        <Navigation auth={auth} setAuth={setAuth } clearStorage={removeItem} instructor={instructor}/>
+        <Navigation auth={auth} setAuth={setAuth } clearStorage={clearStorage} instructor={instructor}/>
         <Switch>
           <Route
             exact
