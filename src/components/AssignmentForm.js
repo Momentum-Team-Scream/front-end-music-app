@@ -26,7 +26,7 @@ export const AssignmentForm = ({ auth }) => {
       )
       .then((res) => {
         setBody('');
-        history.push(`/lessions/${pk}/`);
+        history.push(`/lessons/${pk}/`);
       });
   };
 

@@ -8,6 +8,7 @@ import { AssignmentForm } from './AssignmentForm.js';
 
 export const LessonDetail = ({ auth, props, pk }) => {
   const [lesson, setLesson] = useState({});
+  const [note, setNote] = useState([]);
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
@@ -26,6 +27,7 @@ export const LessonDetail = ({ auth, props, pk }) => {
         )
         .then((response) => {
           setLesson(response.data);
+          setNote(response.data.note);
         });
     }
     getLesson();
