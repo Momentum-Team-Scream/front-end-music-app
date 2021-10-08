@@ -8,7 +8,11 @@ import '../styles/inst.css';
 export const LessonList = ({ auth }) => {
   const [lessons, setLessons] = useState([]);
   const [submitted, setSubmitted] = useState(false);
+  const date = useState([new Date()]);
+  const today = (String(date[0])).slice(0, 16);
+  
 
+  console.log(date)
 //   const [search, setSearch] = useState([]);
 
   useEffect(() => {
@@ -39,7 +43,9 @@ export const LessonList = ({ auth }) => {
         <div>
             <div className="instPage">
               <div className="lessonList">
-                <h4>Today is *Date*  </h4>
+                <h4>
+                  Today is {today}
+                </h4>
                 <p>Here are your lessons for today:</p>  
                 {lessons.map((lesson, index) => (
                   <div className="lessonCard" key={index}> {auth && <Lesson lesson={lesson} auth={auth} setSubmitted={setSubmitted}/>}</div>

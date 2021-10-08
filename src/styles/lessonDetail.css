@@ -41,6 +41,7 @@
 .plan {
   border-style: solid;
   text-align: left;
+  white-space: pre-line;
 }
 
 .studentAssignment {
@@ -54,4 +55,5 @@
 .assignment {
   border-style: solid;
   text-align: left;
+  white-space: pre-line;
 }
