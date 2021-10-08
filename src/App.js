@@ -15,10 +15,9 @@ import { RegisterStu } from './components/RegisterStu';
 
 
 export const App = () => {
-  const [auth, setAuth, { removeItem }] = useLocalStorageState('auth', '');
-  const [instructor, setInstructor] = useLocalStorageState('instructor', '')
+  const [auth, setAuth, {removeItem}] = useLocalStorageState('auth', '');
+  const [instructor, setInstructor] = useLocalStorageState('instructor', '');
 
-  console.log(instructor)
 
   // const [auth, setAuth, { removeItem }] = useLocalStorageState('token', '');
   // const [username, setUsername] = useState('');
@@ -45,14 +44,14 @@ export const App = () => {
   return (
     <Router>
       <div className="App">
-        <Navigation auth={auth} setAuth={setAuth } clearStorage={removeItem} />
+        <Navigation auth={auth} setAuth={setAuth } clearStorage={removeItem} instructor={instructor}/>
         <Switch>
           <Route
             exact
             path="/"
             render={() =>
               auth && instructor ? (
-                <Redirect to={{ pathname: '/home' }}/>
+                <LessonList auth={auth} />
               ) : (
                 <Redirect to={{ pathname: '/login' }} />
               )
@@ -64,13 +63,12 @@ export const App = () => {
           />
           <Route
             path="/register"
-            component={() => <RegisterInstructor setAuth={setAuth} />}
+            component={() => <RegisterInstructor setAuth={setAuth} setInstructor={setInstructor}/>}
           />
           <Route 
             path="/student-registration"
             component={() => <RegisterStu setAuth={setAuth} />}
           />
-          <Route path="/home" component={() => <LessonList auth={auth} />}/>
           <Route path="/lessons/:pk" component={(pk) => <LessonDetail props={pk} auth={auth} />}/>
           <Route
             path="/students"

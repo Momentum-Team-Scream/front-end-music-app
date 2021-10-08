@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import '../styles/register.css'
 
-export const RegisterInstructor = ({ setAuth }) => {
+export const RegisterInstructor = ({ setAuth, setInstructor }) => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
@@ -62,6 +62,7 @@ export const RegisterInstructor = ({ setAuth }) => {
                 }).then((data) => {
                     if (data && data.data.auth_token) {
                         setAuth(data.data.auth_token)
+                        setInstructor(true)
                         history.push('/')
                     }
                 })

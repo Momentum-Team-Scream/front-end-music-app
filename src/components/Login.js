@@ -34,22 +34,28 @@ export const Login = ({ auth, setAuth, instructor, setInstructor }) => {
     }
     
     useEffect(() => {
-
+        let isMounted = true
+        
         axios.get('https://music-mvp.herokuapp.com/auth/users/me/', {
             headers: {
                 Authorization: `token ${auth}`
             }
         })
         .then(res => {
-            console.log(res.data.is_instructor)
-            if (res.status === 200){
-                if (res.data.is_instructor === true){
-                    setInstructor(true)
-                    history.push('/')
+            if (isMounted){
+                console.log(res.data.is_instructor)
+                if (res.status === 200){
+                    if (res.data.is_instructor === true){
+                        setInstructor(true)
+                        history.push('/')
+                    }
                 }
             }
-            
         })
+
+        return () => {
+            isMounted = false
+        }
                 
 
     }, [auth])
