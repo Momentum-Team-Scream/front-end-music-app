@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Table } from 'react-bootstrap';
+import { Table, Card, Button, Text } from 'react-bootstrap';
 import '../styles/StudentList.css';
 
 export const StudentList = ({ auth }) => {
@@ -32,16 +32,22 @@ export const StudentList = ({ auth }) => {
             <thead>
               <tr>
                 <th>#</th>
+
                 <th>First Name</th>
                 <th>Last Name</th>
+                <th>Username</th>
               </tr>
             </thead>
             <tbody>
               {students.map((student, index) => (
                 <tr>
                   <td>{index}</td>
-                  <td>{student.first_name}</td>
+
+                  <td>
+                    <a href="{student.pk}">{student.first_name}</a>
+                  </td>
                   <td>{student.last_name}</td>
+                  <td>{student.username}</td>
                 </tr>
               ))}
             </tbody>

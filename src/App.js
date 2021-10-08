@@ -14,6 +14,7 @@ import { LessonList } from './components/LessonList.js';
 import { LessonDetail } from './components/LessonDetail.js';
 import { Navigation } from './components/Navigation.js';
 import { StudentList } from './components/StudentList.js';
+import { InstrProfile } from './components/InstrProfile.js';
 
 // import { AssignmentForm } from './components/AssignmentForm.js';
 
@@ -75,6 +76,10 @@ export const App = () => {
             <Route
               path="/students"
               component={() => <StudentList auth={auth} setAuth={setAuth} />}
+            />
+            <Route
+              path="/profile"
+              component={() => <InstrProfile auth={auth} setAuth={setAuth} />}
             />
           </Switch>
         </div>
