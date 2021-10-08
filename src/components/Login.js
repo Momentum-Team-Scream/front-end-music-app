@@ -4,7 +4,7 @@ import axios from 'axios'
 import '../styles/login.css'
 
 
-export const Login = ({ auth, setAuth, isInstructor, setIsInstructor }) => {
+export const Login = ({ auth, setAuth, instructor, setInstructor }) => {
     const [ username, setUsername ] = useState('')
     const [ password, setPassword ] = useState('')
     const history = useHistory()
@@ -29,9 +29,6 @@ export const Login = ({ auth, setAuth, isInstructor, setIsInstructor }) => {
             .then(response => {
                 if (response.data.auth_token) {
                     setAuth(response.data.auth_token)
-                    
-                    
-                    // history.push('/')
                 }
             })
     }
@@ -46,15 +43,14 @@ export const Login = ({ auth, setAuth, isInstructor, setIsInstructor }) => {
         .then(res => {
             console.log(res.data.is_instructor)
             if (res.data.is_instructor === true){
-                setIsInstructor = 'true'
+                setInstructor = 'instructor'
             }
             
         })
 
     }, [auth])
 
-    console.log(auth)
-    console.log(isInstructor)
+    console.log(instructor)
 
     return (
         <>
