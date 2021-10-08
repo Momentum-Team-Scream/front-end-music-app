@@ -1,8 +1,28 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Table } from 'react-bootstrap';
 import '../styles/StudentList.css';
-import { AssignmentForm } from './AssignmentForm.js';
 
-export const StudentList = ({}) => {
+export const StudentList = ({ auth }) => {
+  const [students, setStudents] = useState([]);
+  const [submitted, setSubmitted] = useState(false);
+  useEffect(() => {
+    if (auth) {
+      axios
+        .get(`https://music-mvp.herokuapp.com/instructor/studio/`, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `token ${auth}`,
+          },
+        })
+        .then((res) => {
+          setStudents(res.data.students);
+          console.log(res.data.students);
+        });
+      setSubmitted(false);
+    }
+  }, [auth, submitted]);
+
   return (
     <>
       <p>Your Students</p>
@@ -13,30 +33,18 @@ export const StudentList = ({}) => {
               <th>#</th>
               <th>First Name</th>
               <th>Last Name</th>
-              <th>Username</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td colSpan="2">Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
+            {students.map((student, index) => (
+              <tr>
+                <td>{index}</td>
+                <td>{student.first_name}</td>
+                <td>{student.last_name}</td>
+              </tr>
+            ))}
           </tbody>
         </Table>
-        <AssignmentForm />
       </div>
     </>
   );
