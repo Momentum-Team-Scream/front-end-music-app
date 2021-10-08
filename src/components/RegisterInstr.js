@@ -51,7 +51,8 @@ export const RegisterInstructor = ({ setAuth }) => {
             "username": username,
             "password": password,
             "re_password": rePassword,
-            "is_instructor": true
+            "emergency_contact_phone": '999999999',
+            "emergency_contact_name": 'unknown'
         }).then(res => {
             if (res.status === 201){
                 console.log('user created!')
