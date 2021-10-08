@@ -5,28 +5,28 @@ import { useHistory, useParams } from 'react-router-dom';
 export const AssignmentForm = ({ auth }) => {
   const [body, setBody] = useState('');
   const history = useHistory();
-  //   const { pk } = useParams();
+  const { pk } = useParams();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('CLICK');
     axios
       .post(
         'https://music-mvp.herokuapp.com/api/note/',
         {
           body: body,
-          lesson: 26,
+          lesson: `${pk}`,
           is_assignment: true,
         },
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `token 4ae18a4c0843f4cdccb2f76fc5228e59d747e429`,
+            Authorization: `token ${auth}`,
           },
         }
       )
       .then((res) => {
         setBody('');
+        history.push(`/lessons/${pk}/`);
       });
   };
 
@@ -51,7 +51,7 @@ export const AssignmentForm = ({ auth }) => {
         ></textarea>
         <div className="button">
           <button type="submit" className="btn btn-dark">
-            Send note to student
+            Save assignment
           </button>
         </div>
       </form>
