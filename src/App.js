@@ -9,11 +9,8 @@ import { LessonList } from './components/LessonList.js';
 import { LessonDetail } from './components/LessonDetail.js';
 import { Navigation } from './components/Navigation.js';
 import { StudentList } from './components/StudentList.js';
-<<<<<<< Updated upstream
 import { RegisterStu } from './components/RegisterStu';
-=======
 import { Assignmentlist } from './components/AssignmentList';
->>>>>>> Stashed changes
 
 // import { AssignmentForm } from './components/AssignmentForm.js';
 
