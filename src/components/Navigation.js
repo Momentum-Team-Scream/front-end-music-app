@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap';
 
-export const Navigation = ({ auth, setAuth, clearStorage }) => {
+export const Navigation = ({ auth, setAuth, clearStorage, instructor }) => {
   return (
     <>
       {auth ? (
@@ -30,8 +30,7 @@ export const Navigation = ({ auth, setAuth, clearStorage }) => {
                   <a
                     href
                     onClick={() => {
-                      clearStorage('auth');
-                      clearStorage('user');
+                      clearStorage()
                     }}
                   >
                     <Button as={Link} to={'/'} variant="secondary" size="sm">
