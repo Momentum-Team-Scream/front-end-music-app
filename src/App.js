@@ -10,7 +10,7 @@ import { LessonDetail } from './components/LessonDetail.js';
 import { Navigation } from './components/Navigation.js';
 import { StudentList } from './components/StudentList.js';
 import { RegisterStu } from './components/RegisterStu';
-import { Assignmentlist } from './components/AssignmentList';
+import { StudentDashboard } from './components/StudentDashboard';
 
 // import { AssignmentForm } from './components/AssignmentForm.js';
 
@@ -84,7 +84,7 @@ export const App = () => {
           />
           <Route 
             path="/student-home"
-            component={() => <Assignmentlist auth={auth}/>}
+            component={() => <StudentDashboard auth={auth}/>}
           />
         </Switch>
       </div>
