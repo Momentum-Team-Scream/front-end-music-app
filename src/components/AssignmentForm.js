@@ -5,7 +5,7 @@ import { useHistory, useParams } from 'react-router-dom';
 export const AssignmentForm = ({ auth }) => {
   const [body, setBody] = useState('');
   const history = useHistory();
-    const { pk } = useParams();
+  const { pk } = useParams();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -15,7 +15,7 @@ export const AssignmentForm = ({ auth }) => {
         {
           body: body,
           lesson: `${pk}`,
-          is_assignment: true
+          is_assignment: true,
         },
         {
           headers: {

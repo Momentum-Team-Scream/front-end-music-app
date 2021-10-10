@@ -6,7 +6,6 @@ import userEvent from '@testing-library/user-event';
 import { AssignmentForm } from './AssignmentForm.js';
 import {EditAssignment } from './EditAssignment.js';
 
-
 export const LessonDetail = ({ auth, props, pk }) => {
   const [lesson, setLesson] = useState({});
 
@@ -33,7 +32,7 @@ export const LessonDetail = ({ auth, props, pk }) => {
 
   return (
     <>
-    <div className="lessonDetails">
+      <div className="lessonDetails">
         <div className="lessonCardCont">
           <div className="lessonDetailHeader">
             <h4> {lesson.student}'s lesson
@@ -47,22 +46,20 @@ export const LessonDetail = ({ auth, props, pk }) => {
                 </button>
             </a>
             <a
-                href
-                onClick={() => {
-                    window.open("/mydocs");
-                }}
-                >
-                <button type="button" className="btn docbtn btn-dark">
-                    Add doc
-                </button>
+              href
+              onClick={() => {
+                window.open('/mydocs');
+              }}
+            >
+              <button type="button" className="btn docbtn btn-dark">
+                Add doc
+              </button>
             </a>
           </div>
           <div className="lessonNotes">
             <div className="planningNote">
-                <h4>Lesson Plan</h4>
-                <div className="plan">
-                    {lesson.plan}
-                </div>
+              <h4>Lesson Plan</h4>
+              <div className="plan">{lesson.plan}</div>
             </div>
             <div className="studentAssignment">
                 <h4>Student Assignment</h4>
@@ -83,7 +80,7 @@ export const LessonDetail = ({ auth, props, pk }) => {
             </div>
           </div>
         </div>
-    </div>
+      </div>
     </>
   );
 };
