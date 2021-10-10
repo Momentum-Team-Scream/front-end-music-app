@@ -1,20 +1,25 @@
-import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { Form, Button, Card } from 'react-bootstrap';
+import { useState } from 'react';
+
 import axios from 'axios';
+import '../styles/profile.css';
 
 export const EditProfile = ({ auth, profile }) => {
   const [firstName, setFirstName] = useState(profile.first_name);
   const [lastName, setLastName] = useState(profile.last_name);
-  const [username, setUsername] = useState(profile.username);
+
   const [phone, setPhone] = useState('555-555-5555');
   const [email, setEmail] = useState(profile.email);
 
   const handleEdit = (event) => {
-    event.preventDefault();
     axios.patch(
       'https://music-mvp.herokuapp.com/auth/users/me/',
-      { email: email },
+      {
+        first_name: firstName,
+        last_name: lastName,
+
+        phone: phone,
+        email: email,
+      },
       {
         headers: {
           'Content-Type': 'application/json',
@@ -23,7 +28,9 @@ export const EditProfile = ({ auth, profile }) => {
       }
     );
   };
-
+  const refreshPage = () => {
+    window.location.reload();
+  };
   return (
     <div>
       <form
@@ -31,11 +38,11 @@ export const EditProfile = ({ auth, profile }) => {
           handleEdit(event);
         }}
       >
-        <div class="form-group">
+        <div className="form-group">
           <label>First Name</label>
           <input
             type="Name"
-            class="form-control"
+            className="form-control"
             defaultValue={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
@@ -44,26 +51,17 @@ export const EditProfile = ({ auth, profile }) => {
           <label>Last Name</label>
           <input
             type="Name"
-            class="form-control"
+            className="form-control"
             defaultValue={lastName}
             onChange={(e) => setLastName(e.target.value)}
           />
         </div>
 
-        <div className="form-group">
-          <label>Username</label>
-          <input
-            type="username"
-            class="form-control"
-            defaultValue={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
         <div className="form-group" controlId="formBasicEmail">
           <label>Phone</label>
           <input
             type="phone"
-            class="form-control"
+            className="form-control"
             defaultValue={phone}
             onChange={(e) => setPhone(e.target.value)}
           />
@@ -72,13 +70,20 @@ export const EditProfile = ({ auth, profile }) => {
           <label>Email</label>
           <input
             type="email"
-            class="form-control"
+            className="form-control"
             defaultValue={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
 
-        <button class="btn btn-secondary" type="submit" onClick={handleEdit}>
+        <button
+          className="profButton btn btn-secondary"
+          type="submit"
+          onClick={function (event) {
+            handleEdit();
+            refreshPage();
+          }}
+        >
           Save
         </button>
       </form>

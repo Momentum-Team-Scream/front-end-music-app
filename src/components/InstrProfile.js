@@ -27,7 +27,7 @@ export const InstrProfile = ({ auth }) => {
 
   return (
     <>
-      <h1 className="profileTitle">Your Profile</h1>
+      <h1 className="profileTitle">{profile.username}'s Profile</h1>
       <div className="profileBody">
         {showEdit ? (
           <EditProfile profile={profile} auth={auth} />
@@ -39,10 +39,6 @@ export const InstrProfile = ({ auth }) => {
                 {profile.last_name}
               </p>
 
-              <p>
-                <strong>Username: </strong>
-                {profile.username}
-              </p>
               <p>
                 <strong>Phone: </strong>555-555-5555
               </p>
