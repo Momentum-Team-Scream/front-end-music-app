@@ -44,7 +44,7 @@ export const StudentList = ({ auth }) => {
                   <td>{index}</td>
 
                   <td>
-                    <a href="{student.pk}">{student.first_name}</a>
+                    <a href="#">{student.first_name}</a>
                   </td>
                   <td>{student.last_name}</td>
                   <td>{student.username}</td>

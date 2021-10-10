@@ -106,6 +106,10 @@ export const App = () => {
             path="/students"
             component={() => <StudentList auth={auth} setAuth={setAuth} />}
           />
+          <Route
+            path="/profile"
+            component={() => <InstrProfile auth={auth} setAuth={setAuth} />}
+          />
         </Switch>
       </div>
     </Router>

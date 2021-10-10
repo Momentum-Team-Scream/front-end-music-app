@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../styles/profile.css';
+import { Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { EditProfile } from './EditProfile.js';
 export const InstrProfile = ({ auth }) => {
   const [profile, setProfile] = useState([]);
   const [submitted, setSubmitted] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+
   useEffect(() => {
     if (auth) {
       axios
@@ -14,7 +20,6 @@ export const InstrProfile = ({ auth }) => {
         })
         .then((res) => {
           setProfile(res.data);
-          console.log(res.data);
         });
       setSubmitted(false);
     }
@@ -22,8 +27,42 @@ export const InstrProfile = ({ auth }) => {
 
   return (
     <>
-      <h1>hi</h1>
-      <p>{profile.last_name}</p>
+      <h1 className="profileTitle">Your Profile</h1>
+      <div className="profileBody">
+        {showEdit ? (
+          <EditProfile profile={profile} auth={auth} />
+        ) : (
+          <Card>
+            <div className="profileText">
+              <p>
+                <strong> Name: </strong> {profile.first_name}{' '}
+                {profile.last_name}
+              </p>
+
+              <p>
+                <strong>Username: </strong>
+                {profile.username}
+              </p>
+              <p>
+                <strong>Phone: </strong>555-555-5555
+              </p>
+              <p>
+                <strong>Email: </strong>
+                {profile.email}
+              </p>
+            </div>
+
+            <button
+              onClick={() => {
+                setShowEdit(true);
+              }}
+              className="editButton btn btn-outline-secondary"
+            >
+              Edit
+            </button>
+          </Card>
+        )}
+      </div>
     </>
   );
 };

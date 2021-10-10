@@ -1,0 +1,21 @@
+.profileTitle {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.profileBody {
+  margin-left: 20%;
+  margin-right: 20%;
+}
+.profileText {
+  margin-left: 20%;
+  margin-top: 5%;
+}
+
+.editButton {
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 5%;
+  max-width: 250px;
+}

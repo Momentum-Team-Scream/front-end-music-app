@@ -1,6 +1,6 @@
 .lessonList {
   float: left;
-  background-color: darkcyan;
+
   width: 48%;
   margin-top: 2%;
   margin-left: 1%;
@@ -9,7 +9,7 @@
 
 .lessonForm {
   float: right;
-  background-color: darkcyan;
+
   width: 48%;
   margin-top: 2%;
   margin-right: 1%;
