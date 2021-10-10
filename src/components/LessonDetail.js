@@ -5,7 +5,6 @@ import '../styles/lessonDetail.css';
 import userEvent from '@testing-library/user-event';
 import { AssignmentForm } from './AssignmentForm.js';
 
-
 export const LessonDetail = ({ auth, props, pk }) => {
   const [lesson, setLesson] = useState({});
 
@@ -31,52 +30,53 @@ export const LessonDetail = ({ auth, props, pk }) => {
 
   return (
     <>
-    <div className="lessonDetails">
+      <div className="lessonDetails">
         <div className="lessonCardCont">
           <div className="lessonDetailHeader">
-            <p> {lesson.student}'s lesson' on {lesson.lesson_date} </p>
-            <a onClick={() => {
-                    window.open("https://meet.jit.si/AllegedOrangesPlayImpolitely");
-                }}
-                >
-                <button type="button" className="btn lsnbtn btn-dark">
-                    Start Lesson
-                </button>
+            <p>
+              {' '}
+              {lesson.student}'s lesson' on {lesson.lesson_date}{' '}
+            </p>
+            <a
+              onClick={() => {
+                window.open('https://meet.jit.si/AllegedOrangesPlayImpolitely');
+              }}
+            >
+              <button type="button" className="btn lsnbtn btn-dark">
+                Start Lesson
+              </button>
             </a>
             <a
-                href
-                onClick={() => {
-                    window.open("/mydocs");
-                }}
-                >
-                <button type="button" className="btn docbtn btn-dark">
-                    Add doc
-                </button>
+              href
+              onClick={() => {
+                window.open('/mydocs');
+              }}
+            >
+              <button type="button" className="btn docbtn btn-dark">
+                Add doc
+              </button>
             </a>
           </div>
           <div className="lessonNotes">
             <div className="planningNote">
-                <h4>Lesson Plan</h4>
-                <div className="plan">
-                    {lesson.plan}
-                </div>
+              <h4>Lesson Plan</h4>
+              <div className="plan">{lesson.plan}</div>
             </div>
             <div className="studentAssignment">
-                <h4>Student Assignment</h4>
-                <div className="assignment">
-                    
-                    {lesson.note && !!lesson.note.length ?
-                        String(lesson.note[0].body)
-                        :
-                        <>
-                        <AssignmentForm auth={auth} /> 
-                        </>
-                     }
-                </div>
+              <h4>Student Assignment</h4>
+              <div className="assignment">
+                {lesson.note && !!lesson.note.length ? (
+                  String(lesson.note[0].body)
+                ) : (
+                  <>
+                    <AssignmentForm auth={auth} />
+                  </>
+                )}
+              </div>
             </div>
           </div>
         </div>
-    </div>
+      </div>
     </>
   );
 };
