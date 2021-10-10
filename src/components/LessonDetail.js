@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import '../styles/lessonDetail.css';
 import userEvent from '@testing-library/user-event';
 import { AssignmentForm } from './AssignmentForm.js';
+import {EditAssignment } from './EditAssignment.js';
 
 
 export const LessonDetail = ({ auth, props, pk }) => {
@@ -28,6 +29,7 @@ export const LessonDetail = ({ auth, props, pk }) => {
     }
     getLesson();
   }, [props, auth, pk]);
+
 
   return (
     <>
@@ -68,12 +70,15 @@ export const LessonDetail = ({ auth, props, pk }) => {
                     
                     {lesson.note && !!lesson.note.length ?
                         
-                        String(lesson.note[0].body)
+                        String(lesson.note[0].body) 
+
+                        // <EditAssignment auth={auth} pk={lesson.note.pk} body={lesson.note[0].body} />
                         :
                         <>
                         <AssignmentForm auth={auth} /> 
                         </>
                      }
+                    
                 </div>
             </div>
           </div>

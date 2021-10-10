@@ -60,3 +60,14 @@
   text-align: left;
   white-space: pre-line;
 }
+
+/* .assignment p input {
+  background-color: transparent;
+  border: 0;
+  color: black;
+  font-size: 18px;
+}
+
+.assignment p input:focus {
+  outline: none;
+} */
