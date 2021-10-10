@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/profile.css';
-import { Card, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Card } from 'react-bootstrap';
+
 import { EditProfile } from './EditProfile.js';
 export const InstrProfile = ({ auth }) => {
   const [profile, setProfile] = useState([]);

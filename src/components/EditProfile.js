@@ -4,40 +4,84 @@ import { Form, Button, Card } from 'react-bootstrap';
 import axios from 'axios';
 
 export const EditProfile = ({ auth, profile }) => {
-  const [editEmail, setEditEmail] = useState('');
+  const [firstName, setFirstName] = useState(profile.first_name);
+  const [lastName, setLastName] = useState(profile.last_name);
+  const [username, setUsername] = useState(profile.username);
+  const [phone, setPhone] = useState('555-555-5555');
+  const [email, setEmail] = useState(profile.email);
+
   const handleEdit = (event) => {
-    console.log(event);
+    event.preventDefault();
+    axios.patch(
+      'https://music-mvp.herokuapp.com/auth/users/me/',
+      { email: email },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `token ${auth}`,
+        },
+      }
+    );
   };
 
   return (
     <div>
-      <Form>
-        <Form.Group className="mb-3">
-          <Form.Label>First Name</Form.Label>
-          <Form.Control type="Name" defaultValue={profile.first_name} />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Last Name</Form.Label>
-          <Form.Control type="Name" defaultValue={profile.last_name} />
-        </Form.Group>
+      <form
+        onSubmit={(event) => {
+          handleEdit(event);
+        }}
+      >
+        <div class="form-group">
+          <label>First Name</label>
+          <input
+            type="Name"
+            class="form-control"
+            defaultValue={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <label>Last Name</label>
+          <input
+            type="Name"
+            class="form-control"
+            defaultValue={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        </div>
 
-        <Form.Group className="mb-3">
-          <Form.Label>Username</Form.Label>
-          <Form.Control type="username" defaultValue={profile.username} />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Phone</Form.Label>
-          <Form.Control type="phone" defaultValue="5555555555" />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control type="email" defaultValue={profile.email} />
-        </Form.Group>
+        <div className="form-group">
+          <label>Username</label>
+          <input
+            type="username"
+            class="form-control"
+            defaultValue={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div className="form-group" controlId="formBasicEmail">
+          <label>Phone</label>
+          <input
+            type="phone"
+            class="form-control"
+            defaultValue={phone}
+            onChange={(e) => setPhone(e.target.value)}
+          />
+        </div>
+        <div className="form-group" controlId="formBasicEmail">
+          <label>Email</label>
+          <input
+            type="email"
+            class="form-control"
+            defaultValue={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
 
-        <Button variant="secondary" type="submit" onClick={handleEdit}>
+        <button class="btn btn-secondary" type="submit" onClick={handleEdit}>
           Save
-        </Button>
-      </Form>
+        </button>
+      </form>
     </div>
   );
 };

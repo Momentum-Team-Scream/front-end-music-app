@@ -41,7 +41,7 @@ export const AssignmentForm = ({ auth }) => {
       <form className="form-group" onSubmit={handleSubmit}>
         <label for="exampleFormControlTextarea1">Assignment Note</label>
         <textarea
-          class="form-control"
+          className="form-control"
           id="exampleFormControlTextarea1"
           rows="3"
           placeholder="Enter assignment note here"
