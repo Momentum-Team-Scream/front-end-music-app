@@ -16,6 +16,7 @@ import { Navigation } from './components/Navigation.js';
 import { StudentList } from './components/StudentList.js';
 import { InstrProfile } from './components/InstrProfile.js';
 import { RegisterStu } from './components/RegisterStu';
+import { StudentDashboard } from './components/StudentDashboard';
 
 // import { AssignmentForm } from './components/AssignmentForm.js';
 
@@ -109,6 +110,10 @@ export const App = () => {
           <Route
             path="/students"
             component={() => <StudentList auth={auth} setAuth={setAuth} />}
+          />
+          <Route 
+            path="/student-home"
+            component={() => <StudentDashboard auth={auth}/>}
           />
           <Route
             path="/profile"
