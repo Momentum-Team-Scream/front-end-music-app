@@ -1,6 +1,11 @@
 import React from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 import useLocalStorageState from 'use-local-storage-state';
 import { useState, useEffect } from 'react';
 import { RegisterInstructor } from './components/RegisterInstr';
@@ -9,23 +14,23 @@ import { LessonList } from './components/LessonList.js';
 import { LessonDetail } from './components/LessonDetail.js';
 import { Navigation } from './components/Navigation.js';
 import { StudentList } from './components/StudentList.js';
+import { InstrProfile } from './components/InstrProfile.js';
 import { RegisterStu } from './components/RegisterStu';
 import { StudentDashboard } from './components/StudentDashboard';
 
 // import { AssignmentForm } from './components/AssignmentForm.js';
 
-
 export const App = () => {
-  const [auth, setAuth, authStorageOptions] = useLocalStorageState('auth', '')
-  const [instructor, setInstructor, instructorStorageOptions] = useLocalStorageState('instructor', false)
-  const removeAuth = authStorageOptions['removeItem']
-  const removeInstructor = instructorStorageOptions['removeItem']
+  const [auth, setAuth, authStorageOptions] = useLocalStorageState('auth', '');
+  const [instructor, setInstructor, instructorStorageOptions] =
+    useLocalStorageState('instructor', false);
+  const removeAuth = authStorageOptions['removeItem'];
+  const removeInstructor = instructorStorageOptions['removeItem'];
 
-  const clearStorage = (() => {
-    removeAuth()
-    removeInstructor()
-  })
-
+  const clearStorage = () => {
+    removeAuth();
+    removeInstructor();
+  };
 
   // const [auth, setAuth, { removeItem }] = useLocalStorageState('token', '');
   // const [username, setUsername] = useState('');
@@ -52,7 +57,12 @@ export const App = () => {
   return (
     <Router>
       <div className="App">
-        <Navigation auth={auth} setAuth={setAuth } clearStorage={clearStorage} instructor={instructor}/>
+        <Navigation
+          auth={auth}
+          setAuth={setAuth}
+          clearStorage={clearStorage}
+          instructor={instructor}
+        />
         <Switch>
           <Route
             exact
@@ -67,17 +77,32 @@ export const App = () => {
           />
           <Route
             path="/login"
-            component={() => <Login auth={auth} setAuth={setAuth} instructor={instructor} setInstructor={setInstructor} />}
+            component={() => (
+              <Login
+                auth={auth}
+                setAuth={setAuth}
+                instructor={instructor}
+                setInstructor={setInstructor}
+              />
+            )}
           />
           <Route
             path="/register"
-            component={() => <RegisterInstructor setAuth={setAuth} setInstructor={setInstructor}/>}
+            component={() => (
+              <RegisterInstructor
+                setAuth={setAuth}
+                setInstructor={setInstructor}
+              />
+            )}
           />
-          <Route 
+          <Route
             path="/student-registration"
             component={() => <RegisterStu setAuth={setAuth} />}
           />
-          <Route path="/lessons/:pk" component={(pk) => <LessonDetail props={pk} auth={auth} />}/>
+          <Route
+            path="/lessons/:pk"
+            component={(pk) => <LessonDetail props={pk} auth={auth} />}
+          />
           <Route
             path="/students"
             component={() => <StudentList auth={auth} setAuth={setAuth} />}
@@ -86,8 +111,12 @@ export const App = () => {
             path="/student-home"
             component={() => <StudentDashboard auth={auth}/>}
           />
+          <Route
+            path="/profile"
+            component={() => <InstrProfile auth={auth} setAuth={setAuth} />}
+          />
         </Switch>
       </div>
     </Router>
-  )
+  );
 };

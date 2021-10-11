@@ -2,8 +2,9 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
 
-export const AssignmentForm = ({ auth }) => {
+export const LogForm = ({ auth }) => {
   const [body, setBody] = useState('');
+  const [timePracticed, setTimePracticed] = useState('');
   const history = useHistory();
   const { pk } = useParams();
 
@@ -11,11 +12,10 @@ export const AssignmentForm = ({ auth }) => {
     event.preventDefault();
     axios
       .post(
-        'https://music-mvp.herokuapp.com/api/note/',
+        'https://music-mvp.herokuapp.com/api/practices',
         {
           body: body,
-          lesson: `${pk}`,
-          is_assignment: true,
+          time_practiced: timePracticed,
         },
         {
           headers: {
@@ -26,7 +26,9 @@ export const AssignmentForm = ({ auth }) => {
       )
       .then((res) => {
         setBody('');
-        history.push(`/lessons/${pk}/`);
+        setTimePracticed('');
+
+        // history.push(`/lessons/${pk}/`);
       });
   };
 
@@ -34,24 +36,35 @@ export const AssignmentForm = ({ auth }) => {
     if (inputType === 'body') {
       setBody(event.target.value);
     }
+    if (inputType === 'time_practiced') {
+      setTimePracticed(event.target.value);
+    }
   };
-  console.log(auth);
   return (
     <>
       <form className="form-group" onSubmit={handleSubmit}>
-        <label for="exampleFormControlTextarea1">Assignment Note</label>
+        <label for="exampleFormControlTextarea1">Practice Log</label>
         <textarea
           className="form-control"
           id="exampleFormControlTextarea1"
           rows="3"
-          placeholder="Enter assignment note here"
+          placeholder="What did you practice?"
           type="text"
           value={body}
           onChange={(e) => handleChange('body', e)}
         ></textarea>
+        <div className="form-group">
+          <input
+            type="text"
+            value={timePracticed}
+            className="form-control"
+            placeholder="How long did you practice?"
+            onChange={(e) => handleChange('time_practiced', e)}
+          />
+        </div>
         <div className="button">
           <button type="submit" className="btn btn-dark">
-            Save assignment
+            Save Log
           </button>
         </div>
       </form>
