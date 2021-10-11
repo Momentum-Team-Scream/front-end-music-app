@@ -10,15 +10,10 @@ export const Navigation = ({ auth, setAuth, clearStorage, instructor }) => {
         <>
           <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
-              {instructor ? (
-                <Navbar.Brand as={Link} to={'/'}>
-                  MusicAppLogo
-                </Navbar.Brand>
-              ) : (
-                <Navbar.Brand as={Link} to={'/'}>
-                  MusicAppLogo
-                </Navbar.Brand>
-              )}
+              <Navbar.Brand as={Link} to={'/'}>
+                MusicAppLogo
+              </Navbar.Brand>
+
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
