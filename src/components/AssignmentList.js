@@ -46,6 +46,7 @@ export const AssignmentList = ({auth}) => {
     </> :
     (    
         <>
+            <h3>Your Assignments:</h3>
             <Accordion defaultActiveKey="0">
                 {assignments.map((assign, idx) => {
                     return (

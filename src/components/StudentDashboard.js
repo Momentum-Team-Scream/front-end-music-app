@@ -40,20 +40,21 @@ export const StudentDashboard = ({auth}) => {
                     <Link to="/profile">
                         <p>Edit Info</p>
                     </Link>
+                    <button type="button" class="ms-auto stu-dash-btn btn btn-secondary">Contact [Instructor]</button>
                 </div>
                 <div className="">
-                    <p>Username: {user.username}</p>
-                    <p>Email: {user.email}</p>
-                    <p>Emergency Contact Name: {user.emergency_contact_name}</p>
-                    <p>Emergency Contact Phone: {user.emergency_contact_phone}</p>
+                    <p><i class="bi bi-person-circle"></i> {user.username}</p>
+                    <p><i class="bi bi-envelope-fill"></i> {user.email}</p>
+                    <p>Emergency Contact: {user.emergency_contact_name}</p>
+                    <p>Emergency Phone: {user.emergency_contact_phone}</p>
                 </div>
             </header>
-            <div className="dash-body col-xxl-12 row flex-lg-row justify-content-center">
-                <div className="col-lg-6">
-                    <AssignmentList auth={auth}/>
-                </div>
-                <div className="col-lg-6">
+            <div className="dash-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
+                <div className="body-item col-lg-6">
                     <LogForm auth={auth}/>
+                </div>
+                <div className="body-item col-lg-6">
+                    <AssignmentList auth={auth}/>
                 </div>
             </div>
         </>
