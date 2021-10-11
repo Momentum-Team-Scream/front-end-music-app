@@ -35,7 +35,7 @@ export const AssignmentForm = ({ auth }) => {
       setBody(event.target.value);
     }
   };
-  console.log(auth);
+  
   return (
     <>
       <form className="form-group" onSubmit={handleSubmit}>

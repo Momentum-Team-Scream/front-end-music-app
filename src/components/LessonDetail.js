@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 import '../styles/lessonDetail.css';
 import userEvent from '@testing-library/user-event';
 import { AssignmentForm } from './AssignmentForm.js';
+import {EditAssignment } from './EditAssignment.js';
+import { EditLessonPlan } from './EditLessonPlan.js';
 
 export const LessonDetail = ({ auth, props, pk }) => {
   const [lesson, setLesson] = useState({});
-
   useEffect(() => {
     async function getLesson() {
       await axios
@@ -28,23 +29,22 @@ export const LessonDetail = ({ auth, props, pk }) => {
     getLesson();
   }, [props, auth, pk]);
 
+
   return (
     <>
       <div className="lessonDetails">
         <div className="lessonCardCont">
           <div className="lessonDetailHeader">
-            <p>
-              {' '}
-              {lesson.student}'s lesson' on {lesson.lesson_date}{' '}
-            </p>
-            <a
-              onClick={() => {
-                window.open('https://meet.jit.si/AllegedOrangesPlayImpolitely');
-              }}
-            >
-              <button type="button" className="btn lsnbtn btn-dark">
-                Start Lesson
-              </button>
+            <h4> {lesson.student}'s lesson
+              on {lesson.lesson_date} 
+            </h4>
+            <a onClick={() => {
+                    window.open("https://meet.jit.si/AllegedOrangesPlayImpolitely");
+                }}
+                >
+                <button type="button" className="btn lsnbtn btn-dark">
+                    Start Lesson
+                </button>
             </a>
             <a
               href
@@ -60,19 +60,27 @@ export const LessonDetail = ({ auth, props, pk }) => {
           <div className="lessonNotes">
             <div className="planningNote">
               <h4>Lesson Plan</h4>
-              <div className="plan">{lesson.plan}</div>
+              <div className="plan">
+                {/* {lesson.plan} */}
+                <p>click below to edit the current lesson plan</p>
+                <EditLessonPlan auth={auth} lesson={lesson} />
+              </div>
             </div>
             <div className="studentAssignment">
-              <h4>Student Assignment</h4>
-              <div className="assignment">
-                {lesson.note && !!lesson.note.length ? (
-                  String(lesson.note[0].body)
-                ) : (
-                  <>
-                    <AssignmentForm auth={auth} />
-                  </>
-                )}
-              </div>
+                <h4>Student Assignment</h4>
+                <div className="assignment">
+                <p>click below to edit the current assignment</p>
+                    {lesson.note && !!lesson.note.length ?
+                        
+                        String(lesson.note[0].body)  
+                        &&
+                        <EditAssignment auth={auth} pk={lesson.pk} note={lesson.note[0].body} noteId={lesson.note[0].pk} />
+                        :
+                        <>
+                        <AssignmentForm auth={auth} /> 
+                        </>
+                    }
+                </div>
             </div>
           </div>
         </div>

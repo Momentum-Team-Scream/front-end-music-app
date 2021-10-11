@@ -29,3 +29,11 @@
     width: 100%;
   }
 }
+
+.detbtn {
+  float: left;
+}
+
+.delbtn {
+  float: right;
+}

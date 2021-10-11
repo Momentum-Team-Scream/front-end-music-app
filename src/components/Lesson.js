@@ -27,25 +27,22 @@ export const Lesson = ({ lesson, auth, setSubmitted }) => {
         <div className="card" key={lesson.pk}>
             <p>{lesson.student_name}</p>
             <p>{lesson.lesson_date}</p>
-            <p>{lesson.lesson_time}</p>
+            <p>{lesson.lesson_time}</p> 
             <p>{lesson.plan}</p>
-            <div className="details">
+            <div className="card-footer">
                 <Link to={`/lessons/${lesson.pk}`}>
-                    <button className="btn btn-dark">
+                    <button className="btn detbtn btn-dark">
                         Details
                     </button>
                 </Link>
-            </div>
-            <div className="deleteContainer">
-                <button
-                className="deleteButton btn btn-outline-secondary"
+                <button className="delButton btn btn-outline-secondary"
                 id={lesson.pk}
                 onClick={(e) => { if (window.confirm('Are you sure you want to delete this lesson?')) handleDelete(e)}}
                 >
                     Delete
                 </button>
+                
             </div>
-            
         </div>
     );
     }

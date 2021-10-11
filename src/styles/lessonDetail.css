@@ -2,13 +2,16 @@
   float: left;
 
   width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
-.lessonDetailHeader p {
+.lessonDetailHeader h4 {
   float: left;
 
   width: 30%;
   margin-left: 1%;
+  color: black;
 }
 
 .lessonDetailHeader .lsnbtn {
@@ -41,6 +44,7 @@
 .plan {
   border-style: solid;
   text-align: left;
+  white-space: pre-line;
 }
 
 .studentAssignment {
@@ -54,4 +58,22 @@
 .assignment {
   border-style: solid;
   text-align: left;
+  white-space: pre-line;
+}
+
+.lessonNotes input {
+  background-color: transparent;
+  border: 0;
+  color: black;
+  font-size: 18px;
+  border-top: groove;
+  border-bottom: groove;
+}
+
+.assignment p input:focus {
+  outline: none;
+}
+
+.lessonNotes p {
+  text-align: center;
 }
