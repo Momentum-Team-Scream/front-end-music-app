@@ -48,7 +48,7 @@ export const EditLessonPlan = ({ auth, lesson }) => {
         }}
       >
         <div class="form-group">
-          <label>Update lesson below</label>
+          {/* <label>Update lesson below</label> */}
           <input
             type="text"
             class="form-control"

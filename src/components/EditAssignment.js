@@ -40,7 +40,7 @@ export const EditAssignment = ({ auth, note, pk }) => {
         }}
       >
         <div class="form-group">
-          <label>Update Assignment below</label>
+          {/* <label>Update Assignment below</label> */}
           <input
             type="text"
             class="form-control"

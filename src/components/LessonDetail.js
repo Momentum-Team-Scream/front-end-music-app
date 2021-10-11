@@ -62,13 +62,14 @@ export const LessonDetail = ({ auth, props, pk }) => {
               <h4>Lesson Plan</h4>
               <div className="plan">
                 {/* {lesson.plan} */}
+                click below to edit the current lesson plan
                 <EditLessonPlan auth={auth} lesson={lesson} />
               </div>
             </div>
             <div className="studentAssignment">
                 <h4>Student Assignment</h4>
                 <div className="assignment">
-                    
+                <p>click below to edit the current assignment</p>
                     {lesson.note && !!lesson.note.length ?
                         
                         String(lesson.note[0].body)  
@@ -78,7 +79,6 @@ export const LessonDetail = ({ auth, props, pk }) => {
                         <>
                         <AssignmentForm auth={auth} /> 
                         </>
-                         
                     }
                 </div>
             </div>
