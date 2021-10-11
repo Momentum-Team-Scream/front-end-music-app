@@ -26,7 +26,6 @@ export const App = () => {
     removeInstructor()
   })
 
-  console.log(auth)
 
   // const [auth, setAuth, { removeItem }] = useLocalStorageState('token', '');
   // const [username, setUsername] = useState('');
@@ -59,12 +58,8 @@ export const App = () => {
             exact
             path="/"
             render={() =>
-              auth ? (
-                instructor ? (
-                  <LessonList auth={auth} />
-                ) : (
-                  <StudentDashboard auth={auth}/>
-                )
+              auth && instructor ? (
+                <LessonList auth={auth} />
               ) : (
                 <Redirect to={{ pathname: '/login' }} />
               )

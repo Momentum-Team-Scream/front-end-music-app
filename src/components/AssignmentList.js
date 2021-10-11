@@ -1,13 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import { Accordion, Card } from 'react-bootstrap';
 
-export const Assignmentlist = ({auth}) => {
+export const AssignmentList = ({auth}) => {
     const [assignments, setAssignments] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
-    useEffect(() => {
+    useEffect( async () => {
         let isMounted = true
             
-            axios.get('https://music-mvp.herokuapp.com/api/upcoming/', {
+            await axios.get('https://music-mvp.herokuapp.com/api/upcoming/', {
                 headers: {
                     Authorization: `token ${auth}`
                 }
@@ -15,11 +17,11 @@ export const Assignmentlist = ({auth}) => {
             .then(res => {
                 if (isMounted){
                     if (res.status === 200){
-                        let lessons = res.data
+                        const lessons = res.data
                         let notes = []
                         lessons.forEach((lesson) => {
                             if (lesson.note.length >= 1){
-                                notes.push(lesson.note)
+                                notes.push(lesson.note[0])
                             }
                         })
                         setAssignments(notes)
@@ -33,12 +35,23 @@ export const Assignmentlist = ({auth}) => {
                     
 
         }, [auth])
-    
+
     console.log(assignments)
 
     return (
         <>
-            Assignments will load here
+            <Accordion defaultActiveKey="0">
+                {assignments.map((assign, idx) => {
+                    <Card>
+                        <Accordion.Toggle as={Card.Header} eventKey={idx}>
+                            {assign.created_at}                        
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="idx">
+                            <Card.Body>{assign.body}</Card.Body>
+                        </Accordion.Collapse>
+                    </Card>
+                })}
+            </Accordion>
         </>
     );
 }

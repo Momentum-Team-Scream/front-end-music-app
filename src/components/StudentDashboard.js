@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import { Assignmentlist } from './AssignmentList';
+import { AssignmentList } from './AssignmentList';
 
 export const StudentDashboard = ({auth}) => {
     const [user, setUser] = useState('')
@@ -42,7 +42,7 @@ export const StudentDashboard = ({auth}) => {
                 </div>
             </header>
             <div>
-                <Assignmentlist auth={auth}/>
+                <AssignmentList auth={auth}/>
             </div>
         </>
     );
