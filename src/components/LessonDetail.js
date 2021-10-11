@@ -62,7 +62,6 @@ export const LessonDetail = ({ auth, props, pk }) => {
               <h4>Lesson Plan</h4>
               <p> (click below to edit) </p>
               <div className="plan">
-                {/* {lesson.plan} */}
                 <EditLessonPlan auth={auth} lesson={lesson} />
               </div>
             </div>
@@ -72,13 +71,12 @@ export const LessonDetail = ({ auth, props, pk }) => {
                 <div className="assignment">
                 
                     {lesson.note && !!lesson.note.length ?
-                        
                         String(lesson.note[0].body)  
                         &&
                         <EditAssignment auth={auth} pk={lesson.pk} note={lesson.note[0].body} noteId={lesson.note[0].pk} />
                         :
                         <>
-                        <AssignmentForm auth={auth} /> 
+                          <AssignmentForm auth={auth} /> 
                         </>
                     }
                 </div>

@@ -33,8 +33,6 @@ export const EditLessonPlan = ({ auth, lesson }) => {
       }
     )
     .then((res) => {
-        // setLessonDate('');
-        // setLessonTime('');
         setPlan('');
         history.push(`/lessons/${id}/`);
       });
@@ -49,7 +47,6 @@ export const EditLessonPlan = ({ auth, lesson }) => {
       >
         <div class="form-group">
           <textarea
-            type="textarea"
             class="form-control"
             defaultValue={lesson.plan}
             onChange={(e) => setPlan(e.target.value)}
@@ -59,11 +56,11 @@ export const EditLessonPlan = ({ auth, lesson }) => {
         </div>
         
         <button className="editButton btn btn-outline-secondary"
-                id={lesson.pk}
-                onClick={(e) => { handleEdit(e)}}
-                >
-                    Save Update
-                </button>
+          id={lesson.pk}
+          onClick={(e) => { handleEdit(e)}}
+        >
+          Save Update
+        </button>
       </form>
     </div>
   );

@@ -41,12 +41,9 @@ export const EditAssignment = ({ auth, note, pk, noteId }) => {
         }}
       >
         <div class="form-group">
-          {/* <label>Update Assignment below</label> */}
           <textarea
-            type="textarea"
             class="form-control"
             defaultValue={body}
-            // onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }}
             onChange={(e) => setBody(e.target.value)}
             rows={10}
             columns={10}>
@@ -54,16 +51,11 @@ export const EditAssignment = ({ auth, note, pk, noteId }) => {
         </div>
         
         <button className="editButton btn btn-outline-secondary"
-                id={pk}
-                onClick={(e) => { handleEdit(e)}}
-                >
-                    Save Update
-                </button>
-
-
-        {/* <button class="btn btn-secondary" type="submit" onClick={handleEdit}>
-          Save
-        </button> */}
+          id={pk}
+          onClick={(e) => { handleEdit(e)}}
+        >
+          Save Update
+        </button>
       </form>
     </div>
   );
