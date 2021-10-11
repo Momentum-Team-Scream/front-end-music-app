@@ -71,7 +71,11 @@ export const App = () => {
               auth && instructor ? (
                 <LessonList auth={auth} />
               ) : (
-                <Redirect to={{ pathname: '/login' }} />
+                auth ? (
+                  <StudentDashboard auth={auth}/>
+                ) : (
+                  <Redirect to={{ pathname: '/login' }} />
+                )
               )
             }
           />
@@ -106,10 +110,6 @@ export const App = () => {
           <Route
             path="/students"
             component={() => <StudentList auth={auth} setAuth={setAuth} />}
-          />
-          <Route 
-            path="/student-home"
-            component={() => <StudentDashboard auth={auth}/>}
           />
           <Route
             path="/profile"

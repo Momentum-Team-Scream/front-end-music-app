@@ -50,7 +50,7 @@ export const AssignmentList = ({auth}) => {
                 {assignments.map((assign, idx) => {
                     return (
                         <Accordion.Item eventKey={idx}>
-                            <Accordion.Header>{assign.created_at}</Accordion.Header>
+                            <Accordion.Header>Assignment from {assign.created_at}</Accordion.Header>
                             <Accordion.Body>
                                 {assign.body}
                             </Accordion.Body>
