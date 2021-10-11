@@ -5,6 +5,7 @@ import '../styles/lessonDetail.css';
 import userEvent from '@testing-library/user-event';
 import { AssignmentForm } from './AssignmentForm.js';
 import {EditAssignment } from './EditAssignment.js';
+import { EditLessonPlan } from './EditLessonPlan.js';
 
 export const LessonDetail = ({ auth, props, pk }) => {
   const [lesson, setLesson] = useState({});
@@ -59,7 +60,10 @@ export const LessonDetail = ({ auth, props, pk }) => {
           <div className="lessonNotes">
             <div className="planningNote">
               <h4>Lesson Plan</h4>
-              <div className="plan">{lesson.plan}</div>
+              <div className="plan">
+                {/* {lesson.plan} */}
+                <EditLessonPlan auth={auth} lesson={lesson} />
+              </div>
             </div>
             <div className="studentAssignment">
                 <h4>Student Assignment</h4>

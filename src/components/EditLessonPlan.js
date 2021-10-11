@@ -1,24 +1,30 @@
 import { useEffect, useState } from 'react';
 import { useParams, useHistory, Link } from 'react-router-dom';
+
 import axios from 'axios';
 
 
-export const EditAssignment = ({ auth, note, pk }) => {
-  const lesson =(pk)
-  const [body, setBody] = useState(note);
+export const EditLessonPlan = ({ auth, lesson }) => {
   const history = useHistory();
-  console.log (pk)
+  const [lessonPk] = useState(lesson.pk)
+  const [lessonDate, setLessonDate] = useState(lesson.lesson_date);
+  const [lessonTime, setLessonTime] = useState(lesson.lesson_time);
+  const [plan, setPlan] = useState(lesson.plan);
+  const [student, setStudent] = useState(lesson.student);
+  const [author, setAuthor] = useState(lesson.author);
+
 
     
   const handleEdit = (event) => {
-    
     const id = event.target.id;
-    console.log(id)
+    console.log (id)
     event.preventDefault();
     axios.patch(
-        'https://music-mvp.herokuapp.com/api/note/49/',
-      { body: body ,
-      lesson: "70"},
+        `https://music-mvp.herokuapp.com/api/lessons/${id}/`,
+        {   lesson_date: lessonDate ,
+            lesson_time: lessonTime,
+            plan: plan,
+        },
 
       {    headers: {
           'Content-Type': 'application/json',
@@ -27,8 +33,10 @@ export const EditAssignment = ({ auth, note, pk }) => {
       }
     )
     .then((res) => {
-        setBody('');
-        history.push(`/lessons/${lesson}/`);
+        // setLessonDate('');
+        // setLessonTime('');
+        setPlan('');
+        history.push(`/lessons/${id}/`);
       });
   };
 
@@ -40,18 +48,19 @@ export const EditAssignment = ({ auth, note, pk }) => {
         }}
       >
         <div class="form-group">
-          <label>Update Assignment below</label>
+          <label>Update lesson below</label>
           <input
             type="text"
             class="form-control"
-            defaultValue={body}
-            onChange={(e) => setBody(e.target.value)}
+            defaultValue={lesson.plan}
+            onChange={(e) => setPlan(e.target.value)}
           />
         </div>
         
         <button className="editButton btn btn-outline-secondary"
-                id={note.pk}
+                id={lesson.pk}
                 onClick={(e) => { handleEdit(e)}}
+                onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }}
                 >
                     Save Update
                 </button>
