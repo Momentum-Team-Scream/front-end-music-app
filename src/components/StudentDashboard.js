@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 import { AssignmentList } from './AssignmentList';
+import { LogForm } from './LogForm'
 import '../styles/studentdash.css'
 
 export const StudentDashboard = ({auth}) => {
@@ -52,7 +53,7 @@ export const StudentDashboard = ({auth}) => {
                     <AssignmentList auth={auth}/>
                 </div>
                 <div className="col-lg-6">
-                    <p>practice log form will go here</p>
+                    <LogForm auth={auth}/>
                 </div>
             </div>
         </>
