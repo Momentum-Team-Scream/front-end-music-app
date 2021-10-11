@@ -59,7 +59,6 @@ export const InstrProfile = ({ auth }) => {
                 Edit
               </button>
             </Card>
-            <LogForm auth={auth} />
           </>
         )}
       </div>
