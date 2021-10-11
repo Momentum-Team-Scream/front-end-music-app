@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/profile.css';
 import { Card } from 'react-bootstrap';
-
+import { LogForm } from './LogForm.js';
 import { EditProfile } from './EditProfile.js';
 export const InstrProfile = ({ auth }) => {
   const [profile, setProfile] = useState([]);
@@ -32,31 +32,35 @@ export const InstrProfile = ({ auth }) => {
         {showEdit ? (
           <EditProfile profile={profile} auth={auth} />
         ) : (
-          <Card>
-            <div className="profileText">
-              <p>
-                <strong> Name: </strong> {profile.first_name}{' '}
-                {profile.last_name}
-              </p>
+          <>
+            <Card>
+              <div className="profileText">
+                <p>
+                  <strong> Name: </strong> {profile.first_name}{' '}
+                  {profile.last_name}
+                </p>
 
-              <p>
-                <strong>Phone: </strong>555-555-5555
-              </p>
-              <p>
-                <strong>Email: </strong>
-                {profile.email}
-              </p>
-            </div>
+                <p>
+                  <strong>Phone: </strong>
+                  {profile.phone}
+                </p>
+                <p>
+                  <strong>Email: </strong>
+                  {profile.email}
+                </p>
+              </div>
 
-            <button
-              onClick={() => {
-                setShowEdit(true);
-              }}
-              className="editButton btn btn-outline-secondary"
-            >
-              Edit
-            </button>
-          </Card>
+              <button
+                onClick={() => {
+                  setShowEdit(true);
+                }}
+                className="editButton btn btn-outline-secondary"
+              >
+                Edit
+              </button>
+            </Card>
+            <LogForm auth={auth} />
+          </>
         )}
       </div>
     </>
