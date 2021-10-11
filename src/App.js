@@ -17,7 +17,7 @@ import { StudentList } from './components/StudentList.js';
 import { InstrProfile } from './components/InstrProfile.js';
 import { RegisterStu } from './components/RegisterStu';
 import { StudentDashboard } from './components/StudentDashboard';
-
+import { LogList } from './components/LogList.js';
 // import { AssignmentForm } from './components/AssignmentForm.js';
 
 export const App = () => {
@@ -70,12 +70,10 @@ export const App = () => {
             render={() =>
               auth && instructor ? (
                 <LessonList auth={auth} />
+              ) : auth ? (
+                <StudentDashboard auth={auth} />
               ) : (
-                auth ? (
-                  <StudentDashboard auth={auth}/>
-                ) : (
-                  <Redirect to={{ pathname: '/login' }} />
-                )
+                <Redirect to={{ pathname: '/login' }} />
               )
             }
           />
@@ -112,8 +110,16 @@ export const App = () => {
             component={() => <StudentList auth={auth} setAuth={setAuth} />}
           />
           <Route
+            path="/student-home"
+            component={() => <StudentDashboard auth={auth} />}
+          />
+          <Route
             path="/profile"
             component={() => <InstrProfile auth={auth} setAuth={setAuth} />}
+          />
+          <Route
+            path="/practice-logs"
+            component={() => <LogList auth={auth} setAuth={setAuth} />}
           />
         </Switch>
       </div>
