@@ -48,12 +48,12 @@ export const StudentDashboard = ({auth}) => {
                     <p>Emergency Contact Phone: {user.emergency_contact_phone}</p>
                 </div>
             </header>
-            <div className="dash-body col-xxl-12 row flex-lg-row justify-content-center">
-                <div className="col-lg-6">
-                    <AssignmentList auth={auth}/>
-                </div>
+            <div className="dash-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
                 <div className="col-lg-6">
                     <LogForm auth={auth}/>
+                </div>
+                <div className="col-lg-6">
+                    <AssignmentList auth={auth}/>
                 </div>
             </div>
         </>
