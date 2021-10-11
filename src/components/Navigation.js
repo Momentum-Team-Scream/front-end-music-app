@@ -10,9 +10,15 @@ export const Navigation = ({ auth, setAuth, clearStorage, instructor }) => {
         <>
           <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
-              <Navbar.Brand as={Link} to={'/'}>
-                MusicAppLogo
-              </Navbar.Brand>
+              {instructor ? (
+                <Navbar.Brand as={Link} to={'/'}>
+                  MusicAppLogo
+                </Navbar.Brand>
+              ) : (
+                <Navbar.Brand as={Link} to={'/student-home'}>
+                  MusicAppLogo
+                </Navbar.Brand>
+              )}
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
@@ -33,7 +39,7 @@ export const Navigation = ({ auth, setAuth, clearStorage, instructor }) => {
                       Profile
                     </Nav.Link>
                   ) : (
-                    <Nav.Link as={Link} to={'/practices'}>
+                    <Nav.Link as={Link} to={'/practice-logs'}>
                       Logs
                     </Nav.Link>
                   )}
