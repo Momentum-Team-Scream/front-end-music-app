@@ -2,8 +2,8 @@
   float: left;
 
   width: 100%;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
 }
 
 .lessonDetailHeader h4 {
@@ -64,9 +64,10 @@
 .lessonNotes input {
   background-color: transparent;
   border: 0;
+  margin-top: 1%;
   color: black;
   font-size: 18px;
-  border-top: groove;
+  /* border-top: groove; */
   border-bottom: groove;
 }
 
@@ -76,4 +77,8 @@
 
 .lessonNotes p {
   text-align: center;
+}
+
+.btn {
+  margin: 5px, 5px;
 }

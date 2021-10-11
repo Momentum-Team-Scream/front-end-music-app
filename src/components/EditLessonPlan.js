@@ -48,27 +48,22 @@ export const EditLessonPlan = ({ auth, lesson }) => {
         }}
       >
         <div class="form-group">
-          {/* <label>Update lesson below</label> */}
-          <input
-            type="text"
+          <textarea
+            type="textarea"
             class="form-control"
             defaultValue={lesson.plan}
             onChange={(e) => setPlan(e.target.value)}
-          />
+            rows={10}
+            columns={10}>
+          </textarea>
         </div>
         
         <button className="editButton btn btn-outline-secondary"
                 id={lesson.pk}
                 onClick={(e) => { handleEdit(e)}}
-                onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }}
                 >
                     Save Update
                 </button>
-
-
-        {/* <button class="btn btn-secondary" type="submit" onClick={handleEdit}>
-          Save
-        </button> */}
       </form>
     </div>
   );

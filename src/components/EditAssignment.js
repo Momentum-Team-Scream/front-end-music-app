@@ -42,12 +42,15 @@ export const EditAssignment = ({ auth, note, pk, noteId }) => {
       >
         <div class="form-group">
           {/* <label>Update Assignment below</label> */}
-          <input
-            type="text"
+          <textarea
+            type="textarea"
             class="form-control"
             defaultValue={body}
+            // onKeyPress={(e) => { e.key === 'Enter' && e.preventDefault(); }}
             onChange={(e) => setBody(e.target.value)}
-          />
+            rows={10}
+            columns={10}>
+          </textarea>
         </div>
         
         <button className="editButton btn btn-outline-secondary"
