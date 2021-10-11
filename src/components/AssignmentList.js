@@ -25,6 +25,7 @@ export const AssignmentList = ({auth}) => {
                             }
                         })
                         setAssignments(notes)
+                        setIsLoading(false)
                     }
                 }
             })
@@ -38,18 +39,25 @@ export const AssignmentList = ({auth}) => {
 
     console.log(assignments)
 
-    return (
+    return isLoading ?
+    <>
+        <strong>Loading...</strong>
+        <div className="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+    </> :
+    (    
         <>
-            <Accordion defaultActiveKey="0">
-                {assignments.map((assign, idx) => {
-                    <Card>
-                        <Accordion.Toggle as={Card.Header} eventKey={idx}>
-                            {assign.created_at}                        
-                        </Accordion.Toggle>
-                        <Accordion.Collapse eventKey="idx">
-                            <Card.Body>{assign.body}</Card.Body>
-                        </Accordion.Collapse>
-                    </Card>
+            <Accordion>
+                {assignments && assignments.map((assign, idx) => {
+                    return (
+                        <Card key={idx}>
+                            <Accordion.Toggle as={Card.Header} eventKey={idx}>
+                                {assign.created_at}                        
+                            </Accordion.Toggle>
+                            <Accordion.Collapse eventKey={idx}>
+                                <Card.Body>{assign.body}</Card.Body>
+                            </Accordion.Collapse>
+                        </Card>
+                    )
                 })}
             </Accordion>
         </>
