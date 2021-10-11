@@ -3,22 +3,23 @@ import { useParams, useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
 
 
-export const EditAssignment = ({ auth, note, pk }) => {
-  const lesson =(pk)
+export const EditAssignment = ({ auth, note, pk, noteId }) => {
+  const lesson = (pk)
   const [body, setBody] = useState(note);
   const history = useHistory();
   console.log (pk)
+  console.log (noteId)
+  console.log (lesson)
 
     
-  const handleEdit = (event) => {
+  const handleEdit = (event, id) => {
     
-    const id = event.target.id;
     console.log(id)
     event.preventDefault();
     axios.patch(
-        'https://music-mvp.herokuapp.com/api/note/49/',
+        `https://music-mvp.herokuapp.com/api/note/${noteId}/`,
       { body: body ,
-      lesson: "70"},
+      lesson: `${lesson}`},
 
       {    headers: {
           'Content-Type': 'application/json',
@@ -50,7 +51,7 @@ export const EditAssignment = ({ auth, note, pk }) => {
         </div>
         
         <button className="editButton btn btn-outline-secondary"
-                id={note.pk}
+                id={pk}
                 onClick={(e) => { handleEdit(e)}}
                 >
                     Save Update

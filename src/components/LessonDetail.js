@@ -9,7 +9,6 @@ import { EditLessonPlan } from './EditLessonPlan.js';
 
 export const LessonDetail = ({ auth, props, pk }) => {
   const [lesson, setLesson] = useState({});
-
   useEffect(() => {
     async function getLesson() {
       await axios
@@ -37,7 +36,8 @@ export const LessonDetail = ({ auth, props, pk }) => {
         <div className="lessonCardCont">
           <div className="lessonDetailHeader">
             <h4> {lesson.student}'s lesson
-            on {lesson.lesson_date} </h4>
+              on {lesson.lesson_date} 
+            </h4>
             <a onClick={() => {
                     window.open("https://meet.jit.si/AllegedOrangesPlayImpolitely");
                 }}
@@ -62,7 +62,7 @@ export const LessonDetail = ({ auth, props, pk }) => {
               <h4>Lesson Plan</h4>
               <div className="plan">
                 {/* {lesson.plan} */}
-                click below to edit the current lesson plan
+                <p>click below to edit the current lesson plan</p>
                 <EditLessonPlan auth={auth} lesson={lesson} />
               </div>
             </div>
@@ -74,7 +74,7 @@ export const LessonDetail = ({ auth, props, pk }) => {
                         
                         String(lesson.note[0].body)  
                         &&
-                        <EditAssignment auth={auth} pk={lesson.pk} note={lesson.note[0].body} />
+                        <EditAssignment auth={auth} pk={lesson.pk} note={lesson.note[0].body} noteId={lesson.note[0].pk} />
                         :
                         <>
                         <AssignmentForm auth={auth} /> 
