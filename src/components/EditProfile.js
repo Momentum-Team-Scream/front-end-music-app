@@ -7,7 +7,7 @@ export const EditProfile = ({ auth, profile }) => {
   const [firstName, setFirstName] = useState(profile.first_name);
   const [lastName, setLastName] = useState(profile.last_name);
 
-  const [phone, setPhone] = useState('555-555-5555');
+  const [phone, setPhone] = useState(profile.phone);
   const [email, setEmail] = useState(profile.email);
 
   const handleEdit = (event) => {
