@@ -1,0 +1,22 @@
+.dash-header {
+  padding: 2em;
+  border-bottom: 3px solid black;
+}
+
+.dash-header p {
+  margin-bottom: 0em;
+}
+
+.dash-body {
+  padding: 2em;
+}
+
+.name-edit-links {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.name-edit-links h2 {
+  margin-right: 1em;
+}

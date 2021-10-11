@@ -70,6 +70,8 @@ export const App = () => {
             render={() =>
               auth && instructor ? (
                 <LessonList auth={auth} />
+              ) : auth ? (
+                <StudentDashboard auth={auth} />
               ) : (
                 <Redirect to={{ pathname: '/login' }} />
               )

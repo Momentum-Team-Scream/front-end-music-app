@@ -47,8 +47,8 @@ export const Login = ({ auth, setAuth, instructor, setInstructor }) => {
                 if (res.status === 200){
                     if (res.data.is_instructor === true){
                         setInstructor(true)
-                        history.push('/')
                     } 
+                    history.push('/')
                 }
             }
         })
