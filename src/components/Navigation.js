@@ -15,7 +15,7 @@ export const Navigation = ({ auth, setAuth, clearStorage, instructor }) => {
                   MusicAppLogo
                 </Navbar.Brand>
               ) : (
-                <Navbar.Brand as={Link} to={'/student-home'}>
+                <Navbar.Brand as={Link} to={'/'}>
                   MusicAppLogo
                 </Navbar.Brand>
               )}
