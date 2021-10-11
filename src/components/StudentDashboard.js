@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { AssignmentList } from './AssignmentList';
+import '../styles/profile.css'
 
 export const StudentDashboard = ({auth}) => {
     const [user, setUser] = useState('')
@@ -31,16 +32,16 @@ export const StudentDashboard = ({auth}) => {
     
     return (
         <>
-            <header>
+            <header className="profileTitle">
                 <h2>{user.first_name} {user.last_name}</h2>
-                <div>
-                    <p>Username: {user.username}</p>
-                    <p>Email: {user.email}</p>
-                    <h3>Emergency Contact:</h3>
-                    <p>Name: {user.emergency_contact_name}</p>
-                    <p>Phone: {user.emergency_contact_phone}</p>
-                </div>
             </header>
+            <div className="profileBody">
+                <p>Username: {user.username}</p>
+                <p>Email: {user.email}</p>
+                <h3>Emergency Contact:</h3>
+                <p>Name: {user.emergency_contact_name}</p>
+                <p>Phone: {user.emergency_contact_phone}</p>
+            </div>
             <div>
                 <AssignmentList auth={auth}/>
             </div>
