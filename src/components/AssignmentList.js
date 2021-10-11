@@ -46,17 +46,15 @@ export const AssignmentList = ({auth}) => {
     </> :
     (    
         <>
-            <Accordion>
-                {assignments && assignments.map((assign, idx) => {
+            <Accordion defaultActiveKey="0">
+                {assignments.map((assign, idx) => {
                     return (
-                        <Card key={idx}>
-                            <Accordion.Toggle as={Card.Header} eventKey={idx}>
-                                {assign.created_at}                        
-                            </Accordion.Toggle>
-                            <Accordion.Collapse eventKey={idx}>
-                                <Card.Body>{assign.body}</Card.Body>
-                            </Accordion.Collapse>
-                        </Card>
+                        <Accordion.Item eventKey={idx}>
+                            <Accordion.Header>{assign.created_at}</Accordion.Header>
+                            <Accordion.Body>
+                                {assign.body}
+                            </Accordion.Body>
+                        </Accordion.Item>
                     )
                 })}
             </Accordion>
