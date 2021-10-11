@@ -4,19 +4,22 @@ import { Form, Button, Card } from 'react-bootstrap';
 import axios from 'axios';
 
 
-export const EditAssignment = ({ auth, note, pk, }) => {
+export const EditAssignment = ({ auth, note, pk }) => {
+  const lesson =(pk)
   const [body, setBody] = useState(note);
   const history = useHistory();
-  
+  console.log (pk)
 
     
   const handleEdit = (event) => {
+    
     const id = event.target.id;
+    console.log(id)
     event.preventDefault();
     axios.patch(
-        `https://music-mvp.herokuapp.com/api/note/${id}`,
-      { body: body },
-      {lesson: `${pk}`},
+        'https://music-mvp.herokuapp.com/api/note/49/',
+      { body: body ,
+      lesson: "70"},
 
       {    headers: {
           'Content-Type': 'application/json',
@@ -26,9 +29,8 @@ export const EditAssignment = ({ auth, note, pk, }) => {
     )
     .then((res) => {
         setBody('');
-        history.push(`/lessons/${pk}/`);
+        history.push(`/lessons/${lesson}/`);
       });
-    
   };
 
   return (
@@ -39,7 +41,7 @@ export const EditAssignment = ({ auth, note, pk, }) => {
         }}
       >
         <div class="form-group">
-          <label>update Note</label>
+          <label>Update Assignment below</label>
           <input
             type="text"
             class="form-control"
@@ -49,10 +51,10 @@ export const EditAssignment = ({ auth, note, pk, }) => {
         </div>
         
         <button className="editButton btn btn-outline-secondary"
-                id={pk}
-                onClick={(e) => { if (window.confirm('Are you sure you want to edit this assignment?')) handleEdit(e)}}
+                id={note.pk}
+                onClick={(e) => { handleEdit(e)}}
                 >
-                    save update
+                    Save Update
                 </button>
 
 

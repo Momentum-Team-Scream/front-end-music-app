@@ -67,15 +67,15 @@ export const LessonDetail = ({ auth, props, pk }) => {
                     
                     {lesson.note && !!lesson.note.length ?
                         
-                        String(lesson.note[0].body) 
-
-                        // <EditAssignment auth={auth} pk={lesson.note.pk} body={lesson.note[0].body} />
+                        String(lesson.note[0].body)  
+                        &&
+                        <EditAssignment auth={auth} pk={lesson.pk} note={lesson.note[0].body} />
                         :
                         <>
                         <AssignmentForm auth={auth} /> 
                         </>
-                     }
-                    
+                         
+                    }
                 </div>
             </div>
           </div>
