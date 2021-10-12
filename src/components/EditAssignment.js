@@ -11,7 +11,7 @@ export const EditAssignment = ({ auth, note, pk, noteId }) => {
   console.log (noteId)
   console.log (lesson)
 
-    
+
   const handleEdit = (event, id) => {
     
     console.log(id)
@@ -41,26 +41,21 @@ export const EditAssignment = ({ auth, note, pk, noteId }) => {
         }}
       >
         <div class="form-group">
-          {/* <label>Update Assignment below</label> */}
-          <input
-            type="text"
+          <textarea
             class="form-control"
             defaultValue={body}
             onChange={(e) => setBody(e.target.value)}
-          />
+            rows={5}
+            >
+          </textarea>
         </div>
         
         <button className="editButton btn btn-outline-secondary"
-                id={pk}
-                onClick={(e) => { handleEdit(e)}}
-                >
-                    Save Update
-                </button>
-
-
-        {/* <button class="btn btn-secondary" type="submit" onClick={handleEdit}>
-          Save
-        </button> */}
+          id={pk}
+          onClick={(e) => { handleEdit(e)}}
+        >
+          Save Update
+        </button>
       </form>
     </div>
   );
