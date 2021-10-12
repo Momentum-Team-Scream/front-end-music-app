@@ -24,6 +24,8 @@ export const StudentList = ({ auth }) => {
     }
   }, [auth, submitted]);
 
+  
+
   return (
     <>
       <div className="studentListBody">
@@ -44,7 +46,7 @@ export const StudentList = ({ auth }) => {
                 <tr>
                   <td>{index}</td>
                   <td>
-                    <Link to={`/student/${student.pk}`}>
+                    <Link to={`/users/${student.pk}/`}>
                       {student.first_name}
                     </Link>
                   </td>

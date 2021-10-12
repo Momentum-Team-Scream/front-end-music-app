@@ -2,13 +2,16 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import '../styles/studetail.css'
 
-export const StudentDetail = ({auth, pk}) => {
+export const StudentDetail = ({auth, props, pk}) => {
     const [student, setStudent] = useState({})
     
+    console.log(props)
+    console.log(props.location.pathname)
+
     useEffect( async () => {
         let isMounted = true
             
-            await axios.get(`https://music-mvp.herokuapp.com/api/users/${3}/`, {
+            await axios.get('https://music-mvp.herokuapp.com/api' + props.location.pathname, {
                 headers: {
                     Authorization: `token ${auth}`
                 }
