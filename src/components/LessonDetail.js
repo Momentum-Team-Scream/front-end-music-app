@@ -9,6 +9,7 @@ import { EditLessonPlan } from './EditLessonPlan.js';
 
 export const LessonDetail = ({ auth, props, pk }) => {
   const [lesson, setLesson] = useState({});
+  const [previous, setPrevious] = useState({});
   useEffect(() => {
     async function getLesson() {
       await axios
@@ -23,11 +24,33 @@ export const LessonDetail = ({ auth, props, pk }) => {
           }
         )
         .then((response) => {
+          console.log(response.data)
           setLesson(response.data);
+
+            if (response.status === 200){
+                console.log('making new request')
+                axios.get(`https://music-mvp.herokuapp.com/api/assignments/${response.data.student}/`, 
+                // axios.get('https://music-mvp.herokuapp.com/api/assignments/21/',
+                  {
+                    headers: {
+                      'Content-Type': 'application/json',
+                      Authorization: `token ${auth}`,
+                    },
+                  }
+                  )
+                  .then((response) => {
+                    console.log(response.data[0])
+                    setPrevious(response.data[0]);
+                    console.log(previous)
+                    }
+                  )
+            } 
         });
     }
     getLesson();
-  }, [props, auth, pk]);
+  }, [props, auth, pk]
+  
+  );
 
 
   return (
@@ -35,9 +58,10 @@ export const LessonDetail = ({ auth, props, pk }) => {
       <div className="lessonDetails">
         <div className="lessonCardCont">
           <div className="lessonDetailHeader">
-            <h4> {lesson.student}'s lesson
-              <br /> on {lesson.lesson_date} 
-            </h4>
+            <div className="dateTime">
+            <h4> {lesson.student_name}'s lesson 
+            <br /> on {lesson.lesson_date} at {lesson.lesson_time} </h4>
+            </div>
             <a onClick={() => {
                     window.open("https://meet.jit.si/AllegedOrangesPlayImpolitely");
                 }}
@@ -72,7 +96,6 @@ export const LessonDetail = ({ auth, props, pk }) => {
                   <h4>Student Assignment</h4>
                   <p> (click below to edit) </p>
                 </div>
-                
                 <div className="assignment">
                 
                     {lesson.note && !!lesson.note.length ?
@@ -86,7 +109,21 @@ export const LessonDetail = ({ auth, props, pk }) => {
                     }
                 </div>
             </div>
+            </div>
           </div>
+          <div className="previousInfo">
+              <div className="previousLesson">
+                <h4> Last Lesson </h4>
+                <p>***previous lesson plan will go here *** 
+                   {/* this list of student lessons only has assignments from B/E not lessons  */}
+                </p>
+              </div>
+              <div className="previousAssignment">
+                <h4> Last Assignment </h4>
+                <p>
+                  {previous.note[0].body}
+                </p>
+              </div>
         </div>
       </div>
     </>
