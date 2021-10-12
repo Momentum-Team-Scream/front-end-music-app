@@ -37,7 +37,7 @@ export const StudentDetail = ({auth, pk}) => {
                 <div className="">
                     <p><i class="bi bi-person-circle"></i> {student.username}</p>
                     <p><i class="bi bi-envelope-fill"></i> {student.email}</p>
-                    <p>Emergency Contact: {student.emergency_contacut_name}</p>
+                    <p>Emergency Contact: {student.emergency_contact_name}</p>
                     <p>Emergency Phone: {student.emergency_contact_phone}</p>
                 </div>
             </header>
