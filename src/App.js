@@ -123,7 +123,7 @@ export const App = () => {
             component={() => <LogList auth={auth} setAuth={setAuth} />}
           />
           <Route
-            path="/student/:pk"
+            path="/student/:pk/"
             component={(pk) => <StudentDetail auth={auth} pk={pk}/>}
           />
         </Switch>
