@@ -16,9 +16,28 @@ export const LogList = ({ auth }) => {
             Authorization: `token ${auth}`,
           },
         })
-        .then((res) => console.log(res));
+        .then((res) => setLogs(res.data));
     }
   }, [auth]);
 
-  return <></>;
+  return (
+    <>
+      <LogForm />
+      <h3>Past Practice Logs</h3>
+      <Accordion defaultActiveKey="0">
+        {logs.map((log, idx) => {
+          return (
+            <Accordion.Item eventKey={idx}>
+              <Accordion.Header>{log.created_at}</Accordion.Header>
+              <Accordion.Body>
+                <strong>What I practiced: </strong>
+                {log.body} <strong>How Long I practiced: </strong>
+                {log.time_practiced}
+              </Accordion.Body>
+            </Accordion.Item>
+          );
+        })}
+      </Accordion>
+    </>
+  );
 };
