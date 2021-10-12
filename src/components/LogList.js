@@ -4,28 +4,21 @@ import { Accordion, Card } from 'react-bootstrap';
 import { LogForm } from './LogForm.js';
 
 export const LogList = ({ auth }) => {
-  const [students, setStudents] = useState([]);
-  const [submitted, setSubmitted] = useState(false);
+  const [logs, setLogs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     if (auth) {
       axios
-        .get(`https://music-mvp.herokuapp.com/instructor/studio/`, {
+        .get(`https://music-mvp.herokuapp.com/api/practices/`, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `token ${auth}`,
           },
         })
-        .then((res) => {
-          setStudents(res.data.students);
-          console.log(res.data.students);
-        });
-      setSubmitted(false);
+        .then((res) => console.log(res));
     }
-  }, [auth, submitted]);
+  }, [auth]);
 
-  return (
-    <>
-      <LogForm />
-    </>
-  );
+  return <></>;
 };
