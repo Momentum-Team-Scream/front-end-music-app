@@ -51,7 +51,6 @@ export const EditLessonPlan = ({ auth, lesson }) => {
             defaultValue={lesson.plan}
             onChange={(e) => setPlan(e.target.value)}
             rows={5}
-            // columns={10}
           >
           </textarea>
         </div>

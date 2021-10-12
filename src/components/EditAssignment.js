@@ -11,7 +11,7 @@ export const EditAssignment = ({ auth, note, pk, noteId }) => {
   console.log (noteId)
   console.log (lesson)
 
-    
+
   const handleEdit = (event, id) => {
     
     console.log(id)
