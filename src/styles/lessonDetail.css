@@ -43,6 +43,8 @@
 
 .plan {
   border-style: solid;
+  border-color: gray;
+  border-radius: 2%;
   text-align: left;
   white-space: pre-line;
 }
@@ -57,21 +59,25 @@
 
 .assignment {
   border-style: solid;
+  border-color: gray;
+  border-radius: 2%;
   text-align: left;
   white-space: pre-line;
 }
 
-.lessonNotes input {
-  background-color: transparent;
-  border: 0;
+.lessonNotes textarea {
+  /* background-color: transparent; */
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
   margin-top: 1%;
   color: black;
   font-size: 18px;
 }
 
-.assignment p input:focus {
+/* .assignment p input:focus {
   outline: none;
-}
+} */
 
 .lessonNotes p {
   text-align: center;
@@ -81,6 +87,11 @@
   margin: 5px, 5px;
 }
 
-.form-control {
+/* .form-control {
   margin-top: 1px;
+  border-bottom: none;
 }
+
+.form-control input:focus {
+  outline: none;
+} */

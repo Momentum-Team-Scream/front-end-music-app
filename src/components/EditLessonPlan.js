@@ -50,8 +50,9 @@ export const EditLessonPlan = ({ auth, lesson }) => {
             class="form-control"
             defaultValue={lesson.plan}
             onChange={(e) => setPlan(e.target.value)}
-            rows={10}
-            columns={10}>
+            rows={5}
+            // columns={10}
+          >
           </textarea>
         </div>
         

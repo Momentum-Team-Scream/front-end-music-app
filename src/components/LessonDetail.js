@@ -36,7 +36,7 @@ export const LessonDetail = ({ auth, props, pk }) => {
         <div className="lessonCardCont">
           <div className="lessonDetailHeader">
             <h4> {lesson.student}'s lesson
-              on {lesson.lesson_date} 
+              <br /> on {lesson.lesson_date} 
             </h4>
             <a onClick={() => {
                     window.open("https://meet.jit.si/AllegedOrangesPlayImpolitely");
@@ -59,15 +59,20 @@ export const LessonDetail = ({ auth, props, pk }) => {
           </div>
           <div className="lessonNotes">
             <div className="planningNote">
-              <h4>Lesson Plan</h4>
-              <p> (click below to edit) </p>
+                <div div clasName="cardheader">
+                  <h4>Lesson Plan</h4>
+                  <p> (click below to edit) </p>
+                </div>
               <div className="plan">
                 <EditLessonPlan auth={auth} lesson={lesson} />
               </div>
             </div>
             <div className="studentAssignment">
-                <h4>Student Assignment</h4>
-                <p> (click below to edit) </p>
+                <div clasName="cardheader">
+                  <h4>Student Assignment</h4>
+                  <p> (click below to edit) </p>
+                </div>
+                
                 <div className="assignment">
                 
                     {lesson.note && !!lesson.note.length ?

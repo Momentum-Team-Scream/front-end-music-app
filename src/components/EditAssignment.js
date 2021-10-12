@@ -45,8 +45,8 @@ export const EditAssignment = ({ auth, note, pk, noteId }) => {
             class="form-control"
             defaultValue={body}
             onChange={(e) => setBody(e.target.value)}
-            rows={10}
-            columns={10}>
+            rows={5}
+            >
           </textarea>
         </div>
         
