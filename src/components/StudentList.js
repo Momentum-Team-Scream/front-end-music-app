@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Table, Card, Button, Text } from 'react-bootstrap';
 import '../styles/StudentList.css';
@@ -42,9 +43,10 @@ export const StudentList = ({ auth }) => {
               {students.map((student, index) => (
                 <tr>
                   <td>{index}</td>
-
                   <td>
-                    <a href="#">{student.first_name}</a>
+                    <Link to={`/student/${student.pk}`}>
+                      {student.first_name}
+                    </Link>
                   </td>
                   <td>{student.last_name}</td>
                   <td>{student.username}</td>

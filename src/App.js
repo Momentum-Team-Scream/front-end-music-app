@@ -18,6 +18,7 @@ import { InstrProfile } from './components/InstrProfile.js';
 import { RegisterStu } from './components/RegisterStu';
 import { StudentDashboard } from './components/StudentDashboard';
 import { LogList } from './components/LogList.js';
+import { StudentDetail } from './components/StudentDetail';
 // import { AssignmentForm } from './components/AssignmentForm.js';
 
 export const App = () => {
@@ -120,6 +121,10 @@ export const App = () => {
           <Route
             path="/practice-logs"
             component={() => <LogList auth={auth} setAuth={setAuth} />}
+          />
+          <Route
+            path="/student/:pk"
+            component={(pk) => <StudentDetail auth={auth} pk={pk}/>}
           />
         </Switch>
       </div>
