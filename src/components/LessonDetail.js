@@ -36,7 +36,7 @@ export const LessonDetail = ({ auth, props, pk }) => {
         <div className="lessonCardCont">
           <div className="lessonDetailHeader">
             <h4> {lesson.student}'s lesson
-              on {lesson.lesson_date} 
+              <br /> on {lesson.lesson_date} 
             </h4>
             <a onClick={() => {
                     window.open("https://meet.jit.si/AllegedOrangesPlayImpolitely");
@@ -59,25 +59,29 @@ export const LessonDetail = ({ auth, props, pk }) => {
           </div>
           <div className="lessonNotes">
             <div className="planningNote">
-              <h4>Lesson Plan</h4>
+                <div div clasName="cardheader">
+                  <h4>Lesson Plan</h4>
+                  <p> (click below to edit) </p>
+                </div>
               <div className="plan">
-                {/* {lesson.plan} */}
-                <p>click below to edit the current lesson plan</p>
                 <EditLessonPlan auth={auth} lesson={lesson} />
               </div>
             </div>
             <div className="studentAssignment">
-                <h4>Student Assignment</h4>
+                <div clasName="cardheader">
+                  <h4>Student Assignment</h4>
+                  <p> (click below to edit) </p>
+                </div>
+                
                 <div className="assignment">
-                <p>click below to edit the current assignment</p>
+                
                     {lesson.note && !!lesson.note.length ?
-                        
                         String(lesson.note[0].body)  
                         &&
                         <EditAssignment auth={auth} pk={lesson.pk} note={lesson.note[0].body} noteId={lesson.note[0].pk} />
                         :
                         <>
-                        <AssignmentForm auth={auth} /> 
+                          <AssignmentForm auth={auth} /> 
                         </>
                     }
                 </div>

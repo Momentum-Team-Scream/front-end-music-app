@@ -2,8 +2,8 @@
   float: left;
 
   width: 100%;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
 }
 
 .lessonDetailHeader h4 {
@@ -43,6 +43,8 @@
 
 .plan {
   border-style: solid;
+  border-color: gray;
+  border-radius: 2%;
   text-align: left;
   white-space: pre-line;
 }
@@ -57,23 +59,26 @@
 
 .assignment {
   border-style: solid;
+  border-color: gray;
+  border-radius: 2%;
   text-align: left;
   white-space: pre-line;
 }
 
-.lessonNotes input {
+.lessonNotes textarea {
   background-color: transparent;
-  border: 0;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  margin-top: 1%;
   color: black;
   font-size: 18px;
-  border-top: groove;
-  border-bottom: groove;
-}
-
-.assignment p input:focus {
-  outline: none;
 }
 
 .lessonNotes p {
   text-align: center;
+}
+
+.btn {
+  margin: 5px, 5px;
 }

@@ -12,7 +12,7 @@ export const LogForm = ({ auth }) => {
     event.preventDefault();
     axios
       .post(
-        'https://music-mvp.herokuapp.com/api/practices',
+        'https://music-mvp.herokuapp.com/api/practices/',
         {
           body: body,
           time_practiced: timePracticed,
