@@ -27,9 +27,7 @@ export const Navigation = ({ auth, setAuth, clearStorage, instructor }) => {
                       Students
                     </Nav.Link>
                   ) : (
-                    <Nav.Link as={Link} to={'#'}>
-                      Notes
-                    </Nav.Link>
+                    <></>
                   )}
                   <Nav.Link as={Link} to={'/mydocs'}>
                     Docs
