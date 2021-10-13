@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
+import '../styles/navigation.css'
 
 export const Navigation = ({ auth, setAuth, clearStorage, instructor }) => {
   return (
     <>
       {auth ? (
         <>
-          <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+          <Navbar collapseOnSelect expand="lg" bg="general" variant="dark">
             <Container>
               {instructor ? (
                 <Navbar.Brand as={Link} to={'/'}>
@@ -49,7 +49,7 @@ export const Navigation = ({ auth, setAuth, clearStorage, instructor }) => {
                       clearStorage();
                     }}
                   >
-                    <Button as={Link} to={'/'} variant="secondary" size="sm">
+                    <Button as={Link} to={'/'} variant="gray" size="sm">
                       Logout
                     </Button>{' '}
                   </a>
@@ -61,10 +61,10 @@ export const Navigation = ({ auth, setAuth, clearStorage, instructor }) => {
         </>
       ) : (
         <>
-          <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+          <Navbar collapseOnSelect expand="lg" bg="general" variant="dark">
             <Container>
               <Navbar.Brand as={Link} to={'/'}>
-                MusicAppLogo
+                NoteJam
               </Navbar.Brand>
             </Container>
           </Navbar>
