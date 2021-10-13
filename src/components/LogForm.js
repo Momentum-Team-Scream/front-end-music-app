@@ -8,6 +8,10 @@ export const LogForm = ({ auth }) => {
   const history = useHistory();
   const { pk } = useParams();
 
+  const refreshPage = () => {
+    window.location.reload(false);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
@@ -27,8 +31,7 @@ export const LogForm = ({ auth }) => {
       .then((res) => {
         setBody('');
         setTimePracticed('');
-
-        // history.push(`/lessons/${pk}/`);
+        refreshPage();
       });
   };
 
