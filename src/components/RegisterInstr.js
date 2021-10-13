@@ -146,8 +146,9 @@ export const RegisterInstructor = ({ setAuth, setInstructor }) => {
                         onChange={(event) => handleChange('rePassword', event)}
                     />
                 </div>
-                <button type="submit" className="btn btn-dark">Register</button>
+                <button type="submit" className="btn btn-general">Register</button>
             </form>
+            
         </>
     );
 }

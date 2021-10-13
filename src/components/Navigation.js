@@ -64,7 +64,7 @@ export const Navigation = ({ auth, setAuth, clearStorage, instructor }) => {
           <Navbar collapseOnSelect expand="lg" bg="general" variant="dark">
             <Container>
               <Navbar.Brand as={Link} to={'/'}>
-                MusicAppLogo
+                NoteJam
               </Navbar.Brand>
             </Container>
           </Navbar>

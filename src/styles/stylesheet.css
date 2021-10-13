@@ -78,3 +78,13 @@ body {
 i {
   color: #f9a826;
 }
+
+/* Styling for links */
+
+a {
+  color: #27292a;
+}
+
+a:hover {
+  color: #eb9a18;
+}
