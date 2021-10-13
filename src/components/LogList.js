@@ -56,10 +56,12 @@ export const LogList = ({ auth }) => {
                   className="btn btn-secondary"
                   id={log.pk}
                   onClick={(e) => {
-                    window.confirm(
-                      'Are you sure you want to delete this practice log?'
-                    );
-                    handleDelete(e);
+                    if (
+                      window.confirm(
+                        'Are you sure you want to delete this practice log?'
+                      )
+                    )
+                      handleDelete(e);
                   }}
                 >
                   Delete
