@@ -66,7 +66,7 @@ export const LogForm = ({ auth }) => {
           />
         </div>
         <div className="button">
-          <button type="submit" className="btn btn-dark">
+          <button type="submit" className="btn btn-general">
             Save Log
           </button>
         </div>

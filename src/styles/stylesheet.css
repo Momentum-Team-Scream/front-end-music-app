@@ -1,0 +1,63 @@
+body {
+  background-color: #f5f5f5;
+  color: #27292a;
+}
+
+/* Styling for Nav */
+
+/* Styling for Buttons */
+
+.btn-general {
+  background-color: #f9a826;
+  color: #27292a;
+  font-weight: 500;
+}
+
+.btn-general:hover {
+  background-color: #eb9a18;
+  color: #27292a;
+  font-weight: 500;
+}
+
+.btn-general::selection {
+  background-color: #f9a826;
+  color: #27292a;
+  font-weight: 500;
+  border: 5px solid rgba(249, 168, 38, 0.5);
+}
+
+.btn-gray {
+  background-color: #e6e6e6;
+  color: #27292a;
+  font-weight: 500;
+}
+
+.btn-gray:hover {
+  background-color: #cccccc;
+  color: #27292a;
+  font-weight: 500;
+}
+
+.btn-alert {
+  background-color: #9dacff;
+  color: #27292a;
+  font-weight: 500;
+}
+
+.btn-alert:hover {
+  background-color: #919ee1;
+  color: #27292a;
+  font-weight: 500;
+}
+
+.btn-destroy {
+  background-color: #ff6584;
+  color: #27292a;
+  font-weight: 500;
+}
+
+.btn-destroy:hover {
+  background-color: #e46c84;
+  color: #27292a;
+  font-weight: 500;
+}
