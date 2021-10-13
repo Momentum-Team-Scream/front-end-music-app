@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { Accordion, Card } from 'react-bootstrap';
 import { LogForm } from './LogForm.js';
 
 export const LogList = ({ auth }) => {
   const [logs, setLogs] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const history = useHistory();
+
+  const refreshPage = () => {
+    window.location.reload(false);
+  };
 
   useEffect(() => {
     if (auth) {
@@ -20,24 +25,50 @@ export const LogList = ({ auth }) => {
     }
   }, [auth]);
 
+  const handleDelete = (event) => {
+    const pk = event.target.id;
+    return axios
+      .delete(`https://music-mvp.herokuapp.com/api/practices/${pk}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `token ${auth}`,
+        },
+      })
+      .then(() => {
+        refreshPage();
+      });
+  };
+
   return (
     <>
-      <LogForm />
+      <LogForm auth={auth} />
       <h3>Past Practice Logs</h3>
-      <Accordion defaultActiveKey="0">
+      <div>
         {logs.map((log, idx) => {
           return (
-            <Accordion.Item eventKey={idx}>
-              <Accordion.Header>{log.created_at}</Accordion.Header>
-              <Accordion.Body>
+            <div>
+              <h2>{log.created_at}</h2>
+              <p>
                 <strong>What I practiced: </strong>
                 {log.body} <strong>How Long I practiced: </strong>
                 {log.time_practiced}
-              </Accordion.Body>
-            </Accordion.Item>
+                <button
+                  className="btn btn-secondary"
+                  id={log.pk}
+                  onClick={(e) => {
+                    window.confirm(
+                      'Are you sure you want to delete this practice log?'
+                    );
+                    handleDelete(e);
+                  }}
+                >
+                  Delete
+                </button>
+              </p>
+            </div>
           );
         })}
-      </Accordion>
+      </div>
     </>
   );
 };
