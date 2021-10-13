@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import '../styles/studetail.css'
 
@@ -74,7 +75,9 @@ export const StudentDetail = ({auth, props}) => {
                                 </div>
                                 <div className="card-body">
                                     <h5 className="card-title">{lesson.lesson_date}</h5>
-                                    <a href="#" class="btn btn-primary">View Lesson</a>
+                                    <Link to={`/lessons/${lesson.pk}`}> 
+                                        <button className="btn btn-primary">View Lesson</button>
+                                    </Link>
                                 </div>
                             </div>
                         )
