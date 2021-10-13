@@ -39,7 +39,7 @@ export const LessonDetail = ({ auth, props, pk }) => {
                   }
                   )
                   .then((response) => {
-                    console.log(response.data[0])
+                    console.log(response.data)
                     setPrevious(response.data[0]);
                     console.log(previous)
                     }
@@ -114,15 +114,19 @@ export const LessonDetail = ({ auth, props, pk }) => {
           <div className="previousInfo">
               <div className="previousLesson">
                 <h4> Last Lesson </h4>
-                <p>***previous lesson plan will go here *** 
-                   {/* this list of student lessons only has assignments from B/E not lessons  */}
+                <p>
+                   {previous.plan}
                 </p>
               </div>
               <div className="previousAssignment">
                 <h4> Last Assignment </h4>
-                <p>
-                  {previous.note[0].body}
-                </p>
+                {previous.note && previous.note.length ? 
+                  <p>
+                    {previous.note[0].body} 
+                  </p>
+                  :
+                  <p>no previous assignment exists</p>
+                }
               </div>
         </div>
       </div>
