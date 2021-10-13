@@ -6,7 +6,7 @@
 }
 
 .navbar-dark .navbar-nav .nav-link {
-  color: #f9a826;
+  color: #f9a826 !important;
 }
 
 .navbar-dark .navbar-brand {

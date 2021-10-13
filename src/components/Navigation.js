@@ -12,11 +12,11 @@ export const Navigation = ({ auth, setAuth, clearStorage, instructor }) => {
             <Container>
               {instructor ? (
                 <Navbar.Brand as={Link} to={'/'}>
-                  MusicAppLogo
+                  NoteJam
                 </Navbar.Brand>
               ) : (
                 <Navbar.Brand as={Link} to={'/'}>
-                  MusicAppLogo
+                  NoteJam
                 </Navbar.Brand>
               )}
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -61,7 +61,7 @@ export const Navigation = ({ auth, setAuth, clearStorage, instructor }) => {
         </>
       ) : (
         <>
-          <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+          <Navbar collapseOnSelect expand="lg" bg="general" variant="dark">
             <Container>
               <Navbar.Brand as={Link} to={'/'}>
                 MusicAppLogo

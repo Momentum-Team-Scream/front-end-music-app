@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Accordion, Card } from 'react-bootstrap';
 
 export const AssignmentList = ({ auth }) => {
   const [assignments, setAssignments] = useState([]);
@@ -50,18 +49,18 @@ export const AssignmentList = ({ auth }) => {
   ) : (
     <>
       <h3>Your Assignments:</h3>
-      <Accordion defaultActiveKey="0">
         {assignments.map((assign, idx) => {
           return (
-            <Accordion.Item eventKey={idx}>
-              <Accordion.Header>
+            <div className="card card-list" key={idx}>
+              <div className="card-header header-gray">
                 Assignment from {assign.created_at}
-              </Accordion.Header>
-              <Accordion.Body>{assign.body}</Accordion.Body>
-            </Accordion.Item>
+              </div>
+              <div className="card-body cd-body">
+                <h5 className="card-title">{assign.body}</h5>
+              </div>
+            </div>
           );
         })}
-      </Accordion>
     </>
   );
 };
