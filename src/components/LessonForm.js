@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/lessonForm.css';
+import { Form } from 'react-bootstrap';
 
 
 export const LessonForm = ({ auth, setSubmitted }) => {
@@ -8,7 +9,27 @@ export const LessonForm = ({ auth, setSubmitted }) => {
     const [lesson_time, setLessonTime] = useState('');
     const [student, setStudent] = useState('');
     const [plan, setPlan] = useState('');
+    const [studentList, setStudentList] = useState([]);
   
+    // const getStudentList = () => {
+      useEffect(() => {
+    axios.get(`https://music-mvp.herokuapp.com/instructor/studio/`, 
+              {
+                headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: `token ${auth}`,
+                },
+              }
+              )
+              .then((response) => {
+                console.log(response)
+                setStudentList(response.data.students);
+                console.log(studentList)
+                }
+              )
+      }, [auth])
+    
+
     const handleSubmit = (event) => {
       event.preventDefault();
       axios
@@ -28,6 +49,22 @@ export const LessonForm = ({ auth, setSubmitted }) => {
           }
         )
         .then((res) => {
+
+          // axios.get(`https://music-mvp.herokuapp.com/instructor/studio/`, 
+          //     {
+          //       headers: {
+          //         'Content-Type': 'application/json',
+          //         Authorization: `token ${auth}`,
+          //       },
+          //     }
+          //     )
+          //     .then((response) => {
+          //       console.log(response)
+          //       setStudentList(response.data.students);
+          //       console.log(studentList)
+          //       }
+          //     )
+
           setSubmitted(true);
           setLessonDate('');
           setLessonTime('');
@@ -52,9 +89,10 @@ export const LessonForm = ({ auth, setSubmitted }) => {
     };
   
     return (
-      <div className="form-group">
+      <div className="Form-group">
+        
         <h4> Create a new lesson here! </h4>
-        <form className="form-lessonForm" onSubmit={handleSubmit}>
+        <Form className="form-lessonForm" onSubmit={handleSubmit}>
           <label className="label">Lesson Date: </label>
             <input
               className="input form-control"
@@ -71,14 +109,13 @@ export const LessonForm = ({ auth, setSubmitted }) => {
             value={lesson_time}
             onChange={(e) => handleChange('lesson_time', e)}
           />  
-          <label className="label">Student</label>
-            <input
-              className="input form-control"
-              placeholder="Enter student"
-              type="text"
-              value={student}
-              onChange={(e) => handleChange('student', e)}
-            />
+
+            <label className="label">Student:</label>
+            <Form.Control required as="select" onChange={(e) => handleChange('student', e)}
+              className="input form-control" name="students">
+                {studentList.map((student, idx) => (<option key={idx} value={student.pk}>{student.first_name} {student.last_name}</option>))}
+            </Form.Control>
+
           <label className="label">Plan</label>
             <input
               className="input form-control"
@@ -90,7 +127,7 @@ export const LessonForm = ({ auth, setSubmitted }) => {
           <div>
             <button className="btn btn-dark">Create Lesson</button>
           </div>
-        </form>
+        </Form>
       </div>
     );
   };
