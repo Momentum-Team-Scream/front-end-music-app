@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom'
 import { AssignmentList } from './AssignmentList';
 import { LogForm } from './LogForm'
+import {HeadphonesBird1} from '../svgComponents/Headphones-bird-1'
 import '../styles/studentdash.css'
 
 export const StudentDashboard = ({auth}) => {
@@ -40,13 +41,18 @@ export const StudentDashboard = ({auth}) => {
                     <Link to="/profile">
                         <p>Edit Info</p>
                     </Link>
-                    <button type="button" class="ms-auto stu-dash-btn btn btn-secondary">Contact [Instructor]</button>
+                    <button type="button" class="ms-auto stu-dash-btn btn btn-gray">Contact [Instructor]</button>
                 </div>
-                <div className="">
-                    <p><i class="bi bi-person-circle"></i> {user.username}</p>
-                    <p><i class="bi bi-envelope-fill"></i> {user.email}</p>
-                    <p>Emergency Contact: {user.emergency_contact_name}</p>
-                    <p>Emergency Phone: {user.emergency_contact_phone}</p>
+                <div className="student-info">
+                    <div className="">
+                        <p><i class="bi bi-person-circle general"></i> {user.username}</p>
+                        <p><i class="bi bi-envelope-fill general"></i> {user.email}</p>
+                        <p>Emergency Contact: {user.emergency_contact_name}</p>
+                        <p>Emergency Phone: {user.emergency_contact_phone}</p>
+                    </div>
+                    <div >
+                        <HeadphonesBird1 width={75}/>
+                    </div>
                 </div>
             </header>
             <div className="dash-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
