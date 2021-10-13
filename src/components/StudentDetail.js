@@ -64,7 +64,16 @@ export const StudentDetail = ({auth, props}) => {
             </header>
             <body className="stu-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
                 <div className="body-item col-lg-6">
-                    <p>buttons here</p>
+                    <Link to="/">
+                        <button className="btn btn-primary">
+                            Create New Lesson
+                        </button>
+                    </Link>
+                    <Link to="/">
+                        <button className="btn btn-secondary">
+                            Add Doc
+                        </button>
+                    </Link>
                 </div>
                 <div className="body-item col-lg-6">
                     {lessons.map((lesson, idx) => {
