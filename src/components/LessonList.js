@@ -10,7 +10,7 @@ export const LessonList = ({ auth }) => {
   const [submitted, setSubmitted] = useState(false);
   const date = useState([new Date()]);
   const today = (String(date[0])).slice(0, 16);
-//   const [search, setSearch] = useState([]);
+
 
   useEffect(() => {
     if (auth || submitted) {
@@ -24,17 +24,12 @@ export const LessonList = ({ auth }) => {
             },
           }
         )
-        .then((res) => setLessons(res.data));
+        .then((res) => {
+          setLessons(res.data)
+        });
       setSubmitted(false);
     } 
   }, [auth, submitted]);
-//   const handleSubmit = () => {
-//     axios
-//       .get(
-//         `https://music-mvp.herokuapp.com/api/upcoming/?search=${search}`
-//       )
-//       .then((res) => { setLessons(res.data); setSearch('')});
-//   };
 
     return (
         <div>

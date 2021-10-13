@@ -40,3 +40,4 @@ export const Lesson = ({ lesson, auth, setSubmitted }) => {
     </div>
   );
 };
+
