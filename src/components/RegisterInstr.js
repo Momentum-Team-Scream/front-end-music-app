@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import axios from 'axios'
 import '../styles/register.css'
 
@@ -148,7 +148,7 @@ export const RegisterInstructor = ({ setAuth, setInstructor }) => {
                 </div>
                 <button type="submit" className="btn btn-general">Register</button>
             </form>
-            
+            <div className="redirect-text">Already have an account? Login <Link to="/login">here.</Link></div>
         </>
     );
 }

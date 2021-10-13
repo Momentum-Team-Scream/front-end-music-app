@@ -115,7 +115,7 @@ export const App = () => {
           />
           <Route
             path="/profile"
-            component={() => <InstrProfile auth={auth} setAuth={setAuth} />}
+            component={() => <InstrProfile auth={auth} setAuth={setAuth} instructor={instructor} />}
           />
           <Route
             path="/practice-logs"
