@@ -2,8 +2,10 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import '../styles/studetail.css'
 
-export const StudentDetail = ({auth, props, pk}) => {
+export const StudentDetail = ({auth, props}) => {
     const [student, setStudent] = useState({})
+    const [lessons, setLessons] = useState([])
+    const [name, setName] = useState('')
     
     console.log(props)
     console.log(props.location.pathname)
@@ -21,6 +23,21 @@ export const StudentDetail = ({auth, props, pk}) => {
                     if (res.status === 200){
                         console.log(res.data)
                         setStudent(res.data)
+                        setName(res.data.first_name)
+                        const pk = res.data.pk
+                        return axios.get(`https://music-mvp.herokuapp.com/api/assignments/${pk}/`, {
+                            headers: {
+                                Authorization: `token ${auth}`
+                            }
+                        })
+                        .then(res => {
+                            if (isMounted){
+                                if (res.status === 200) {
+                                    console.log(res.data)
+                                    setLessons(res.data)
+                                }
+                            }
+                        })
                     }
                 }
             })
@@ -44,8 +61,25 @@ export const StudentDetail = ({auth, props, pk}) => {
                     <p>Emergency Phone: {student.emergency_contact_phone}</p>
                 </div>
             </header>
-            <body className="stu-body">
-                <p>lesson list goes here</p>
+            <body className="stu-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
+                <div className="body-item col-lg-6">
+                    <p>buttons here</p>
+                </div>
+                <div className="body-item col-lg-6">
+                    {lessons.map((lesson, idx) => {
+                        return (
+                            <div className="card">
+                                <div className="card-header">
+                                    {name}'s Lesson
+                                </div>
+                                <div className="card-body">
+                                    <h5 className="card-title">{lesson.lesson_date}</h5>
+                                    <a href="#" class="btn btn-primary">View Lesson</a>
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
             </body>
         </div>
     );
