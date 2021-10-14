@@ -56,7 +56,7 @@ export const LogForm = ({ auth }) => {
           value={body}
           onChange={(e) => handleChange('body', e)}
         ></textarea>
-        <div className="form-group">
+        <div className="form-group-time">
           <input
             type="text"
             value={timePracticed}

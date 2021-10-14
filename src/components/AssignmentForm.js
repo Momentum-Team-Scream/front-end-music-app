@@ -35,23 +35,23 @@ export const AssignmentForm = ({ auth }) => {
       setBody(event.target.value);
     }
   };
-  
+
   return (
     <>
       <form className="form-group" onSubmit={handleSubmit}>
-        <label for="exampleFormControlTextarea1">Assignment Note</label>
         <textarea
           className="form-control"
           id="exampleFormControlTextarea1"
           rows="3"
-          placeholder="Enter assignment note here"
+          placeholder="Enter note for student here"
           type="text"
           value={body}
           onChange={(e) => handleChange('body', e)}
         ></textarea>
+
         <div className="button">
-          <button type="submit" className="btn btn-dark">
-            Save assignment
+          <button type="submit" className="btn detbtn btn-general">
+            Save Note
           </button>
         </div>
       </form>
