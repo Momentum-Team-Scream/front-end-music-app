@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import axios from 'axios'
 import '../styles/login.css'
 
@@ -79,8 +79,9 @@ export const Login = ({ auth, setAuth, instructor, setInstructor }) => {
                     value={password}
                     onChange={(event) => handleChange('password', event)}
                 />
-                <button className="btn btn-secondary" type="submit">Login</button>
+                <button className="btn btn-general" type="submit">Login</button>
             </form>
+            <div className="redirect-text">New to NoteJam? Register for your instructor account <Link to="/register">here.</Link></div>
             
         </>
     );
