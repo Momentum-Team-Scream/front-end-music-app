@@ -100,7 +100,7 @@ export const App = () => {
             )}
           />
           <Route
-            path="/api/users/students/:pk"
+            path="/student-invite/:pk"
             component={(pk) => <RegisterStu setAuth={setAuth} props={pk} />}
           />
           <Route

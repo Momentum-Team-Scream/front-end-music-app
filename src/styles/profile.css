@@ -19,3 +19,12 @@
   margin-bottom: 5%;
   max-width: 250px;
 }
+
+.link-div {
+  text-align: center;
+  padding: 2em;
+}
+
+.link-div p {
+  margin: 0.5rem;
+}

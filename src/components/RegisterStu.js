@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import '../styles/register.css'
 
+
 export const RegisterStu = ({ setAuth, props }) => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
@@ -16,10 +17,14 @@ export const RegisterStu = ({ setAuth, props }) => {
     const [pk, setPk] = useState('')
     const history = useHistory()
 
+    console.log(props)
+
+
     useEffect(() => {
         let isMounted = true
 
         const newArr = props.location.pathname.split('/');
+        console.log(newArr)
         setPk(newArr.pop())
 
         return () => {

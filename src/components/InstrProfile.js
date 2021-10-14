@@ -37,7 +37,7 @@ export const InstrProfile = ({ auth, instructor }) => {
           </button> */}
           <div className="link-div" id="link">
             <p>Copy and share this invite link with your students:</p>
-            <p>http://localhost:3000/api/users/students/{profile.id}</p>
+            <p>http://localhost:3000/student-invite/{profile.id}</p>
           </div>
         </>
         : null
