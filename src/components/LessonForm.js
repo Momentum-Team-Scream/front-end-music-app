@@ -87,7 +87,7 @@ export const LessonForm = ({ auth, setSubmitted }) => {
     <div className="Form-group">
       <h4> Create a new lesson here! </h4>
       <Form className="form-lessonForm" onSubmit={handleSubmit}>
-        <label className="label">Lesson Date: </label>
+        <label className="label-lesson">Lesson Date: </label>
 
         <input
           className="input form-control"
@@ -97,7 +97,7 @@ export const LessonForm = ({ auth, setSubmitted }) => {
           onChange={(e) => handleChange('lesson_date', e)}
         />
 
-        <label className="label">Lesson Time: </label>
+        <label className="label-lesson">Lesson Time: </label>
         <input
           className="input form-control"
           type="time"
@@ -105,7 +105,7 @@ export const LessonForm = ({ auth, setSubmitted }) => {
           onChange={(e) => handleChange('lesson_time', e)}
         />
 
-        <label className="label">Student:</label>
+        <label className="label-lesson">Student:</label>
         <Form.Control
           required
           as="select"
@@ -120,7 +120,7 @@ export const LessonForm = ({ auth, setSubmitted }) => {
           ))}
         </Form.Control>
 
-        <label className="label">Plan</label>
+        <label className="label-lesson">Plan:</label>
         <input
           className="input form-control"
           placeholder="Enter lesson plan notes"

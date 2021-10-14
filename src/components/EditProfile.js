@@ -77,7 +77,7 @@ export const EditProfile = ({ auth, profile }) => {
         </div>
 
         <button
-          className="profButton btn btn-secondary"
+          className="btn detbtn btn-general"
           type="submit"
           onClick={function (event) {
             handleEdit();
