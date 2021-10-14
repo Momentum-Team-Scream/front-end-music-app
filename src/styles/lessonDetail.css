@@ -100,6 +100,14 @@
   text-align: center;
 }
 
-/* .previousInfo {
-  margin-top: 2%;
-} */
+.prevLsn {
+  border: solid;
+  border-color: gray;
+  text-align: left;
+}
+
+.prevAssign {
+  border: solid;
+  border-color: gray;
+  text-align: left;
+}

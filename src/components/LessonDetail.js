@@ -26,10 +26,11 @@ export const LessonDetail = ({ auth, props, pk }) => {
         .then((response) => {
           console.log(response.data)
           setLesson(response.data);
+          console.log(lesson)
 
             if (response.status === 200){
                 console.log('making new request')
-                axios.get(`https://music-mvp.herokuapp.com/api/assignments/${response.data.student}/`, 
+                axios.get(`https://music-mvp.herokuapp.com/api/assignments/${response.data.student}/previous/${response.data.pk}`, 
                 // axios.get('https://music-mvp.herokuapp.com/api/assignments/21/',
                   {
                     headers: {
@@ -40,7 +41,7 @@ export const LessonDetail = ({ auth, props, pk }) => {
                   )
                   .then((response) => {
                     console.log(response.data)
-                    setPrevious(response.data[0]);
+                    setPrevious(response.data[1]);
                     console.log(previous)
                     }
                   )
@@ -114,12 +115,15 @@ export const LessonDetail = ({ auth, props, pk }) => {
           <div className="previousInfo">
               <div className="previousLesson">
                 <h4> Last Lesson </h4>
-                <p>
-                   {previous.plan}
-                </p>
+                <div className="prevLsn">
+                  <p>
+                    {previous.plan}
+                  </p>
+                </div>
               </div>
               <div className="previousAssignment">
                 <h4> Last Assignment </h4>
+                <div className="prevAssign">
                 {previous.note && previous.note.length ? 
                   <p>
                     {previous.note[0].body} 
@@ -127,6 +131,7 @@ export const LessonDetail = ({ auth, props, pk }) => {
                   :
                   <p>no previous assignment exists</p>
                 }
+                </div>
               </div>
         </div>
       </div>
