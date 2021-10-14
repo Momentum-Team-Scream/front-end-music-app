@@ -46,7 +46,7 @@ export const LogForm = ({ auth }) => {
   return (
     <>
       <form className="form-group" onSubmit={handleSubmit}>
-        <label for="exampleFormControlTextarea1">Practice Log</label>
+        <h3>Add a Practice Log:</h3>
         <textarea
           className="form-control"
           id="exampleFormControlTextarea1"

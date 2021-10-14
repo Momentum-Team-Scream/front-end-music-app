@@ -18,6 +18,7 @@ import { InstrProfile } from './components/InstrProfile.js';
 import { RegisterStu } from './components/RegisterStu';
 import { StudentDashboard } from './components/StudentDashboard';
 import { LogList } from './components/LogList.js';
+
 // import { AssignmentForm } from './components/AssignmentForm.js';
 
 export const App = () => {
