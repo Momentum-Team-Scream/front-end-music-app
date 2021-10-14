@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Table, Card, Button, Text } from 'react-bootstrap';
-import '../styles/studentList.css';
+import '../styles/StudentList.css';
 
 export const StudentList = ({ auth }) => {
   const [students, setStudents] = useState([]);
