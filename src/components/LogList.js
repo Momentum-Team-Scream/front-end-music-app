@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { Accordion, Card } from 'react-bootstrap';
 import { LogForm } from './LogForm.js';
+import '../styles/studentdash.css';
 
 export const LogList = ({ auth }) => {
   const [logs, setLogs] = useState([]);
@@ -41,35 +42,46 @@ export const LogList = ({ auth }) => {
 
   return (
     <>
-      <LogForm auth={auth} />
-      <h3>Past Practice Logs</h3>
-      <div>
-        {logs.map((log, idx) => {
-          return (
-            <div>
-              <h2>{log.created_at}</h2>
-              <p>
-                <strong>What I practiced: </strong>
-                {log.body} <strong>How Long I practiced: </strong>
-                {log.time_practiced}
-                <button
-                  className="btn btn-secondary"
-                  id={log.pk}
-                  onClick={(e) => {
-                    if (
-                      window.confirm(
-                        'Are you sure you want to delete this practice log?'
-                      )
-                    )
-                      handleDelete(e);
-                  }}
-                >
-                  Delete
-                </button>
-              </p>
-            </div>
-          );
-        })}
+      <div className="dash-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
+        <div className="body-item col-lg-6">
+          <LogForm auth={auth} />
+        </div>
+        <div className="body-item col-lg-6">
+          <h3>Past Practice Logs:</h3>
+          <div>
+            {logs.map((log, idx) => {
+              return (
+                <div className="card card-list" key={idx}>
+                  <div className="card-header header-gray">
+                    Practice Log From {log.created_at}
+                  </div>
+                  <div className="card-body cd-body">
+                    <h5 className="card-title">
+                      <strong>I practiced: </strong>
+                      {log.body}
+                    </h5>
+                    <strong>For: </strong>
+                    {log.time_practiced} minutes
+                    <button
+                      className="logdel delButton btn btn-destroy"
+                      id={log.pk}
+                      onClick={(e) => {
+                        if (
+                          window.confirm(
+                            'Are you sure you want to delete this practice log?'
+                          )
+                        )
+                          handleDelete(e);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </>
   );
