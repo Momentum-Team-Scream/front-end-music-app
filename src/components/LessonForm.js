@@ -109,6 +109,7 @@ export const LessonForm = ({ auth, setSubmitted }) => {
         <Form.Control
           required
           as="select"
+          defaultValue="select a student"
           onChange={(e) => handleChange('student', e)}
           className="input form-control"
           name="students"
@@ -121,13 +122,13 @@ export const LessonForm = ({ auth, setSubmitted }) => {
         </Form.Control>
 
         <label className="label-lesson">Plan:</label>
-        <input
-          className="input form-control"
-          placeholder="Enter lesson plan notes"
-          type="text"
-          value={plan}
-          onChange={(e) => handleChange('plan', e)}
-        />
+
+          <textarea
+            class="form-control"
+            defaultValue={plan}
+            onChange={(e) => handleChange('plan', e)}
+            rows={5}
+          ></textarea>
         <div>
           <button className="btn btn-general">Create Lesson</button>
         </div>
