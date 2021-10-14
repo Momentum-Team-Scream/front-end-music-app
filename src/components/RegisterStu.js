@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import axios from 'axios'
 import '../styles/register.css'
 
@@ -187,7 +187,10 @@ export const RegisterStu = ({ setAuth, props }) => {
                         onChange={(event) => handleChange('rePassword', event)}
                     />
                 </div>
-                <button type="submit" className="btn btn-dark">Register</button>
+                <button type="submit" className="btn btn-general">Register</button>
+                <Link to="/login">
+                    <button  className="btn btn-gray">Cancel</button>
+                </Link>
             </form>
         </>
     );

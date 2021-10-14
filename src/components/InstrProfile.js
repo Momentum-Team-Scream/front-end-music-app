@@ -68,7 +68,7 @@ export const InstrProfile = ({ auth, instructor }) => {
                 onClick={() => {
                   setShowEdit(true);
                 }}
-                className="editButton btn btn-outline-secondary"
+                className="editButton btn btn-general"
               >
                 Edit
               </button>
