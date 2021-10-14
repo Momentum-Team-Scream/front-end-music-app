@@ -4,7 +4,8 @@ import '../styles/profile.css';
 import { Card } from 'react-bootstrap';
 import { LogForm } from './LogForm.js';
 import { EditProfile } from './EditProfile.js';
-export const InstrProfile = ({ auth }) => {
+
+export const InstrProfile = ({ auth, instructor }) => {
   const [profile, setProfile] = useState([]);
   const [submitted, setSubmitted] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
@@ -25,9 +26,22 @@ export const InstrProfile = ({ auth }) => {
     }
   }, [auth, submitted]);
 
+
   return (
     <>
       <h1 className="profileTitle">{profile.username}'s Profile</h1>
+      { instructor ? 
+        <>
+          {/* <button className="btn btn-gray">
+            Generate Student Invite Link
+          </button> */}
+          <div className="link-div" id="link">
+            <p>Copy and share this invite link with your students:</p>
+            <p>http://localhost:3000/student-invite/{profile.id}</p>
+          </div>
+        </>
+        : null
+      }
       <div className="profileBody">
         {showEdit ? (
           <EditProfile profile={profile} auth={auth} />
@@ -54,7 +68,7 @@ export const InstrProfile = ({ auth }) => {
                 onClick={() => {
                   setShowEdit(true);
                 }}
-                className="editButton btn btn-outline-secondary"
+                className="editButton btn btn-general"
               >
                 Edit
               </button>

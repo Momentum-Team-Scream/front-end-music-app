@@ -100,8 +100,8 @@ export const App = () => {
             )}
           />
           <Route
-            path="/student-registration"
-            component={() => <RegisterStu setAuth={setAuth} />}
+            path="/student-invite/:pk"
+            component={(pk) => <RegisterStu setAuth={setAuth} props={pk} />}
           />
           <Route
             path="/lessons/:pk"
@@ -117,7 +117,7 @@ export const App = () => {
           />
           <Route
             path="/profile"
-            component={() => <InstrProfile auth={auth} setAuth={setAuth} />}
+            component={() => <InstrProfile auth={auth} setAuth={setAuth} instructor={instructor} />}
           />
           <Route
             path="/practice-logs"

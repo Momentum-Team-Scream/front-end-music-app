@@ -41,7 +41,7 @@ export const StudentDashboard = ({auth}) => {
                     <Link to="/profile">
                         <p>Edit Info</p>
                     </Link>
-                    <button type="button" class="ms-auto stu-dash-btn btn btn-gray">Contact [Instructor]</button>
+                    <button type="button" class="ms-auto stu-dash-btn btn btn-gray">Contact Instructor</button>
                 </div>
                 <div className="student-info">
                     <div className="">

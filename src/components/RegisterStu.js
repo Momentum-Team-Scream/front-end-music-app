@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useHistory, Link } from 'react-router-dom'
 import axios from 'axios'
 import '../styles/register.css'
 
-export const RegisterStu = ({ setAuth }) => {
+
+export const RegisterStu = ({ setAuth, props }) => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
@@ -13,9 +14,25 @@ export const RegisterStu = ({ setAuth }) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [rePassword, setRePassword] = useState('')
+    const [pk, setPk] = useState('')
     const history = useHistory()
 
+    console.log(props)
+
+
+    useEffect(() => {
+        let isMounted = true
+
+        const newArr = props.location.pathname.split('/');
+        console.log(newArr)
+        setPk(newArr.pop())
+
+        return () => {
+            isMounted = false
+        }
     
+    }, [props])
+
     const handleChange = (inputType, event) => {
         if (inputType === 'firstName'){
             setFirstName(event.target.value)
@@ -48,10 +65,10 @@ export const RegisterStu = ({ setAuth }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        console.log('form submitted!')
 
-        axios.post('', 
+        axios.post(`https://music-mvp.herokuapp.com/api/users/students/${pk}/`, 
         {
+            "instructor": pk,
             "first_name": firstName,
             "last_name": lastName,
             "email": email,
@@ -68,7 +85,7 @@ export const RegisterStu = ({ setAuth }) => {
                     username: username,
                     password: password
                 }).then((data) => {
-                    if (data && data.data.auth_token) {
+                    if (data.data.auth_token) {
                         setAuth(data.data.auth_token)
                         history.push('/')
                     }
@@ -170,7 +187,10 @@ export const RegisterStu = ({ setAuth }) => {
                         onChange={(event) => handleChange('rePassword', event)}
                     />
                 </div>
-                <button type="submit" className="btn btn-dark">Register</button>
+                <button type="submit" className="btn btn-general">Register</button>
+                <Link to="/login">
+                    <button  className="btn btn-gray">Cancel</button>
+                </Link>
             </form>
         </>
     );
