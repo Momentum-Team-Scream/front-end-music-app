@@ -1,40 +1,39 @@
 import { useEffect, useState } from 'react';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
-
+import '../styles/studentdash.css';
 
 export const EditAssignment = ({ auth, note, pk, noteId }) => {
-  const lesson = (pk)
+  const lesson = pk;
   const [body, setBody] = useState(note);
   const history = useHistory();
-  console.log (pk)
-  console.log (noteId)
-  console.log (lesson)
-
+  console.log(pk);
+  console.log(noteId);
+  console.log(lesson);
 
   const handleEdit = (event, id) => {
-    
-    console.log(id)
+    console.log(id);
     event.preventDefault();
-    axios.patch(
+    axios
+      .patch(
         `https://music-mvp.herokuapp.com/api/note/${noteId}/`,
-      { body: body ,
-      lesson: `${lesson}`},
+        { body: body, lesson: `${lesson}` },
 
-      {    headers: {
-          'Content-Type': 'application/json',
-          Authorization: `token ${auth}`,
-        },
-      }
-    )
-    .then((res) => {
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `token ${auth}`,
+          },
+        }
+      )
+      .then((res) => {
         setBody('');
         history.push(`/lessons/${lesson}/`);
       });
   };
 
   return (
-    <div>
+    <div className="card">
       <form
         onSubmit={(event) => {
           handleEdit(event);
@@ -46,16 +45,19 @@ export const EditAssignment = ({ auth, note, pk, noteId }) => {
             defaultValue={body}
             onChange={(e) => setBody(e.target.value)}
             rows={5}
-            >
-          </textarea>
+          ></textarea>
         </div>
-        
-        <button className="editButton btn btn-outline-secondary"
-          id={pk}
-          onClick={(e) => { handleEdit(e)}}
-        >
-          Save Update
-        </button>
+        <div className="card-footer">
+          <button
+            className="btn detbtn btn-general"
+            id={pk}
+            onClick={(e) => {
+              handleEdit(e);
+            }}
+          >
+            Save Update
+          </button>
+        </div>
       </form>
     </div>
   );
