@@ -43,7 +43,7 @@
   margin-left: 18px;
   margin-top: 18px;
 }
-.form-group {
+.form-group-time {
   padding-top: 10px;
 }
 .studentTitle {
@@ -54,4 +54,12 @@
 .studentListBody {
   margin-left: 20%;
   margin-right: 20%;
+}
+.buttonCont {
+  display: flex;
+  justify-content: space-between;
+}
+.label-lesson {
+  margin-bottom: 8px;
+  margin-top: 8px;
 }

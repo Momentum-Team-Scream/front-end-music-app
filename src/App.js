@@ -19,7 +19,7 @@ import { RegisterStu } from './components/RegisterStu';
 import { StudentDashboard } from './components/StudentDashboard';
 import { LogList } from './components/LogList.js';
 import { StudentDetail } from './components/StudentDetail';
-
+import { UploadDocs } from './components/UploadDocs.js';
 // import { AssignmentForm } from './components/AssignmentForm.js';
 
 export const App = () => {
@@ -125,7 +125,11 @@ export const App = () => {
           />
           <Route
             path="/users/:pk/"
-            component={(pk) => <StudentDetail auth={auth} props={pk}/>}
+            component={(pk) => <StudentDetail auth={auth} props={pk} />}
+          />
+          <Route
+            path="/mydocs"
+            component={() => <UploadDocs auth={auth} setAuth={setAuth} />}
           />
         </Switch>
       </div>
