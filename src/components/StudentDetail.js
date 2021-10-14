@@ -61,17 +61,13 @@ export const StudentDetail = ({auth, props}) => {
                     <p>Emergency Contact: {student.emergency_contact_name}</p>
                     <p>Emergency Phone: {student.emergency_contact_phone}</p>
                 </div>
+                
             </header>
             <body className="stu-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
                 <div className="body-item col-lg-6">
                     <Link to="/">
-                        <button className="btn btn-primary">
+                        <button className="btn btn-general">
                             Create New Lesson
-                        </button>
-                    </Link>
-                    <Link to="/">
-                        <button className="btn btn-secondary">
-                            Add Doc
                         </button>
                     </Link>
                 </div>
@@ -85,7 +81,7 @@ export const StudentDetail = ({auth, props}) => {
                                 <div className="card-body">
                                     <h5 className="card-title">{lesson.lesson_date}</h5>
                                     <Link to={`/lessons/${lesson.pk}`}> 
-                                        <button className="btn btn-primary">View Lesson</button>
+                                        <button className="btn btn-general">View Lesson</button>
                                     </Link>
                                 </div>
                             </div>
