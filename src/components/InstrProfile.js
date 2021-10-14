@@ -26,13 +26,20 @@ export const InstrProfile = ({ auth, instructor }) => {
     }
   }, [auth, submitted]);
 
+
   return (
     <>
       <h1 className="profileTitle">{profile.username}'s Profile</h1>
       { instructor ? 
-        <button className="btn btn-gray">
-          Generate Student Invite Link
-        </button>
+        <>
+          {/* <button className="btn btn-gray">
+            Generate Student Invite Link
+          </button> */}
+          <div className="link-div" id="link">
+            <p>Copy and share this invite link with your students:</p>
+            <p>http://localhost:3000/api/users/students/{profile.id}</p>
+          </div>
+        </>
         : null
       }
       <div className="profileBody">
