@@ -115,12 +115,15 @@ export const LessonDetail = ({ auth, props, pk }) => {
           <div className="previousInfo">
               <div className="previousLesson">
                 <h4> Last Lesson </h4>
-                <p>
-                  {previous.plan}
-                </p>
+                <div className="prevLsn">
+                  <p>
+                    {previous.plan}
+                  </p>
+                </div>
               </div>
               <div className="previousAssignment">
                 <h4> Last Assignment </h4>
+                <div className="prevAssign">
                 {previous.note && previous.note.length ? 
                   <p>
                     {previous.note[0].body} 
@@ -128,6 +131,7 @@ export const LessonDetail = ({ auth, props, pk }) => {
                   :
                   <p>no previous assignment exists</p>
                 }
+                </div>
               </div>
         </div>
       </div>
