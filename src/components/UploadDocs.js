@@ -6,7 +6,7 @@ import { Form } from 'react-bootstrap';
 
 export const UploadDocs = ({ auth }) => {
   let fileInput = useRef(null);
-  const [student, setStudent] = useState('');
+  const [student, setStudent] = useState([]);
   const [studentList, setStudentList] = useState([]);
 
   // const getStudentList = () => {
@@ -20,22 +20,25 @@ export const UploadDocs = ({ auth }) => {
       })
       .then((response) => {
         console.log(response);
-        setStudentList(response.data.students);
+        setStudentList(response.data);
         console.log(studentList);
       });
   }, [auth]);
 
   const submitFileData = (event) => {
     event.preventDefault();
+    console.log(student)
     axios
       .post(
         `https://music-mvp.herokuapp.com/api/documents/`,
         { title: `${fileInput.current.files[0].name}`, 
-          student: {student}
+          students: student
       },
         {
           headers: {
+            'Content-Type': 'application/json',
             Authorization: `token ${auth}`,
+
           },
         }
       )
@@ -56,10 +59,25 @@ export const UploadDocs = ({ auth }) => {
               },
             }
           )
+          // .then((res) => {
+          //   axios
+          //   .patch(
+          //     `https://music-mvp.herokuapp.com/api/documents/${res.data.pk}/`,
+          //     {"students": `[${student}]`},
+
+          //     {
+          //       headers: {
+          //         'Content-Type': 'application/json',
+          //         Authorization: `token ${auth}`,
+          //       },
+          //     }
+          //   )
+
           .then((res) => {
             console.log(res);
           });
-      });
+      }
+      );
   };
 
 
@@ -67,7 +85,7 @@ export const UploadDocs = ({ auth }) => {
   const handleChange = (inputType, event) => {
 
     if (inputType === 'student') {
-      setStudent(event.target.value);
+      setStudent([event.target.value]);
     }
   };
 

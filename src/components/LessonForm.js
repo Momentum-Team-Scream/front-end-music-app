@@ -21,7 +21,7 @@ export const LessonForm = ({ auth, setSubmitted }) => {
       })
       .then((response) => {
         console.log(response);
-        setStudentList(response.data.students);
+        setStudentList(response.data);
         console.log(studentList);
       });
   }, [auth]);
