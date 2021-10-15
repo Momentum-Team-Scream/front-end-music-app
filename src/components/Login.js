@@ -7,6 +7,9 @@ import '../styles/login.css'
 export const Login = ({ auth, setAuth, instructor, setInstructor }) => {
     const [ username, setUsername ] = useState('')
     const [ password, setPassword ] = useState('')
+    const [userErr, setUserErr] = useState(false)
+    const [passErr, setPassErr] = useState(false)
+    const [valErr, seValErr] = useState(false)
     const history = useHistory()
 
 
@@ -21,6 +24,9 @@ export const Login = ({ auth, setAuth, instructor, setInstructor }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
+        setUserErr(false)
+        setPassErr(false)
+        seValErr(false)
         await axios.post('https://music-mvp.herokuapp.com/auth/token/login/',
             {
                 username: username,
@@ -29,6 +35,19 @@ export const Login = ({ auth, setAuth, instructor, setInstructor }) => {
             .then(response => {
                 if (response.data.auth_token) {
                     setAuth(response.data.auth_token)
+                }
+            })
+            .catch(error => {
+                if(error.response) {
+                    console.log(error.response)
+                    const err = error.response.data
+                    if (err.username) {
+                        setUserErr(true)
+                    } if (err.password) {
+                        setPassErr(true)
+                    } if (err.non_field_errors){
+                        seValErr(true)
+                    }
                 }
             })
     }
@@ -60,12 +79,18 @@ export const Login = ({ auth, setAuth, instructor, setInstructor }) => {
 
     }, [auth])
 
-    console.log(instructor)
-
     return (
         <>
             <form className='form login-form' onSubmit={handleSubmit}>
                 <label className="label">Username</label>
+                {userErr ? 
+                    <>
+                        <div className="error-div">
+                            <p>Username must not be empty</p>
+                        </div>
+                    </>
+                    : null
+                }
                 <input 
                     className="input form-control"
                     type="text"
@@ -73,12 +98,28 @@ export const Login = ({ auth, setAuth, instructor, setInstructor }) => {
                     onChange={(event) => handleChange('username', event)}
                 />
                 <label className="label">Password</label>
+                {passErr ? 
+                    <>
+                        <div className="error-div">
+                            <p>Password must not be empty</p>
+                        </div>
+                    </>
+                    : null
+                }
                 <input 
                     className="input form-control"
                     type="password"
                     value={password}
                     onChange={(event) => handleChange('password', event)}
                 />
+                {valErr ? 
+                    <>
+                        <div className="error-div">
+                            <p>Incorrect username/password combo</p>
+                        </div>
+                    </>
+                    : null
+                }
                 <button className="btn btn-general" type="submit">Login</button>
             </form>
             <div className="redirect-text">New to NoteJam? Register for your instructor account <Link to="/register">here.</Link></div>
