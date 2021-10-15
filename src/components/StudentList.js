@@ -17,8 +17,8 @@ export const StudentList = ({ auth }) => {
           },
         })
         .then((res) => {
-          setStudents(res.data.students);
-          console.log(res.data.students);
+          setStudents(res.data);
+          console.log(res.data);
         });
       setSubmitted(false);
     }

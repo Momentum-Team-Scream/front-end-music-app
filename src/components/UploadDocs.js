@@ -1,7 +1,9 @@
 import { useRef } from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import Container from 'react-bootstrap/Container'
 import { Form } from 'react-bootstrap';
+import '../styles/docs.css';
 
 
 export const UploadDocs = ({ auth }) => {
@@ -59,20 +61,6 @@ export const UploadDocs = ({ auth }) => {
               },
             }
           )
-          // .then((res) => {
-          //   axios
-          //   .patch(
-          //     `https://music-mvp.herokuapp.com/api/documents/${res.data.pk}/`,
-          //     {"students": `[${student}]`},
-
-          //     {
-          //       headers: {
-          //         'Content-Type': 'application/json',
-          //         Authorization: `token ${auth}`,
-          //       },
-          //     }
-          //   )
-
           .then((res) => {
             console.log(res);
           });
@@ -80,29 +68,30 @@ export const UploadDocs = ({ auth }) => {
       );
   };
 
-
-
   const handleChange = (inputType, event) => {
-
     if (inputType === 'student') {
       setStudent([event.target.value]);
     }
   };
 
-
   return (
-    <div>
-      <div className="Form-group">
+    <Container>
+    {/* <div className="docUploadDiv">
+      <div className="form-group" style={{width: '300px'}}> */}
       <h4> Upload documents to share! </h4>
       <Form className="form-docUploadForm" onSubmit={submitFileData} >
-      <label className="label-docUpload">Click button to add a file:</label>
-        <input ref={fileInput} type="file" id="file-input" />
-      <div>  
-        <label className="label-docUpload">Select a student to share with:</label>
+        <Form.Group controlId="uploadDocs">
+        <Form.Label>Click button to add a file:</Form.Label>
+        <Form.Control 
+          type="file" 
+          ref={fileInput} 
+          type="file" 
+          id="file-input" />
+        
+        <Form.Label>Select a student to share with:</Form.Label>
         <Form.Control
           required
           as="select"
-          defaultValue="select a student"
           onChange={(e) => handleChange('student', e)}
           className="input form-control"
           name="students"
@@ -113,13 +102,14 @@ export const UploadDocs = ({ auth }) => {
             </option>
           ))}
         </Form.Control>
-        </div>
       <div>
-        <button >Submit Data</button>
+        <button className="btn btn-general">Submit Data</button>
       </div>
+    </Form.Group>
     </Form>
-    </div>
-  </div>
+    {/* </div>
+  </div> */}
+  </Container>
   );
 };
 

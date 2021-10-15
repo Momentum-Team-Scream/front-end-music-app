@@ -45,21 +45,6 @@ export const LessonForm = ({ auth, setSubmitted }) => {
         }
       )
       .then((res) => {
-        // axios.get(`https://music-mvp.herokuapp.com/instructor/studio/`,
-        //     {
-        //       headers: {
-        //         'Content-Type': 'application/json',
-        //         Authorization: `token ${auth}`,
-        //       },
-        //     }
-        //     )
-        //     .then((response) => {
-        //       console.log(response)
-        //       setStudentList(response.data.students);
-        //       console.log(studentList)
-        //       }
-        //     )
-
         setSubmitted(true);
         setLessonDate('');
         setLessonTime('');
