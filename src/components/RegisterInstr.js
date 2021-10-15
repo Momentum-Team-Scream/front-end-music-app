@@ -11,6 +11,10 @@ export const RegisterInstructor = ({ setAuth, setInstructor }) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [rePassword, setRePassword] = useState('')
+    const [firstErr, setFirstErr] = useState('')
+    const [lastErr, setLastErr] = useState('')
+    const [userErr, setUserErr] = useState('')
+    const [passErr, setPassErr] = useState('')
     const history = useHistory()
 
     
@@ -40,7 +44,10 @@ export const RegisterInstructor = ({ setAuth, setInstructor }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        console.log('form submitted!')
+        setFirstErr('')
+        setLastErr('')
+        setUserErr('')
+        setPassErr('')
 
         axios.post('https://music-mvp.herokuapp.com/auth/users/', 
         {
@@ -70,6 +77,20 @@ export const RegisterInstructor = ({ setAuth, setInstructor }) => {
                 console.log('something went wrong, please try again')
             }
             console.log(res)
+        }).catch(error => {
+            if(error.response) {
+                console.log(error.response)
+                const err = error.response.data
+                if (err.first_name) {
+                    setFirstErr(err.first_name)
+                } if (err.last_name) {
+                    setLastErr(err.last_name)
+                } if (err.username) {
+                    setUserErr(err.username)
+                } if (err.password) {
+                    setPassErr(err.password)
+                }
+            }
         })
     }
 
@@ -80,6 +101,14 @@ export const RegisterInstructor = ({ setAuth, setInstructor }) => {
                 <div className="personal-info">
                     <p>Enter your contact information (this will be visible to your students)</p>
                     <label className="label">First Name</label>
+                    {firstErr ? 
+                        <>
+                            <div className="error-div">
+                                <p>{firstErr}</p>
+                            </div>
+                        </>
+                        : null
+                    }
                     <input
                         className="input form-control"
                         type="text"
@@ -89,6 +118,14 @@ export const RegisterInstructor = ({ setAuth, setInstructor }) => {
                         onChange={(event) => handleChange('firstName', event)}
                     />
                     <label className="label">Last Name</label>
+                    {lastErr ? 
+                        <>
+                            <div className="error-div">
+                                <p>{lastErr}</p>
+                            </div>
+                        </>
+                        : null
+                    }
                     <input
                         className="input form-control"
                         type="text"
@@ -119,6 +156,14 @@ export const RegisterInstructor = ({ setAuth, setInstructor }) => {
                 <div className="user-pw">
                     <p>Create your username and password to access your account</p>
                     <label className="label">Username</label>
+                    {userErr ? 
+                        <>
+                            <div className="error-div">
+                                <p>{userErr}</p>
+                            </div>
+                        </>
+                        : null
+                    }
                     <input
                         className="input form-control"
                         type="text"
@@ -128,6 +173,14 @@ export const RegisterInstructor = ({ setAuth, setInstructor }) => {
                         onChange={(event) => handleChange('username', event)}
                     />
                     <label className="label">Password</label>
+                    {passErr ? 
+                        <>
+                            <div className="error-div">
+                                <p>{passErr}</p>
+                            </div>
+                        </>
+                        : null
+                    }
                     <input
                         className="input form-control"
                         type="password"
