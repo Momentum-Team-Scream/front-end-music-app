@@ -9,6 +9,10 @@ export const LessonForm = ({ auth, setSubmitted }) => {
   const [student, setStudent] = useState('');
   const [plan, setPlan] = useState('');
   const [studentList, setStudentList] = useState([]);
+  const [dateErr, setDateErr] = useState(false);
+  const [timeErr, setTimeErr] = useState(false);
+  const [studentErr, setStudentErr] = useState(false);
+
 
   // const getStudentList = () => {
   useEffect(() => {
@@ -21,13 +25,16 @@ export const LessonForm = ({ auth, setSubmitted }) => {
       })
       .then((response) => {
         console.log(response);
-        setStudentList(response.data.students);
+        setStudentList(response.data);
         console.log(studentList);
       });
   }, [auth]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setDateErr(false)
+    setTimeErr(false)
+    setStudentErr(false)
     axios
       .post(
         'https://music-mvp.herokuapp.com/api/lessons/',
@@ -45,27 +52,27 @@ export const LessonForm = ({ auth, setSubmitted }) => {
         }
       )
       .then((res) => {
-        // axios.get(`https://music-mvp.herokuapp.com/instructor/studio/`,
-        //     {
-        //       headers: {
-        //         'Content-Type': 'application/json',
-        //         Authorization: `token ${auth}`,
-        //       },
-        //     }
-        //     )
-        //     .then((response) => {
-        //       console.log(response)
-        //       setStudentList(response.data.students);
-        //       console.log(studentList)
-        //       }
-        //     )
-
-        setSubmitted(true);
-        setLessonDate('');
-        setLessonTime('');
-        setStudent('');
-        setPlan('');
-      });
+        if(res.status === 201) {
+          setSubmitted(true);
+          setLessonDate('');
+          setLessonTime('');
+          setStudent('');
+          setPlan('');
+        }
+      })
+      .catch((error) => {
+        if(error.response) {
+          console.log(error.response)
+          const err = error.response.data
+          if(err.lesson_date) {
+            setDateErr(true)
+          } if (err.lesson_time) {
+            setTimeErr(true)
+          } if (err.student){
+            setStudentErr(true)
+          } 
+        }  
+      })
   };
 
   const handleChange = (inputType, event) => {
@@ -88,7 +95,14 @@ export const LessonForm = ({ auth, setSubmitted }) => {
       <h4> Create a new lesson here! </h4>
       <Form className="form-lessonForm" onSubmit={handleSubmit}>
         <label className="label-lesson">Lesson Date: </label>
-
+          {dateErr ? 
+              <>
+                <div className="error-div">
+                  <p>Enter an upcoming date in the format MM/DD/YYYY</p>
+                </div>
+              </>
+            : null
+          }
         <input
           className="input form-control"
           placeholder="Enter date of lesson"
@@ -98,6 +112,14 @@ export const LessonForm = ({ auth, setSubmitted }) => {
         />
 
         <label className="label-lesson">Lesson Time: </label>
+        {timeErr ? 
+              <>
+                <div className="error-div">
+                  <p>Enter a lesson time</p>
+                </div>
+              </>
+            : null
+          }
         <input
           className="input form-control"
           type="time"
@@ -106,6 +128,14 @@ export const LessonForm = ({ auth, setSubmitted }) => {
         />
 
         <label className="label-lesson">Student:</label>
+        {studentErr ? 
+              <>
+                <div className="error-div">
+                  <p>Select a student</p>
+                </div>
+              </>
+            : null
+          }
         <Form.Control
           required
           as="select"
@@ -120,14 +150,15 @@ export const LessonForm = ({ auth, setSubmitted }) => {
           ))}
         </Form.Control>
 
-        <label className="label-lesson">Plan:</label>
-        <input
+        <label className="label-lesson">*optional* Lesson Plan: </label>
+        <textarea
           className="input form-control"
           placeholder="Enter lesson plan notes"
           type="text"
           value={plan}
           onChange={(e) => handleChange('plan', e)}
         />
+        
         <div>
           <button className="btn btn-general">Create Lesson</button>
         </div>

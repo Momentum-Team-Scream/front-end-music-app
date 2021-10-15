@@ -88,3 +88,11 @@ a {
 a:hover {
   color: #eb9a18;
 }
+
+/* Styling for Errors */
+
+.error-div {
+  background-color: rgba(255, 129, 154, 0.3);
+  font-size: 0.8rem;
+  font-style: italic;
+}
