@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import Container from 'react-bootstrap/Container'
 import { Form } from 'react-bootstrap';
 import '../styles/docs.css';
@@ -10,8 +11,10 @@ export const UploadDocs = ({ auth }) => {
   let fileInput = useRef(null);
   const [student, setStudent] = useState([]);
   const [studentList, setStudentList] = useState([]);
+  const [fileErr, setFileErr] = useState(false);
+  const history = useHistory();
 
-  // const getStudentList = () => {
+
   useEffect(() => {
     axios
       .get(`https://music-mvp.herokuapp.com/instructor/studio/`, {
@@ -21,7 +24,6 @@ export const UploadDocs = ({ auth }) => {
         },
       })
       .then((response) => {
-        console.log(response);
         setStudentList(response.data);
         console.log(studentList);
       });
@@ -29,6 +31,7 @@ export const UploadDocs = ({ auth }) => {
 
   const submitFileData = (event) => {
     event.preventDefault();
+    setFileErr(false);
     console.log(student)
     axios
       .post(
@@ -45,10 +48,9 @@ export const UploadDocs = ({ auth }) => {
         }
       )
       .then((res) => {
-        console.log(res);
+        if(res.status === 201) {
         const file = fileInput.current.files[0];
-        console.log(file);
-        console.log(fileInput);
+
         axios
           .put(
             `https://music-mvp.herokuapp.com/api/documents/${res.data.pk}/upload/`,
@@ -62,9 +64,16 @@ export const UploadDocs = ({ auth }) => {
             }
           )
           .then((res) => {
-            console.log(res);
+            if (res.status === 201) {
+            alert("document uploaded")}
+            history.push(`/mydocs/`);
           });
-      }
+        }
+      })
+      .catch((error) => {
+        if(error.response); 
+        setFileErr(true)
+  }
       );
   };
 
@@ -76,19 +85,23 @@ export const UploadDocs = ({ auth }) => {
 
   return (
     <Container>
-    {/* <div className="docUploadDiv">
-      <div className="form-group" style={{width: '300px'}}> */}
+
       <h4> Upload documents to share! </h4>
       <Form className="form-docUploadForm" onSubmit={submitFileData} >
         <Form.Group controlId="uploadDocs">
         <Form.Label>Click button to add a file:</Form.Label>
+        {fileErr ?
+        <>
+        <p>you did not attach a file</p>
+        </>
+        : null
+        }
         <Form.Control 
           type="file" 
           ref={fileInput} 
           type="file" 
-          id="file-input" />
-        
-        <Form.Label>Select a student to share with:</Form.Label>
+        />
+        <Form.Label>Select a student to share with (optional):</Form.Label>
         <Form.Control
           required
           as="select"
@@ -99,7 +112,7 @@ export const UploadDocs = ({ auth }) => {
           {studentList.map((student, idx) => (
             <option key={idx} value={student.pk}>
               {student.first_name} {student.last_name}
-            </option>
+            </option> 
           ))}
         </Form.Control>
       <div>
@@ -107,8 +120,6 @@ export const UploadDocs = ({ auth }) => {
       </div>
     </Form.Group>
     </Form>
-    {/* </div>
-  </div> */}
   </Container>
   );
 };
