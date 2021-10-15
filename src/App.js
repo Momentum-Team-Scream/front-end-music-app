@@ -20,6 +20,7 @@ import { StudentDashboard } from './components/StudentDashboard';
 import { LogList } from './components/LogList.js';
 import { StudentDetail } from './components/StudentDetail';
 import { UploadDocs } from './components/UploadDocs.js';
+import { DocList } from './components/DocList.js';
 // import { AssignmentForm } from './components/AssignmentForm.js';
 
 export const App = () => {
@@ -117,7 +118,13 @@ export const App = () => {
           />
           <Route
             path="/profile"
-            component={() => <InstrProfile auth={auth} setAuth={setAuth} instructor={instructor} />}
+            component={() => (
+              <InstrProfile
+                auth={auth}
+                setAuth={setAuth}
+                instructor={instructor}
+              />
+            )}
           />
           <Route
             path="/practice-logs"
@@ -129,7 +136,7 @@ export const App = () => {
           />
           <Route
             path="/mydocs"
-            component={() => <UploadDocs auth={auth} setAuth={setAuth} />}
+            component={() => <DocList auth={auth} setAuth={setAuth} />}
           />
         </Switch>
       </div>

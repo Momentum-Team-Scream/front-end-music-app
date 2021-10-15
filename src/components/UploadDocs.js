@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import axios from 'axios';
-
+import { DocList } from './DocList';
 export const UploadDocs = ({ auth }) => {
   let fileInput = useRef(null);
 
