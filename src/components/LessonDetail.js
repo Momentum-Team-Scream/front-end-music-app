@@ -118,7 +118,6 @@ export const LessonDetail = ({ auth, props, pk }) => {
       </div>
 
       <div className="dash-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
-        
         <div className="body-item col-lg-6">
           <p> Notes from last lesson on {previous.lesson_date} </p>
           <div className="prevLsn">
