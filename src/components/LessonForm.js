@@ -13,6 +13,7 @@ export const LessonForm = ({ auth, setSubmitted }) => {
   const [timeErr, setTimeErr] = useState(false);
   const [studentErr, setStudentErr] = useState(false);
 
+
   useEffect(() => {
     axios
       .get(`https://music-mvp.herokuapp.com/instructor/studio/`, {
