@@ -48,19 +48,19 @@ export const AssignmentList = ({ auth }) => {
     </>
   ) : (
     <>
-      <h3>Lesson Notes:</h3>
-      {assignments.map((assign, idx) => {
-        return (
-          <div className="card card-list" key={idx}>
-            <div className="card-header header-gray">
-              Note from {assign.created_at}
+      <h3>Your Assignments:</h3>
+        {assignments.map((assign, idx) => {
+          return (
+            <div className="card card-list" key={idx}>
+              <div className="card-header header-gray">
+                Assignment from {assign.created_at}
+              </div>
+              <div className="card-body cd-body">
+                <h5 className="card-title">{assign.body}</h5>
+              </div>
             </div>
-            <div className="card-body cd-body">
-              <h5 className="card-title">{assign.body}</h5>
-            </div>
-          </div>
-        );
-      })}
+          );
+        })}
     </>
   );
 };

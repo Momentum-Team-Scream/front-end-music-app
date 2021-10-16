@@ -124,7 +124,7 @@ export const App = () => {
             component={() => <LogList auth={auth} setAuth={setAuth} />}
           />
           <Route
-            path="/users/:pk/"
+            path="/users/:pk"
             component={(pk) => <StudentDetail auth={auth} props={pk} />}
           />
           <Route

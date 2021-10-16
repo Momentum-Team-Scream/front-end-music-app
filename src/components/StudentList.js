@@ -84,7 +84,7 @@ export const StudentList = ({ auth }) => {
             return (
                 <tr>
                   <td>
-                    <Link to={`/users/${student.pk}/`}>
+                    <Link to={`/users/${student.pk}`}>
                       {student.first_name}
                     </Link>
                   </td>
