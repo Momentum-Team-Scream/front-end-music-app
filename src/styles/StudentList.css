@@ -4,6 +4,7 @@
   background-color: #f9a826;
   color: #27292a;
   font-weight: 500;
+  margin-bottom: 1em;
 }
 
 .btn-general:hover {
@@ -24,7 +25,16 @@
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
 .studentListBody {
   margin-left: 20%;
   margin-right: 20%;
+}
+
+.studentListBody h1 {
+  margin-top: 1em;
+}
+
+.studentListBody h4 {
+  margin-top: 1em;
 }

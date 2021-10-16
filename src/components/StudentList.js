@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Table, Card, Button, Text, Form } from 'react-bootstrap';
-// import '../styles/stylesheet.css';
 import '../styles/StudentList.css';
 import _ from 'lodash';
 
@@ -23,7 +22,6 @@ export const StudentList = ({ auth }) => {
         })
         .then((res) => {
           setStudents(res.data);
-          console.log(res.data);
         });
       setSubmitted(false);
     }
@@ -31,7 +29,6 @@ export const StudentList = ({ auth }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(`${search}`);
     axios
       .get(
         `https://music-mvp.herokuapp.com/instructor/studio/?search=${search}`,
@@ -54,16 +51,7 @@ export const StudentList = ({ auth }) => {
       <div className="studentListBody">
         <h1 className="studentTitle">Your Students</h1>
         <div className="StudentCont">
-
         <div className="searchBarCont">
-          {/* <input
-            className="searchBar"
-            type="text"
-            placeholder="search for a student"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          /> */}
-
           <Form className="form-studentSearchForm" onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="studentSearchForm">
               <Form.Label>
@@ -79,16 +67,7 @@ export const StudentList = ({ auth }) => {
                 <button className="btn btn-general" type="submit">Search</button>
               </div>
             </Form.Group>
-              {/* <div>
-                <button className="btn btn-general" type="submit">Search</button>
-              </div> */}
           </Form>
-
-          {/* <div className="button btn">
-            <button className="btn .btn-general" onClick={handleSubmit}>
-              Search
-            </button>
-          </div> */}
         </div>
 
           <Table striped bordered hover size="sm">
