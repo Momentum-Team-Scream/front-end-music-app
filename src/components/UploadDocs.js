@@ -81,6 +81,7 @@ export const UploadDocs = ({ auth }) => {
 
   return (
     <Container>
+      <br />
       <h4> Upload documents to share! </h4>
       <Form className="form-docUploadForm" onSubmit={submitFileData}>
         <Form.Group controlId="uploadDocs">
@@ -110,8 +111,9 @@ export const UploadDocs = ({ auth }) => {
           </div>
         </Form.Group>
       </Form>
+      <br />
       <div>
-        <DocList auth={auth} />
+        <DocList auth={auth} studentList={studentList} />
       </div>
     </Container>
   );
