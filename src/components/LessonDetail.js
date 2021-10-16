@@ -33,7 +33,7 @@ export const LessonDetail = ({ auth, props, pk }) => {
             axios
               .get(
                 `https://music-mvp.herokuapp.com/api/assignments/${response.data.student}/previous/${response.data.pk}`,
-                // axios.get('https://music-mvp.herokuapp.com/api/assignments/21/',
+
                 {
                   headers: {
                     'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ export const LessonDetail = ({ auth, props, pk }) => {
           {lesson.lesson_date} at {lesson.lesson_time}{' '}
         </h4>
         <div className="buttonCont">
-          <a
+          {/* <a
             onClick={() => {
               window.open('https://meet.jit.si/AllegedOrangesPlayImpolitely');
             }}
@@ -68,7 +68,7 @@ export const LessonDetail = ({ auth, props, pk }) => {
             <button type="button" className="btn detbtn btn-general">
               Start Lesson
             </button>
-          </a>
+          </a> */}
           <a
             href
             onClick={() => {
@@ -94,7 +94,7 @@ export const LessonDetail = ({ auth, props, pk }) => {
 
         <div className="body-item col-lg-6">
           <div div clasName="cardheader">
-            <h4>Note for Student</h4>
+            <h4>Student Assignment</h4>
             <p> (click below to edit) </p>
           </div>
 
@@ -119,7 +119,7 @@ export const LessonDetail = ({ auth, props, pk }) => {
 
       <div className="dash-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
         <div className="body-item col-lg-6">
-          <h4> Previous Plan </h4>
+          <p> Notes from last lesson on {previous.lesson_date} </p>
           <div className="prevLsn">
             <div className="card">
               <p className="lessonTxt">{previous.plan}</p>
@@ -127,7 +127,7 @@ export const LessonDetail = ({ auth, props, pk }) => {
           </div>
         </div>
         <div className="body-item col-lg-6">
-          <h4> Previous Note </h4>
+          <p> Assignment from last lesson on {previous.lesson_date}  </p>
           <div className="prevAssign">
             {previous.note && previous.note.length ? (
               <div className="card">

@@ -1,25 +1,55 @@
 import { useRef } from 'react';
 import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import Container from 'react-bootstrap/Container'
+import { Form } from 'react-bootstrap';
+import '../styles/docs.css';
+
 
 export const UploadDocs = ({ auth }) => {
   let fileInput = useRef(null);
+  const [student, setStudent] = useState([]);
+  const [studentList, setStudentList] = useState([]);
+  const [fileErr, setFileErr] = useState(false);
+  const history = useHistory();
 
-  const submitFileData = () => {
+
+  useEffect(() => {
+    axios
+      .get(`https://music-mvp.herokuapp.com/instructor/studio/`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `token ${auth}`,
+        },
+      })
+      .then((response) => {
+        setStudentList(response.data);
+        
+      });
+  }, [auth]);
+
+  const submitFileData = (event) => {
+    event.preventDefault();
+    setFileErr(false);
+
     axios
       .post(
         `https://music-mvp.herokuapp.com/api/documents/`,
-        { title: 'title' },
+        { title: `${fileInput.current.files[0].name}`, 
+          students: student
+      },
         {
           headers: {
+            'Content-Type': 'application/json',
             Authorization: `token ${auth}`,
           },
         }
       )
       .then((res) => {
-        console.log(res);
+        if(res.status === 201) {
         const file = fileInput.current.files[0];
-        console.log(file);
-        console.log(fileInput);
+
         axios
           .put(
             `https://music-mvp.herokuapp.com/api/documents/${res.data.pk}/upload/`,
@@ -33,20 +63,64 @@ export const UploadDocs = ({ auth }) => {
             }
           )
           .then((res) => {
-            console.log(res);
+            if (res.status === 201) {
+            alert("document uploaded")}
+            history.push(`/mydocs/`);
           });
-      });
+        }
+      })
+      .catch((error) => {
+        if(error.response){ 
+        setFileErr(true)
+        }
+  }
+      );
+  };
+
+  const handleChange = (inputType, event) => {
+    if (inputType === 'student') {
+      setStudent([event.target.value]);
+    }
   };
 
   return (
-    <div>
+    <Container>
+
+      <h4> Upload documents to share! </h4>
+      <Form className="form-docUploadForm" onSubmit={submitFileData} >
+        <Form.Group controlId="uploadDocs">
+        <Form.Label>Click button to add a file:</Form.Label>
+        {fileErr ?
+        <>
+        <p>you did not attach a file</p>
+        </>
+        : null
+        }
+        <Form.Control 
+          type="file" 
+          ref={fileInput} 
+          type="file" 
+        />
+        <Form.Label>Select a student to share with (optional):</Form.Label>
+        <Form.Control
+          required
+          as="select"
+          onChange={(e) => handleChange('student', e)}
+          className="input form-control"
+          name="students"
+        >
+          {studentList.map((student, idx) => (
+            <option key={idx} value={student.pk}>
+              {student.first_name} {student.last_name}
+            </option> 
+          ))}
+        </Form.Control>
       <div>
-        <input ref={fileInput} type="file" id="file-input" />
+        <button className="btn btn-general">Submit Data</button>
       </div>
-      <div>
-        <button onClick={submitFileData}>Submit Data</button>
-      </div>
-    </div>
+    </Form.Group>
+    </Form>
+  </Container>
   );
 };
-// };
+
