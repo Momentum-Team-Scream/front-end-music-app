@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import TextTruncate from 'react-text-truncate';
 import '../styles/studetail.css'
 
 export const StudentDetail = ({auth, props}) => {
@@ -78,7 +79,17 @@ export const StudentDetail = ({auth, props}) => {
                         return (
                             <div className="card" key={idx}>
                                 <div className="card-header">
-                                    Lesson plan: {lesson.plan}
+                                    { lesson.plan ?
+                                        <TextTruncate
+                                            line={1}
+                                            element="span"
+                                            truncateText="…"
+                                            text={lesson.plan}
+                                        /> :
+                                        <p>
+                                            Add your lesson plan...
+                                        </p>
+                                    }
                                 </div>
                                 <div className="card-body">
                                     <h5 className="card-title">{lesson.lesson_date}</h5>
