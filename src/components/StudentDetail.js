@@ -16,7 +16,6 @@ export const StudentDetail = ({auth, props}) => {
         let isMounted = true
 
         const newArr = props.location.pathname.split('/');
-        console.log(props.location.pathname)
         setPk(newArr.pop())
         console.log(pk)
 
@@ -28,7 +27,6 @@ export const StudentDetail = ({auth, props}) => {
         .then(res => {
             if (isMounted){
                 if (res.status === 200){
-                    console.log(res.data)
                     setStudent(res.data)
                     const pk = res.data.pk
                     return axios.get(`https://music-mvp.herokuapp.com/api/assignments/${pk}/`, {
@@ -39,24 +37,20 @@ export const StudentDetail = ({auth, props}) => {
                     .then(res => {
                         if (isMounted){
                             if (res.status === 200) {
-                                console.log(res.data)
-                                console.log(typeof res.data)
                                 const lessons = res.data
+                                console.log(res.data)
                                 let upLessons = []
                                 let paLessons = []
-                                console.log(lessons)
                                 lessons.forEach((lesson) => {
                                     let lesDate = lesson.lesson_date
-                                    console.log(Date.parse(lesDate))
                                     if (Date.parse(lesDate) >= Date.parse(today)) {
                                         upLessons.push(lesson)
                                     } else 
                                         paLessons.push(lesson)
                                 })
-                                console.log(upLessons)
-                                console.log(paLessons)
                                 setUpcomingLessons(upLessons)
                                 setPastLessons(paLessons)
+                                
                             }
                         }
                     })
@@ -69,11 +63,11 @@ export const StudentDetail = ({auth, props}) => {
         }
                 
 
-        }, [pk])
+    }, [pk])
 
-    // console.log(lessons)
-    console.log(date[0])
     
+
+
     return (
         <div>
             <header className="stu-header">
@@ -86,7 +80,37 @@ export const StudentDetail = ({auth, props}) => {
                 </div>
                 
             </header>
-            <body className="stu-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
+            <body className="stu-body col-xxl-12 row flex-lg-row justify-content-center">
+                <div className="body-item col-lg-6">
+                    <h3>Upcoming Lessons</h3>
+                    {upcomingLessons.map((lesson, idx) => {
+                        return (
+                            <>
+                                <div className="card" key={idx}>
+                                    <div className="card-header">
+                                        { lesson.plan ?
+                                            <TextTruncate
+                                                line={1}
+                                                element="span"
+                                                truncateText="…"
+                                                text={lesson.plan}
+                                            /> :
+                                            <p>
+                                                No plan added...
+                                            </p>
+                                        }
+                                    </div>
+                                    <div className="card-body">
+                                        <h5 className="card-title">{lesson.lesson_date}</h5>
+                                        <Link to={`/lessons/${lesson.pk}`}> 
+                                            <button className="btn btn-general">Edit Lesson Plan</button>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </>
+                        )
+                    })}
+                </div>
                 <div className="body-item col-lg-6">
                     <h4>Today is {today}</h4>
                     <Link to="/">
@@ -94,42 +118,22 @@ export const StudentDetail = ({auth, props}) => {
                             Create New Lesson
                         </button>
                     </Link>
-                </div>
-                {/* <div className="body-item col-lg-6">
-                    <h3>Upcoming Lessons</h3>
-                    {lessons.map((lesson, idx) => {
-                        return (
-                            <>
-                                { lesson.date >= date[0] ? 
-                                    <>
+                    <div>
+                        <h3>Past Lesson Plans:</h3>
+                            {pastLessons.map((plesson, idx) => {
+                                return (
                                         <div className="card" key={idx}>
                                             <div className="card-header">
-                                                { lesson.plan ?
-                                                    <TextTruncate
-                                                        line={1}
-                                                        element="span"
-                                                        truncateText="…"
-                                                        text={lesson.plan}
-                                                    /> :
-                                                    <p>
-                                                        Add your lesson plan...
-                                                    </p>
-                                                }
+                                                <p>{plesson.lesson_date}</p>
                                             </div>
                                             <div className="card-body">
-                                                <h5 className="card-title">{lesson.lesson_date}</h5>
-                                                <Link to={`/lessons/${lesson.pk}`}> 
-                                                    <button className="btn btn-general">View Lesson</button>
-                                                </Link>
+                                                <p>{plesson.plan}</p>
                                             </div>
                                         </div>
-                                    </> :
-                                    null
-                                }
-                            </>
-                        )
-                    })}
-                </div> */}
+                                )
+                            })} 
+                    </div>
+                </div>
             </body>
         </div>
     );
