@@ -7,53 +7,55 @@ export const StudentDetail = ({auth, props}) => {
     const [student, setStudent] = useState({})
     const [lessons, setLessons] = useState([])
     const [name, setName] = useState('')
-    
-    console.log(props)
-    console.log(props.location.pathname)
+    const [pk, setPk] = useState('')
 
     useEffect( async () => {
         let isMounted = true
-            
-            await axios.get('https://music-mvp.herokuapp.com/api' + props.location.pathname, {
-                headers: {
-                    Authorization: `token ${auth}`
-                }
-            })
-            .then(res => {
-                if (isMounted){
-                    if (res.status === 200){
-                        console.log(res.data)
-                        setStudent(res.data)
-                        setName(res.data.first_name)
-                        const pk = res.data.pk
-                        return axios.get(`https://music-mvp.herokuapp.com/api/assignments/${pk}/`, {
-                            headers: {
-                                Authorization: `token ${auth}`
-                            }
-                        })
-                        .then(res => {
-                            if (isMounted){
-                                if (res.status === 200) {
-                                    console.log(res.data)
-                                    setLessons(res.data)
-                                }
-                            }
-                        })
-                    }
-                }
-            })
 
-            return () => {
-                isMounted = false
+        const newArr = props.location.pathname.split('/');
+        console.log(props.location.pathname)
+        setPk(newArr.pop())
+        console.log(pk)
+
+        await axios.get(`https://music-mvp.herokuapp.com/api/users/${pk}`, {
+            headers: {
+                Authorization: `token ${auth}`
             }
-                    
+        })
+        .then(res => {
+            if (isMounted){
+                if (res.status === 200){
+                    console.log(res.data)
+                    setStudent(res.data)
+                    setName(res.data.first_name)
+                    const pk = res.data.pk
+                    return axios.get(`https://music-mvp.herokuapp.com/api/assignments/${pk}/`, {
+                        headers: {
+                            Authorization: `token ${auth}`
+                        }
+                    })
+                    .then(res => {
+                        if (isMounted){
+                            if (res.status === 200) {
+                                console.log(res.data)
+                                setLessons(res.data)
+                            }
+                        }
+                    })
+                }
+            }
+        })
 
-        }, [])
+        return () => {
+            isMounted = false
+        }
+                
+
+        }, [pk])
 
     return (
         <div>
             <header className="stu-header">
-                <h2>Student Detail: </h2>
                 <h3>{student.first_name} {student.last_name}</h3>
                 <div className="">
                     <p><i class="bi bi-person-circle"></i> {student.username}</p>
@@ -74,9 +76,9 @@ export const StudentDetail = ({auth, props}) => {
                 <div className="body-item col-lg-6">
                     {lessons.map((lesson, idx) => {
                         return (
-                            <div className="card">
+                            <div className="card" key={idx}>
                                 <div className="card-header">
-                                    {name}'s Lesson
+                                    Lesson plan: {lesson.plan}
                                 </div>
                                 <div className="card-body">
                                     <h5 className="card-title">{lesson.lesson_date}</h5>

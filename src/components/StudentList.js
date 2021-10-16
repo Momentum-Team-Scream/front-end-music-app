@@ -17,8 +17,8 @@ export const StudentList = ({ auth }) => {
           },
         })
         .then((res) => {
-          setStudents(res.data.students);
-          console.log(res.data.students);
+          setStudents(res.data);
+          console.log(res.data);
         });
       setSubmitted(false);
     }
@@ -46,7 +46,7 @@ export const StudentList = ({ auth }) => {
                 <tr>
                   <td>{index}</td>
                   <td>
-                    <Link to={`/users/${student.pk}/`}>
+                    <Link to={`/users/${student.pk}`}>
                       {student.first_name}
                     </Link>
                   </td>
