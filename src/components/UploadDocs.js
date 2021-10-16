@@ -25,14 +25,14 @@ export const UploadDocs = ({ auth }) => {
       })
       .then((response) => {
         setStudentList(response.data);
-        console.log(studentList);
+        
       });
   }, [auth]);
 
   const submitFileData = (event) => {
     event.preventDefault();
     setFileErr(false);
-    console.log(student)
+
     axios
       .post(
         `https://music-mvp.herokuapp.com/api/documents/`,
@@ -43,7 +43,6 @@ export const UploadDocs = ({ auth }) => {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `token ${auth}`,
-
           },
         }
       )
@@ -71,8 +70,9 @@ export const UploadDocs = ({ auth }) => {
         }
       })
       .catch((error) => {
-        if(error.response); 
+        if(error.response){ 
         setFileErr(true)
+        }
   }
       );
   };
