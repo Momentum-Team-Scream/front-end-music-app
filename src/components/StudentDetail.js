@@ -87,7 +87,7 @@ export const StudentDetail = ({auth, props}) => {
                         return (
                             <>
                                 <div className="card" key={idx}>
-                                    <div className="card-header">
+                                    <div className="card-header alert">
                                         { lesson.plan ?
                                             <TextTruncate
                                                 line={1}
@@ -95,7 +95,7 @@ export const StudentDetail = ({auth, props}) => {
                                                 truncateText="…"
                                                 text={lesson.plan}
                                             /> :
-                                            <p>
+                                            <p className="empty-p">
                                                 No plan added...
                                             </p>
                                         }
@@ -103,7 +103,7 @@ export const StudentDetail = ({auth, props}) => {
                                     <div className="card-body">
                                         <h5 className="card-title">{lesson.lesson_date}</h5>
                                         <Link to={`/lessons/${lesson.pk}`}> 
-                                            <button className="btn btn-general">Edit Lesson Plan</button>
+                                            <button className="btn btn-gray">Edit Lesson Plan</button>
                                         </Link>
                                     </div>
                                 </div>
@@ -112,13 +112,15 @@ export const StudentDetail = ({auth, props}) => {
                     })}
                 </div>
                 <div className="body-item col-lg-6">
-                    <h4>Today is {today}</h4>
-                    <Link to="/">
-                        <button className="btn btn-general">
-                            Create New Lesson
-                        </button>
-                    </Link>
-                    <div>
+                    <div className="add-lesson-div">
+                        <h3>Today is {today}</h3>
+                        <Link to="/">
+                            <button className="btn btn-general">
+                                Create New Lesson
+                            </button>
+                        </Link>
+                    </div>
+                <div>
                         <h3>Past Lesson Plans:</h3>
                             {pastLessons.map((plesson, idx) => {
                                 return (
@@ -127,7 +129,12 @@ export const StudentDetail = ({auth, props}) => {
                                                 <p>{plesson.lesson_date}</p>
                                             </div>
                                             <div className="card-body">
-                                                <p>{plesson.plan}</p>
+                                                { plesson.plan ?
+                                                    <p>{plesson.plan}</p> :
+                                                    <p className="empty-p">
+                                                        No plan added...
+                                                    </p>
+                                                }
                                             </div>
                                         </div>
                                 )
