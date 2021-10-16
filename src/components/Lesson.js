@@ -21,9 +21,8 @@ export const Lesson = ({ lesson, auth, setSubmitted }) => {
     <div className="card" key={lesson.pk}>
       <div className="lessonTxt">
         <p>{lesson.student_name}</p>
-        <p>{lesson.lesson_date}</p>
-        <p>{lesson.lesson_time}</p>
-        <p>{lesson.plan}</p>
+        <p>{lesson.lesson_date} at {lesson.lesson_time}</p>
+        {/* <p>{lesson.plan}</p> */}
       </div>
       <div className="card-footer">
         <Link to={`/lessons/${lesson.pk}`}>

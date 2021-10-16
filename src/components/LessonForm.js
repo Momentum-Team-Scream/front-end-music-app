@@ -14,7 +14,6 @@ export const LessonForm = ({ auth, setSubmitted }) => {
   const [studentErr, setStudentErr] = useState(false);
 
 
-  // const getStudentList = () => {
   useEffect(() => {
     axios
       .get(`https://music-mvp.herokuapp.com/instructor/studio/`, {
@@ -24,9 +23,7 @@ export const LessonForm = ({ auth, setSubmitted }) => {
         },
       })
       .then((response) => {
-        console.log(response);
         setStudentList(response.data);
-        console.log(studentList);
       });
   }, [auth]);
 

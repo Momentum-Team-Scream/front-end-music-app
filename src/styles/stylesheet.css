@@ -62,6 +62,9 @@ body {
 
 /* Styling for cards */
 
+.card {
+  margin-top: 1.5em;
+}
 .card-list {
   margin-bottom: 1.5em;
 }
