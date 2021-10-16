@@ -73,8 +73,7 @@ export const UploadDocs = ({ auth }) => {
         if(error.response){ 
         setFileErr(true)
         }
-  }
-      );
+      });
   };
 
   const handleChange = (inputType, event) => {
@@ -109,6 +108,7 @@ export const UploadDocs = ({ auth }) => {
           className="input form-control"
           name="students"
         >
+          <option key='' value=''> </option>
           {studentList.map((student, idx) => (
             <option key={idx} value={student.pk}>
               {student.first_name} {student.last_name}
