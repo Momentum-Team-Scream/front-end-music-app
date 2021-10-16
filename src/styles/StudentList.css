@@ -7,7 +7,13 @@
   margin-left: 20%;
   margin-right: 20%;
 }
-.icon {
-  max-height: 18px;
-  float: right;
+
+.BUTT {
+  margin-top: 0;
+}
+.maya {
+  max-width: 5%;
+}
+.iconLink {
+  margin-left: 22%;
 }

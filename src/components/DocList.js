@@ -32,8 +32,8 @@ export const DocList = ({ auth }) => {
           <tr>
             <th scope="col">Uploaded</th>
             <th scope="col">Title</th>
+            <th scope="col">Download</th>
             <th scope="col">Shared With</th>
-            <th scope="col">Add Student</th>
           </tr>
         </thead>
         <tbody>
@@ -42,9 +42,13 @@ export const DocList = ({ auth }) => {
               <tr>
                 <td>{doc.uploaded_at}</td>
 
+                <td className="maya">{doc.title}</td>
                 <td>
-                  {doc.title}
-                  <a href={doc.upload} download>
+                  <a
+                    href={doc.upload}
+                    download={doc.upload}
+                    className="iconLink"
+                  >
                     <img
                       className="icon"
                       src={'icons8download.png'}
@@ -52,14 +56,12 @@ export const DocList = ({ auth }) => {
                     />
                   </a>
                 </td>
-                <td>
-                  <a href={doc.upload} download>
-                    {doc.upload}
-                  </a>
-                </td>
-                <td>
+                <td className="drop">
                   <Dropdown role="menuitemcheckbox">
-                    <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                    <Dropdown.Toggle
+                      variant="secondary"
+                      className="dropdown-basic BUTT"
+                    >
                       Dropdown Button
                     </Dropdown.Toggle>
 
