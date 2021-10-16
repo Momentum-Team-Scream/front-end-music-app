@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { UploadDocs } from './UploadDocs.js';
+
 import { Doc } from './Doc.js';
 import '../styles/StudentList.css';
 import { Dropdown, Table, Container, Form } from 'react-bootstrap';
@@ -10,7 +10,7 @@ export const DocList = ({ auth, studentList }) => {
   const [submitted, setSubmitted] = useState(false);
   console.log(studentList);
   useEffect(() => {
-    if (auth) {
+    if (auth || submitted) {
       axios
         .get(`https://music-mvp.herokuapp.com/api/documents/`, {
           headers: {
@@ -20,6 +20,7 @@ export const DocList = ({ auth, studentList }) => {
         })
         .then((res) => {
           setDocs(res.data);
+          console.log(docs)
         });
       setSubmitted(false);
     }

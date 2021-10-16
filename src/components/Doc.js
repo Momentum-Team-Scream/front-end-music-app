@@ -14,13 +14,26 @@ export const Doc = ({ auth, studentList, doc }) => {
 
         <td className="maya">{doc.title}</td>
         <td>
-          <a href={doc.upload} download={doc.upload} className="iconLink">
+          
+          <a
+            onClick={() => {
+              window.open(`${doc.upload}`);
+            }}
+          >
+            <button type="button" className="btn detbtn btn-general">
+              view doc
+            </button>
+          </a>
+          
+          {/* <a href=`S{doc.upload}` download={doc.upload} className="iconLink">
             <img
               className="icon"
               src={'icons8download.png'}
               alt="download icon"
             />
-          </a>
+          </a> */}
+
+
         </td>
         <td className="drop">
           <Dropdown role="menuitemcheckbox">

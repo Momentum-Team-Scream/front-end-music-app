@@ -117,6 +117,9 @@ export const UploadDocs = ({ auth }) => {
     </div>
   </Form.Group>
   </Form>
+  <div>
+    <DocList auth={auth} studentList={studentList}/>
+  </div>
 </Container>
 );
 };
