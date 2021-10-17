@@ -1,10 +1,11 @@
-import { Dropdown, Table, Container, Form } from 'react-bootstrap';
+import { Dropdown, Form } from 'react-bootstrap';
 import '../styles/StudentList.css';
-import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
 export const Doc = ({ auth, studentList, doc }) => {
+  const history = useHistory();
+
   const handleCheck = (event, pk) => {
     event.preventDefault();
 
@@ -22,7 +23,9 @@ export const Doc = ({ auth, studentList, doc }) => {
             },
           }
         )
-        .then(() => {});
+        .then(() => {
+          history.go(0);
+        });
     } else {
       const shared = doc.students;
       shared.push(pk);
@@ -38,7 +41,9 @@ export const Doc = ({ auth, studentList, doc }) => {
             },
           }
         )
-        .then(() => {});
+        .then(() => {
+          history.go(0);
+        });
     }
   };
   return (
@@ -66,10 +71,10 @@ export const Doc = ({ auth, studentList, doc }) => {
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-              {studentList.map((student, idx) => {
+              {studentList.map((student) => {
                 let full_name = student.first_name + ' ' + student.last_name;
                 return (
-                  <Dropdown.Item href="#/action-1" key={idx}>
+                  <Dropdown.Item href="#/action-1" key={student.pk}>
                     <Form>
                       <Form.Check
                         type="checkbox"
