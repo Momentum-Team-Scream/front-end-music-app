@@ -81,7 +81,6 @@ export const UploadDocs = ({ auth }) => {
 
   return (
     <Container>
-      <br />
       <h4> Upload documents to share! </h4>
       <Form className="form-docUploadForm" onSubmit={submitFileData}>
         <Form.Group controlId="uploadDocs">
@@ -100,6 +99,9 @@ export const UploadDocs = ({ auth }) => {
             className="input form-control"
             name="students"
           >
+            <option key="" value="">
+              {' '}
+            </option>
             {studentList.map((student, idx) => (
               <option key={idx} value={student.pk}>
                 {student.first_name} {student.last_name}

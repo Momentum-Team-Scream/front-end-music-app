@@ -1,5 +1,5 @@
 import { Dropdown, Form } from 'react-bootstrap';
-import '../styles/StudentList.css';
+import '../styles/login.css';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
@@ -51,7 +51,7 @@ export const Doc = ({ auth, studentList, doc }) => {
       <tr>
         <td>{doc.uploaded_at}</td>
 
-        <td className="maya">{doc.title}</td>
+        <td className="downloadCont">{doc.title}</td>
         <td>
           <a href={doc.upload} download={doc.upload} className="iconLink">
             <img
@@ -65,7 +65,7 @@ export const Doc = ({ auth, studentList, doc }) => {
           <Dropdown role="menuitemcheckbox">
             <Dropdown.Toggle
               variant="secondary"
-              className="dropdown-basic BUTT"
+              className="dropdown-basic dropbutt"
             >
               Student List
             </Dropdown.Toggle>
