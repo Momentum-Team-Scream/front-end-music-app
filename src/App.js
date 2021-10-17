@@ -76,7 +76,7 @@ export const App = () => {
             path="/"
             render={() =>
               auth && instructor ? (
-                <LessonList auth={auth} />
+                <LessonList auth={auth} show={show} setShow={setShow}/>
               ) : auth ? (
                 <StudentDashboard auth={auth} show={show} setShow={setShow}/>
               ) : (
