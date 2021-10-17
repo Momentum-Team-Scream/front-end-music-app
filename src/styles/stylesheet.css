@@ -126,3 +126,9 @@ a:hover {
 .modal-img {
   max-width: 100%;
 }
+
+/* Contains bird pngs to their container */
+
+.bird {
+  max-width: 100%;
+}
