@@ -20,6 +20,7 @@ import { StudentDashboard } from './components/StudentDashboard';
 import { LogList } from './components/LogList.js';
 import { StudentDetail } from './components/StudentDetail';
 import { UploadDocs } from './components/UploadDocs.js';
+import { ConfirmModal } from './components/ConfirmModal';
 // import { AssignmentForm } from './components/AssignmentForm.js';
 
 export const App = () => {
@@ -130,6 +131,10 @@ export const App = () => {
           <Route
             path="/mydocs"
             component={() => <UploadDocs auth={auth} setAuth={setAuth} />}
+          />
+          <Route 
+            path="/modal-test"
+            component={() => <ConfirmModal />}
           />
         </Switch>
       </div>

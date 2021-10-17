@@ -112,3 +112,9 @@ a:hover {
   padding: 0.5em, 1em, 0.5em, 1em;
   background-color: rgba(157, 172, 255, 0.5);
 }
+
+/* Modal Styling */
+
+.modal-header {
+  background-color: rgba(157, 172, 255, 0.5);
+}
