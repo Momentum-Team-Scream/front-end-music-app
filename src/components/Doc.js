@@ -3,7 +3,7 @@ import '../styles/login.css';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
-export const Doc = ({ auth, studentList, doc }) => {
+export const Doc = ({ auth, studentList, doc, instructor }) => {
   const history = useHistory();
 
   const handleCheck = (event, pk) => {
@@ -61,37 +61,41 @@ export const Doc = ({ auth, studentList, doc }) => {
             />
           </a>
         </td>
-        <td className="drop">
-          <Dropdown role="menuitemcheckbox">
-            <Dropdown.Toggle
-              variant="secondary"
-              className="dropdown-basic dropbutt"
-            >
-              Student List
-            </Dropdown.Toggle>
+        {instructor ? (
+          <td className="drop">
+            <Dropdown role="menuitemcheckbox">
+              <Dropdown.Toggle
+                variant="secondary"
+                className="dropdown-basic dropbutt"
+              >
+                Student List
+              </Dropdown.Toggle>
 
-            <Dropdown.Menu>
-              {studentList.map((student) => {
-                let full_name = student.first_name + ' ' + student.last_name;
-                return (
-                  <Dropdown.Item href="#/action-1" key={student.pk}>
-                    <Form>
-                      <Form.Check
-                        type="checkbox"
-                        label={full_name}
-                        id={student.pk}
-                        defaultChecked={doc.students.includes(student.pk)}
-                        onChange={(e) => {
-                          handleCheck(e, student.pk);
-                        }}
-                      />
-                    </Form>
-                  </Dropdown.Item>
-                );
-              })}
-            </Dropdown.Menu>
-          </Dropdown>
-        </td>
+              <Dropdown.Menu>
+                {studentList.map((student) => {
+                  let full_name = student.first_name + ' ' + student.last_name;
+                  return (
+                    <Dropdown.Item href="#/action-1" key={student.pk}>
+                      <Form>
+                        <Form.Check
+                          type="checkbox"
+                          label={full_name}
+                          id={student.pk}
+                          defaultChecked={doc.students.includes(student.pk)}
+                          onChange={(e) => {
+                            handleCheck(e, student.pk);
+                          }}
+                        />
+                      </Form>
+                    </Dropdown.Item>
+                  );
+                })}
+              </Dropdown.Menu>
+            </Dropdown>
+          </td>
+        ) : (
+          <></>
+        )}
       </tr>
     </>
   );

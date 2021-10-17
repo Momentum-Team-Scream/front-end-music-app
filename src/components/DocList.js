@@ -5,7 +5,7 @@ import { Doc } from './Doc.js';
 import '../styles/StudentList.css';
 import { Dropdown, Table, Container, Form } from 'react-bootstrap';
 
-export const DocList = ({ auth, studentList }) => {
+export const DocList = ({ auth, studentList, instructor }) => {
   const [docs, setDocs] = useState([]);
   const [submitted, setSubmitted] = useState(false);
 
@@ -25,6 +25,7 @@ export const DocList = ({ auth, studentList }) => {
       setSubmitted(false);
     }
   }, [auth, submitted]);
+
   return (
     <div>
       <Table responsive="sm">
@@ -33,12 +34,17 @@ export const DocList = ({ auth, studentList }) => {
             <th scope="col">Uploaded</th>
             <th scope="col">Title</th>
             <th scope="col">Download</th>
-            <th scope="col">Shared With</th>
+            {instructor ? <th scope="col">Shared With</th> : <></>}
           </tr>
         </thead>
         <tbody>
           {docs.map((doc) => (
-            <Doc auth={auth} studentList={studentList} doc={doc} />
+            <Doc
+              auth={auth}
+              studentList={studentList}
+              doc={doc}
+              instructor={instructor}
+            />
           ))}
         </tbody>
       </Table>

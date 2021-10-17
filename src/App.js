@@ -132,7 +132,13 @@ export const App = () => {
           />
           <Route
             path="/mydocs"
-            component={() => <UploadDocs auth={auth} setAuth={setAuth} />}
+            component={() => (
+              <UploadDocs
+                auth={auth}
+                setAuth={setAuth}
+                instructor={instructor}
+              />
+            )}
           />
         </Switch>
       </div>
