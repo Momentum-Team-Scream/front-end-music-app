@@ -20,7 +20,6 @@ export const DocList = ({ auth, studentList, instructor }) => {
         })
         .then((res) => {
           setDocs(res.data);
-          console.log(res)
         });
       setSubmitted(false);
     }

@@ -139,10 +139,14 @@ export const LessonForm = ({ auth, setSubmitted, show, setShow }) => {
         <Form.Control
           required
           as="select"
+          defaultValue={''}
           onChange={(e) => handleChange('student', e)}
           className="input form-control"
           name="students"
         >
+          <option key="" value={''}>
+            click to select student
+          </option>
           {studentList.map((student, idx) => (
             <option key={idx} value={student.pk}>
               {student.first_name} {student.last_name}
