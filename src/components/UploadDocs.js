@@ -10,11 +10,13 @@ import { DocList } from './DocList.js';
 export const UploadDocs = ({ auth }) => {
   let fileInput = useRef(null);
   const [student, setStudent] = useState([]);
+  const [file, setFile] = useState([])
   const [studentList, setStudentList] = useState([]);
   const [fileErr, setFileErr] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
+
     axios
       .get(`https://music-mvp.herokuapp.com/instructor/studio/`, {
         headers: {
@@ -44,16 +46,18 @@ export const UploadDocs = ({ auth }) => {
       )
       .then((res) => {
         if (res.status === 201) {
-          const file = fileInput.current.files[0];
-
+          console.log(res)
+          console.log(fileInput.current.files)
+          const file = fileInput.current.files[0]
+          console.log(file);
           axios
             .put(
               `https://music-mvp.herokuapp.com/api/documents/${res.data.pk}/upload/`,
-              { file },
+               file,
               {
                 headers: {
                   Authorization: `token ${auth}`,
-                  'Content-Type': `${file.type}`,
+                  'Content-Type': `application ${file.type}`,
                   'Content-Disposition': `attachment; filename=${file.name}`,
                 },
               }
@@ -77,6 +81,9 @@ export const UploadDocs = ({ auth }) => {
     if (inputType === 'student') {
       setStudent([event.target.value]);
     }
+    if (inputType === 'file') {
+      setFile([event.target.value]);
+    }
   };
 
   return (
@@ -96,6 +103,7 @@ export const UploadDocs = ({ auth }) => {
         type="file" 
         ref={fileInput} 
         type="file" 
+        onChange={(e) => handleChange('file', e)}
       />
       <Form.Label>Select a student to share with (optional):</Form.Label>
       <Form.Control

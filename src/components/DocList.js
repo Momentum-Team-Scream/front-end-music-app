@@ -8,7 +8,7 @@ import { Dropdown, Table, Container, Form } from 'react-bootstrap';
 export const DocList = ({ auth, studentList }) => {
   const [docs, setDocs] = useState([]);
   const [submitted, setSubmitted] = useState(false);
-  console.log(studentList);
+
   useEffect(() => {
     if (auth || submitted) {
       axios
@@ -20,7 +20,7 @@ export const DocList = ({ auth, studentList }) => {
         })
         .then((res) => {
           setDocs(res.data);
-          console.log(docs)
+          console.log(res)
         });
       setSubmitted(false);
     }
