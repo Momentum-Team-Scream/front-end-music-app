@@ -36,7 +36,7 @@ export const DocList = ({ auth, studentList, instructor }) => {
           </tr>
         </thead>
         <tbody>
-          {docs.map((doc, auth) => (
+          {docs.map((doc) => (
             <Doc
               auth={auth}
               studentList={studentList}
