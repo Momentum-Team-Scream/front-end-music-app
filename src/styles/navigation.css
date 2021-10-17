@@ -2,11 +2,11 @@
 
 .bg-general {
   background-color: #27292a;
-  color: #f9a826;
+  color: #f4d325;
 }
 
 .navbar-dark .navbar-nav .nav-link {
-  color: #f9a826 !important;
+  color: #f4d325 !important;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {

@@ -1,4 +1,4 @@
-@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
 
 .dash-header {
   padding: 2em;
@@ -62,4 +62,14 @@
 .label-lesson {
   margin-bottom: 8px;
   margin-top: 8px;
+}
+
+.studentTitle {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.studentListBody {
+  margin-left: 20%;
+  margin-right: 20%;
 }
