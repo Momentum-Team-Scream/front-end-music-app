@@ -46,6 +46,7 @@ export const LogForm = ({ auth, show, setShow }) => {
       setTimePracticed(event.target.value);
     }
   };
+  
   return (
     <>
       <ConfirmModal show={show} setShow={setShow}/>
@@ -61,13 +62,17 @@ export const LogForm = ({ auth, show, setShow }) => {
           onChange={(e) => handleChange('body', e)}
         ></textarea>
         <div className="form-group-time">
-          <input
-            type="text"
-            value={timePracticed}
-            className="form-control"
-            placeholder="How long did you practice?"
-            onChange={(e) => handleChange('time_practiced', e)}
-          />
+          <label className="label">How long did you practice?</label>
+          <div className="input-group-text mb-3">
+            <input
+              type="text"
+              value={timePracticed}
+              className="form-control"
+              placeholder="30"
+              onChange={(e) => handleChange('time_practiced', e)}
+            />
+            <span class="input-group-text">minutes</span>
+          </div>
         </div>
         <div className="button">
           <button type="submit" className="btn btn-general">

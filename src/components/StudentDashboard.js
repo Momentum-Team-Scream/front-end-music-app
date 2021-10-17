@@ -6,7 +6,7 @@ import { LogForm } from './LogForm'
 import {HeadphonesBird1} from '../svgComponents/Headphones-bird-1'
 import '../styles/studentdash.css'
 
-export const StudentDashboard = ({auth}) => {
+export const StudentDashboard = ({auth, show, setShow}) => {
     const [user, setUser] = useState('')
 
     useEffect(() => {
@@ -57,7 +57,7 @@ export const StudentDashboard = ({auth}) => {
             </header>
             <div className="dash-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
                 <div className="body-item col-lg-6">
-                    <LogForm auth={auth}/>
+                    <LogForm auth={auth} show={show} setShow={setShow}/>
                 </div>
                 <div className="body-item col-lg-6">
                     <AssignmentList auth={auth}/>

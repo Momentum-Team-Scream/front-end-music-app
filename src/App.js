@@ -134,10 +134,6 @@ export const App = () => {
             path="/mydocs"
             component={() => <UploadDocs auth={auth} setAuth={setAuth} />}
           />
-          <Route 
-            path="/modal-test"
-            component={() => <ConfirmModal />}
-          />
         </Switch>
       </div>
     </Router>

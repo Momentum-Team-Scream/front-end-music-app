@@ -118,3 +118,7 @@ a:hover {
 .modal-header {
   background-color: rgba(157, 172, 255, 0.5);
 }
+
+.input-group-text.mb-3 {
+  padding: 0;
+}
