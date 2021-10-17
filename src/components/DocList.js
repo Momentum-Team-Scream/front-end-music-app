@@ -8,7 +8,6 @@ import { Dropdown, Table, Container, Form } from 'react-bootstrap';
 export const DocList = ({ auth, studentList }) => {
   const [docs, setDocs] = useState([]);
   const [submitted, setSubmitted] = useState(false);
-  console.log(studentList);
   useEffect(() => {
     if (auth) {
       axios
@@ -24,7 +23,6 @@ export const DocList = ({ auth, studentList }) => {
       setSubmitted(false);
     }
   }, [auth, submitted]);
-
   return (
     <div>
       <Table responsive="sm">
@@ -37,7 +35,7 @@ export const DocList = ({ auth, studentList }) => {
           </tr>
         </thead>
         <tbody>
-          {docs.map((doc, index, auth) => (
+          {docs.map((doc) => (
             <Doc auth={auth} studentList={studentList} doc={doc} />
           ))}
         </tbody>

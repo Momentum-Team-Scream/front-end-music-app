@@ -2,19 +2,45 @@ import { Dropdown, Table, Container, Form } from 'react-bootstrap';
 import '../styles/StudentList.css';
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 export const Doc = ({ auth, studentList, doc }) => {
-  const [sharedStudents, setSharedStudents] = useState(doc.students);
-  console.log(sharedStudents);
+  const handleCheck = (event, pk) => {
+    event.preventDefault();
 
-  const handleCheck = (pk) => {
-    if (sharedStudents.includes(pk)) {
-      // Request to remove student from doc's student array
+    if (doc.students.includes(pk)) {
+      const shared = doc.students;
+      shared.pop(pk);
+      axios
+        .patch(
+          `https://music-mvp.herokuapp.com/api/documents/${doc.pk}/`,
+          { students: shared },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `token ${auth}`,
+            },
+          }
+        )
+        .then(() => {});
     } else {
-      // Request to add student to doc's student array
+      const shared = doc.students;
+      shared.push(pk);
+      axios
+        .patch(
+          `https://music-mvp.herokuapp.com/api/documents/${doc.pk}/`,
+          { students: shared },
+
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `token ${auth}`,
+            },
+          }
+        )
+        .then(() => {});
     }
   };
-
   return (
     <>
       <tr>
@@ -43,15 +69,16 @@ export const Doc = ({ auth, studentList, doc }) => {
               {studentList.map((student, idx) => {
                 let full_name = student.first_name + ' ' + student.last_name;
                 return (
-                  <Dropdown.Item href="#/action-1">
+                  <Dropdown.Item href="#/action-1" key={idx}>
                     <Form>
                       <Form.Check
-                        key={idx}
                         type="checkbox"
                         label={full_name}
                         id={student.pk}
-                        defaultChecked={sharedStudents.includes(student.pk)}
-                        onChange={handleCheck(student.pk)}
+                        defaultChecked={doc.students.includes(student.pk)}
+                        onChange={(e) => {
+                          handleCheck(e, student.pk);
+                        }}
                       />
                     </Form>
                   </Dropdown.Item>
