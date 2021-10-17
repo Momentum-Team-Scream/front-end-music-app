@@ -10,7 +10,6 @@ import { DocList } from './DocList.js';
 export const UploadDocs = ({ auth }) => {
   let fileInput = useRef(null);
   const [student, setStudent] = useState([]);
-  const [file, setFile] = useState([])
   const [studentList, setStudentList] = useState([]);
   const [fileErr, setFileErr] = useState(false);
   const history = useHistory();
@@ -53,7 +52,7 @@ export const UploadDocs = ({ auth }) => {
           axios
             .put(
               `https://music-mvp.herokuapp.com/api/documents/${res.data.pk}/upload/`,
-               file,
+              file,
               {
                 headers: {
                   Authorization: `token ${auth}`,
@@ -65,8 +64,9 @@ export const UploadDocs = ({ auth }) => {
             .then((res) => {
               if (res.status === 201) {
                 alert('document uploaded');
+                history.go(0);
               }
-              history.push(`/mydocs/`);
+
             });
         }
       })
@@ -81,14 +81,10 @@ export const UploadDocs = ({ auth }) => {
     if (inputType === 'student') {
       setStudent([event.target.value]);
     }
-    if (inputType === 'file') {
-      setFile([event.target.value]);
-    }
   };
 
   return (
     <Container>
-
     <h4> Upload documents to share! </h4>
     <Form className="form-docUploadForm" onSubmit={submitFileData} >
       <Form.Group controlId="uploadDocs">
@@ -103,9 +99,8 @@ export const UploadDocs = ({ auth }) => {
         type="file" 
         ref={fileInput} 
         type="file" 
-        onChange={(e) => handleChange('file', e)}
       />
-      <Form.Label>Select a student to share with (optional):</Form.Label>
+      <Form.Label>Select a student to share with:</Form.Label>
       <Form.Control
         required
         as="select"
@@ -113,7 +108,6 @@ export const UploadDocs = ({ auth }) => {
         className="input form-control"
         name="students"
       >
-        <option key='' value=''> </option>
         {studentList.map((student, idx) => (
           <option key={idx} value={student.pk}>
             {student.first_name} {student.last_name}
@@ -126,7 +120,7 @@ export const UploadDocs = ({ auth }) => {
   </Form.Group>
   </Form>
   <div>
-    <DocList auth={auth} studentList={studentList}/>
+    <DocList auth={auth} studentList={studentList} />
   </div>
 </Container>
 );
