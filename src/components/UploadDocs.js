@@ -15,6 +15,7 @@ export const UploadDocs = ({ auth }) => {
   const history = useHistory();
 
   useEffect(() => {
+
     axios
       .get(`https://music-mvp.herokuapp.com/instructor/studio/`, {
         headers: {
@@ -44,16 +45,18 @@ export const UploadDocs = ({ auth }) => {
       )
       .then((res) => {
         if (res.status === 201) {
-          const file = fileInput.current.files[0];
-
+          console.log(res)
+          console.log(fileInput.current.files)
+          const file = fileInput.current.files[0]
+          console.log(file);
           axios
             .put(
               `https://music-mvp.herokuapp.com/api/documents/${res.data.pk}/upload/`,
-              { file },
+              file,
               {
                 headers: {
                   Authorization: `token ${auth}`,
-                  'Content-Type': `${file.type}`,
+                  'Content-Type': `application ${file.type}`,
                   'Content-Disposition': `attachment; filename=${file.name}`,
                 },
               }
@@ -61,8 +64,9 @@ export const UploadDocs = ({ auth }) => {
             .then((res) => {
               if (res.status === 201) {
                 alert('document uploaded');
+                history.go(0);
               }
-              history.push(`/mydocs/`);
+
             });
         }
       })
