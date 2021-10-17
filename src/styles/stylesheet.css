@@ -6,19 +6,19 @@ body {
 /* Styling for Buttons */
 
 .btn-general {
-  background-color: #f9a826;
+  background-color: #f4d325;
   color: #27292a;
   font-weight: 500;
 }
 
 .btn-general:hover {
-  background-color: #eb9a18;
+  background-color: #e4c521;
   color: #27292a;
   font-weight: 500;
 }
 
 .btn-general::selection {
-  background-color: #f9a826;
+  background-color: #f4d325;
   color: #27292a;
   font-weight: 500;
   border: 5px solid rgba(249, 168, 38, 0.5);
@@ -49,7 +49,7 @@ body {
 }
 
 .btn-destroy {
-  background-color: #ff6584;
+  background-color: #ff819a;
   color: #27292a;
   font-weight: 500;
 }
@@ -79,7 +79,7 @@ body {
 
 /* Styling for icons */
 i {
-  color: #f9a826;
+  color: #9dacff;
 }
 
 /* Styling for links */
@@ -89,7 +89,7 @@ a {
 }
 
 a:hover {
-  color: #eb9a18;
+  color: #f4d325;
 }
 
 /* Styling for Errors */
@@ -103,4 +103,12 @@ a:hover {
 .error-div p {
   margin-bottom: 0;
   margin-top: 0;
+}
+
+/* Card-header alert */
+
+.card-header.alert {
+  margin-bottom: 0;
+  padding: 0.5em, 1em, 0.5em, 1em;
+  background-color: rgba(157, 172, 255, 0.5);
 }

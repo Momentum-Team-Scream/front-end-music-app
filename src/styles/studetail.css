@@ -12,3 +12,12 @@
 .stu-body {
   padding: 2em;
 }
+
+.empty-p {
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.add-lesson-div {
+  margin-bottom: 3.5em;
+}

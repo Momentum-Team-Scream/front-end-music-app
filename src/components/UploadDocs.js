@@ -85,43 +85,42 @@ export const UploadDocs = ({ auth }) => {
 
   return (
     <Container>
-    <h4> Upload documents to share! </h4>
-    <Form className="form-docUploadForm" onSubmit={submitFileData} >
-      <Form.Group controlId="uploadDocs">
-      <Form.Label>Click button to add a file:</Form.Label>
-      {fileErr ?
-      <>
-      <p>you did not attach a file</p>
-      </>
-      : null
-      }
-      <Form.Control 
-        type="file" 
-        ref={fileInput} 
-        type="file" 
-      />
-      <Form.Label>Select a student to share with:</Form.Label>
-      <Form.Control
-        required
-        as="select"
-        onChange={(e) => handleChange('student', e)}
-        className="input form-control"
-        name="students"
-      >
-        {studentList.map((student, idx) => (
-          <option key={idx} value={student.pk}>
-            {student.first_name} {student.last_name}
-          </option> 
-        ))}
-      </Form.Control>
-    <div>
-      <button className="btn btn-general">Submit Data</button>
-    </div>
-  </Form.Group>
-  </Form>
-  <div>
-    <DocList auth={auth} studentList={studentList} />
-  </div>
-</Container>
-);
+      <h4> Upload documents to share! </h4>
+      <Form className="form-docUploadForm" onSubmit={submitFileData}>
+        <Form.Group controlId="uploadDocs">
+          <Form.Label>Click button to add a file:</Form.Label>
+          {fileErr ? (
+            <>
+              <p>you did not attach a file</p>
+            </>
+          ) : null}
+          <Form.Control type="file" ref={fileInput} type="file" />
+          <Form.Label>Select a student to share with (optional):</Form.Label>
+          <Form.Control
+            required
+            as="select"
+            onChange={(e) => handleChange('student', e)}
+            className="input form-control"
+            name="students"
+          >
+            <option key="" value="">
+              {' '}
+            </option>
+            {studentList.map((student, idx) => (
+              <option key={idx} value={student.pk}>
+                {student.first_name} {student.last_name}
+              </option>
+            ))}
+          </Form.Control>
+          <div>
+            <button className="btn btn-general">Submit Data</button>
+          </div>
+        </Form.Group>
+      </Form>
+      <br />
+      <div>
+        <DocList auth={auth} studentList={studentList} />
+      </div>
+    </Container>
+  );
 };
