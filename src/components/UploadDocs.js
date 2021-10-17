@@ -119,7 +119,14 @@ export const UploadDocs = ({ auth, instructor }) => {
           </Form>
         </div>
       ) : (
-        <div></div>
+        <div className="musicbirdcont">
+          <h1 className="musicTitle">Your Music</h1>
+          <img
+            className="birdiconmusic"
+            src={'birdstaff.png'}
+            alt="bird mascot"
+          />
+        </div>
       )}
       <br />
       <div>
