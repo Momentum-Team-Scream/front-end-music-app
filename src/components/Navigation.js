@@ -37,9 +37,7 @@ export const Navigation = ({ auth, setAuth, clearStorage, instructor }) => {
                       Profile
                     </Nav.Link>
                   ) : (
-                    <Nav.Link as={Link} to={'/practice-logs'}>
-                      Logs
-                    </Nav.Link>
+                    null
                   )}
                 </Nav>
                 <Nav>
