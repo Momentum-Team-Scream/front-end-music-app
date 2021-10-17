@@ -1,13 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { AssignmentList } from './AssignmentList';
 import { LogForm } from './LogForm'
+import { LogList } from './LogList'
+import { ConfirmModal } from './ConfirmModal';
 import {HeadphonesBird1} from '../svgComponents/Headphones-bird-1'
 import '../styles/studentdash.css'
 
 export const StudentDashboard = ({auth, show, setShow}) => {
     const [user, setUser] = useState('')
+    const history = useHistory();
 
     useEffect(() => {
         let isMounted = true
@@ -58,6 +61,7 @@ export const StudentDashboard = ({auth, show, setShow}) => {
             <div className="dash-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
                 <div className="body-item col-lg-6">
                     <LogForm auth={auth} show={show} setShow={setShow}/>
+                    <LogList auth={auth} />
                 </div>
                 <div className="body-item col-lg-6">
                     <AssignmentList auth={auth}/>

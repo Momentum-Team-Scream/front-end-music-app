@@ -22,9 +22,11 @@ export const LogList = ({ auth, show, setShow }) => {
             Authorization: `token ${auth}`,
           },
         })
-        .then((res) => setLogs(res.data));
+        .then((res) => {
+          setLogs(res.data)
+        });
     }
-  }, [auth]);
+  }, [logs]);
 
   const handleDelete = (event) => {
     const pk = event.target.id;
@@ -42,46 +44,39 @@ export const LogList = ({ auth, show, setShow }) => {
 
   return (
     <>
-      <div className="dash-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
-        <div className="body-item col-lg-6">
-          <LogForm auth={auth} show={show} setShow={setShow} />
-        </div>
-        <div className="body-item col-lg-6">
-          <h3>Past Practice Logs:</h3>
-          <div>
-            {logs.map((log, idx) => {
-              return (
-                <div className="card card-list" key={idx}>
-                  <div className="card-header header-gray">
-                    Practice Log From {log.created_at}
-                  </div>
-                  <div className="card-body cd-body">
-                    <h5 className="card-title">
-                      <strong>I practiced: </strong>
-                      {log.body}
-                    </h5>
-                    <strong>For: </strong>
-                    {log.time_practiced} minutes
-                    <button
-                      className="logdel delButton btn btn-destroy"
-                      id={log.pk}
-                      onClick={(e) => {
-                        if (
-                          window.confirm(
-                            'Are you sure you want to delete this practice log?'
-                          )
-                        )
-                          handleDelete(e);
-                      }}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+      <h3>Past Practice Logs:</h3>
+      <div>
+        {logs.map((log, idx) => {
+          return (
+            <div className="card card-list" key={idx}>
+              <div className="card-header header-gray">
+                Practice Log From {log.created_at}
+              </div>
+              <div className="card-body cd-body">
+                <h5 className="card-title">
+                  <strong>I practiced: </strong>
+                  {log.body}
+                </h5>
+                <strong>For: </strong>
+                {log.time_practiced} minutes
+                <button
+                  className="logdel delButton btn btn-destroy"
+                  id={log.pk}
+                  onClick={(e) => {
+                    if (
+                      window.confirm(
+                        'Are you sure you want to delete this practice log?'
+                      )
+                    )
+                      handleDelete(e);
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </>
   );

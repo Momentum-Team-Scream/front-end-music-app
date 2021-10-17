@@ -9,9 +9,9 @@ export const LogForm = ({ auth, show, setShow }) => {
   const history = useHistory();
   const { pk } = useParams();
 
-  // const refreshPage = () => {
-  //   window.location.reload(false);
-  // };
+  const refreshPage = () => {
+    window.location.reload(false);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -31,9 +31,9 @@ export const LogForm = ({ auth, show, setShow }) => {
       )
       .then((res) => {
         if (res.status === 201){
+          setShow(true);
           setBody('');
           setTimePracticed('');
-          setShow(true);
         }
       });
   };
