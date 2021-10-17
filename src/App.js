@@ -19,7 +19,9 @@ import { RegisterStu } from './components/RegisterStu';
 import { StudentDashboard } from './components/StudentDashboard';
 import { LogList } from './components/LogList.js';
 import { StudentDetail } from './components/StudentDetail';
+import { DocList } from './components/DocList.js';
 import { UploadDocs } from './components/UploadDocs.js';
+
 // import { AssignmentForm } from './components/AssignmentForm.js';
 
 export const App = () => {
@@ -117,7 +119,13 @@ export const App = () => {
           />
           <Route
             path="/profile"
-            component={() => <InstrProfile auth={auth} setAuth={setAuth} instructor={instructor} />}
+            component={() => (
+              <InstrProfile
+                auth={auth}
+                setAuth={setAuth}
+                instructor={instructor}
+              />
+            )}
           />
           <Route
             path="/practice-logs"
