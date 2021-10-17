@@ -25,3 +25,16 @@
 .iconLink {
   margin-left: 22%;
 }
+.musicTitle {
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+  padding-left: 40px;
+  font-size: 40px;
+}
+.musicbirdcont {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 194px;
+}

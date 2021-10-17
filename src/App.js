@@ -21,6 +21,7 @@ import { LogList } from './components/LogList.js';
 import { StudentDetail } from './components/StudentDetail';
 import { DocList } from './components/DocList.js';
 import { UploadDocs } from './components/UploadDocs.js';
+import { ConfirmModal } from './components/ConfirmModal';
 
 // import { AssignmentForm } from './components/AssignmentForm.js';
 
@@ -30,6 +31,8 @@ export const App = () => {
     useLocalStorageState('instructor', false);
   const removeAuth = authStorageOptions['removeItem'];
   const removeInstructor = instructorStorageOptions['removeItem'];
+  const [show, setShow] = useState(false);
+
 
   const clearStorage = () => {
     removeAuth();
@@ -73,9 +76,9 @@ export const App = () => {
             path="/"
             render={() =>
               auth && instructor ? (
-                <LessonList auth={auth} />
+                <LessonList auth={auth} show={show} setShow={setShow}/>
               ) : auth ? (
-                <StudentDashboard auth={auth} />
+                <StudentDashboard auth={auth} show={show} setShow={setShow}/>
               ) : (
                 <Redirect to={{ pathname: '/login' }} />
               )
@@ -114,10 +117,6 @@ export const App = () => {
             component={() => <StudentList auth={auth} setAuth={setAuth} />}
           />
           <Route
-            path="/student-home"
-            component={() => <StudentDashboard auth={auth} />}
-          />
-          <Route
             path="/profile"
             component={() => (
               <InstrProfile
@@ -128,16 +127,18 @@ export const App = () => {
             )}
           />
           <Route
-            path="/practice-logs"
-            component={() => <LogList auth={auth} setAuth={setAuth} />}
-          />
-          <Route
             path="/users/:pk"
             component={(pk) => <StudentDetail auth={auth} props={pk} />}
           />
           <Route
             path="/mydocs"
-            component={() => <UploadDocs auth={auth} setAuth={setAuth} />}
+            component={() => (
+              <UploadDocs
+                auth={auth}
+                setAuth={setAuth}
+                instructor={instructor}
+              />
+            )}
           />
         </Switch>
       </div>

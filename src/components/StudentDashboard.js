@@ -1,13 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { AssignmentList } from './AssignmentList';
 import { LogForm } from './LogForm'
-import {HeadphonesBird1} from '../svgComponents/Headphones-bird-1'
+import { LogList } from './LogList'
+import birdnotesleft from '../birds/birdnotesleft.png'
 import '../styles/studentdash.css'
 
-export const StudentDashboard = ({auth}) => {
+export const StudentDashboard = ({auth, show, setShow}) => {
     const [user, setUser] = useState('')
+    const history = useHistory();
 
     useEffect(() => {
         let isMounted = true
@@ -50,14 +52,13 @@ export const StudentDashboard = ({auth}) => {
                         <p>Emergency Contact: {user.emergency_contact_name}</p>
                         <p>Emergency Phone: {user.emergency_contact_phone}</p>
                     </div>
-                    <div >
-                        <HeadphonesBird1 width={75}/>
-                    </div>
                 </div>
             </header>
             <div className="dash-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
                 <div className="body-item col-lg-6">
-                    <LogForm auth={auth}/>
+                    <LogForm auth={auth} show={show} setShow={setShow}/>
+                    <LogList auth={auth} />
+                    <img className="bird" src={birdnotesleft} alt="bird"></img>
                 </div>
                 <div className="body-item col-lg-6">
                     <AssignmentList auth={auth}/>
