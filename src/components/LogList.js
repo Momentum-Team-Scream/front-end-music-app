@@ -5,7 +5,7 @@ import { Accordion, Card } from 'react-bootstrap';
 import { LogForm } from './LogForm.js';
 import '../styles/studentdash.css';
 
-export const LogList = ({ auth }) => {
+export const LogList = ({ auth, show, setShow }) => {
   const [logs, setLogs] = useState([]);
   const history = useHistory();
 
@@ -44,7 +44,7 @@ export const LogList = ({ auth }) => {
     <>
       <div className="dash-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
         <div className="body-item col-lg-6">
-          <LogForm auth={auth} />
+          <LogForm auth={auth} show={show} setShow={setShow} />
         </div>
         <div className="body-item col-lg-6">
           <h3>Past Practice Logs:</h3>

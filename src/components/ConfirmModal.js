@@ -1,19 +1,15 @@
-import React, { useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import React from 'react';
+import { Modal } from 'react-bootstrap';
 
 
-export const ConfirmModal = () => {
-    const [show, setShow] = useState(false);
+export const ConfirmModal = ({ show, setShow }) => {
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    // const handleShow = () => setShow(true);
 
     
     return (
         <>
-            {/* <Button variant="primary" onClick={handleShow}>
-                Launch demo modal
-            </Button>                  */}
             <Modal show={show} onHide={handleClose} dialogClassName={'primary-modal'}>
                 <Modal.Header closeButton>
                     <Modal.Title>Form Submitted!</Modal.Title>

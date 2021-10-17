@@ -29,6 +29,8 @@ export const App = () => {
     useLocalStorageState('instructor', false);
   const removeAuth = authStorageOptions['removeItem'];
   const removeInstructor = instructorStorageOptions['removeItem'];
+  const [show, setShow] = useState(false);
+
 
   const clearStorage = () => {
     removeAuth();
@@ -114,7 +116,7 @@ export const App = () => {
           />
           <Route
             path="/student-home"
-            component={() => <StudentDashboard auth={auth} />}
+            component={() => <StudentDashboard auth={auth} show={show} setShow={setShow}/>}
           />
           <Route
             path="/profile"
@@ -122,7 +124,7 @@ export const App = () => {
           />
           <Route
             path="/practice-logs"
-            component={() => <LogList auth={auth} setAuth={setAuth} />}
+            component={() => <LogList auth={auth} setAuth={setAuth} show={show} setShow={setShow} />}
           />
           <Route
             path="/users/:pk"
