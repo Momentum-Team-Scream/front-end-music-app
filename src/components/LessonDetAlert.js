@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Alert } from 'react-bootstrap';
+import { Alert, Fade } from 'react-bootstrap';
 
 
 export const LessonDetAlert = ({ show, setShow }) => {
@@ -17,7 +17,7 @@ export const LessonDetAlert = ({ show, setShow }) => {
     
     return (
         <div>
-            <Alert variant="warning" onClose={() => setShow(false)} dismissible>
+            <Alert variant="warning" onClose={() => setShow(false)} dialogClassName="alert-save" dismissible>
                 Save successful!
             </Alert>
         </div>

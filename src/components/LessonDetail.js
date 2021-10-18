@@ -6,6 +6,7 @@ import { AssignmentForm } from './AssignmentForm.js';
 import { EditAssignment } from './EditAssignment.js';
 import { EditLessonPlan } from './EditLessonPlan.js';
 import { LessonDetAlert } from './LessonDetAlert';
+import { Fade } from 'react-bootstrap'
 import '../styles/studentdash.css';
 
 
@@ -56,10 +57,12 @@ export const LessonDetail = ({ auth, props, pk, show, setShow }) => {
 
   return (
     <>
-      { show ?
-        <LessonDetAlert show={show} setShow={setShow}/> :
-        null
-      }
+      <Fade in={show}>
+        <div>
+          <LessonDetAlert show={show} setShow={setShow}/> 
+        </div>
+      </Fade>
+
       <header className="dash-header">
         <h2> {lesson.student_name}'s lesson</h2>{' '}
         <h4>
@@ -112,6 +115,7 @@ export const LessonDetail = ({ auth, props, pk, show, setShow }) => {
                   pk={lesson.pk}
                   note={lesson.note[0].body}
                   noteId={lesson.note[0].pk}
+                  setShow={setShow}
                 />
               )
             ) : (
