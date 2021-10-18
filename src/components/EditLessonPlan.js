@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useHistory, Link } from 'react-router-dom';
+import { ConfirmModal } from './ConfirmModal.js';
 import '../styles/studentdash.css';
 import axios from 'axios';
 
@@ -39,32 +40,35 @@ export const EditLessonPlan = ({ auth, lesson, show, setShow }) => {
   };
 
   return (
-    <div className="card">
-      <form
-        onSubmit={(event) => {
-          handleEdit(event);
-        }}
-      >
-        <div class="form-group">
-          <textarea
-            class="form-control"
-            defaultValue={lesson.plan}
-            onChange={(e) => setPlan(e.target.value)}
-            rows={5}
-          ></textarea>
-        </div>
-        <div className="card-footer">
-          <button
-            className="btn detbtn btn-general"
-            id={lesson.pk}
-            onClick={(e) => {
-              handleEdit(e);
-            }}
-          >
-            Save Update
-          </button>
-        </div>
-      </form>
-    </div>
+    <>
+      <ConfirmModal show={show} setShow={setShow} />
+      <div className="card">
+        <form
+          onSubmit={(event) => {
+            handleEdit(event);
+          }}
+        >
+          <div class="form-group">
+            <textarea
+              class="form-control"
+              defaultValue={lesson.plan}
+              onChange={(e) => setPlan(e.target.value)}
+              rows={5}
+            ></textarea>
+          </div>
+          <div className="card-footer">
+            <button
+              className="btn detbtn btn-general"
+              id={lesson.pk}
+              onClick={(e) => {
+                handleEdit(e);
+              }}
+            >
+              Save Update
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };

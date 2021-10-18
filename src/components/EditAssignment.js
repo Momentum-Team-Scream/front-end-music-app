@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
+import { ConfirmModal } from './ConfirmModal';
 import '../styles/studentdash.css';
 
-export const EditAssignment = ({ auth, note, pk, noteId, setShow }) => {
+export const EditAssignment = ({ auth, note, pk, noteId, show, setShow }) => {
   const lesson = pk;
   const [body, setBody] = useState(note);
   const history = useHistory();
@@ -34,32 +35,35 @@ export const EditAssignment = ({ auth, note, pk, noteId, setShow }) => {
   };
 
   return (
-    <div className="card">
-      <form
-        onSubmit={(event) => {
-          handleEdit(event);
-        }}
-      >
-        <div class="form-group">
-          <textarea
-            class="form-control"
-            defaultValue={body}
-            onChange={(e) => setBody(e.target.value)}
-            rows={5}
-          ></textarea>
-        </div>
-        <div className="card-footer">
-          <button
-            className="btn btn-alert"
-            id={pk}
-            onClick={(e) => {
-              handleEdit(e);
-            }}
-          >
-            Save Update
-          </button>
-        </div>
-      </form>
-    </div>
+    <>
+      <ConfirmModal show={show} setShow={setShow} />
+      <div className="card">
+        <form
+          onSubmit={(event) => {
+            handleEdit(event);
+          }}
+        >
+          <div class="form-group">
+            <textarea
+              class="form-control"
+              defaultValue={body}
+              onChange={(e) => setBody(e.target.value)}
+              rows={5}
+            ></textarea>
+          </div>
+          <div className="card-footer">
+            <button
+              className="btn btn-alert"
+              id={pk}
+              onClick={(e) => {
+                handleEdit(e);
+              }}
+            >
+              Save Update
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
