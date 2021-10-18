@@ -90,7 +90,10 @@ export const StudentList = ({ auth }) => {
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
                 <th scope="col">Username</th>
+                <th scope="col">Phone</th>
                 <th scope="col">Email</th>
+                <th scope="col">Student Since</th>
+                <th scope="col">Remove from Studio</th>
               </tr>
             </thead>
             <tbody>
@@ -105,7 +108,14 @@ export const StudentList = ({ auth }) => {
                       </td>
                       <td>{student.last_name}</td>
                       <td>{student.username}</td>
+                      <td>{student.phone}</td>
                       <td>{student.email}</td>
+                      <td>{student.created_at}</td>
+                      <td>
+                        <button className="delButton btn btn-destroy docdel">
+                          Remove Student
+                        </button>
+                      </td>
                     </tr>
                   );
                 })
