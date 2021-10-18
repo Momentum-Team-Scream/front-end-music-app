@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import { ConfirmModal } from './ConfirmModal';
 import '../styles/studentdash.css';
+import { LessonBird } from '../svgComponents/LessonBird';
 
 export const LessonForm = ({ auth, setSubmitted, show, setShow }) => {
   const [lesson_date, setLessonDate] = useState('');
@@ -13,7 +14,6 @@ export const LessonForm = ({ auth, setSubmitted, show, setShow }) => {
   const [dateErr, setDateErr] = useState(false);
   const [timeErr, setTimeErr] = useState(false);
   const [studentErr, setStudentErr] = useState(false);
-
 
   useEffect(() => {
     axios
@@ -30,9 +30,9 @@ export const LessonForm = ({ auth, setSubmitted, show, setShow }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setDateErr(false)
-    setTimeErr(false)
-    setStudentErr(false)
+    setDateErr(false);
+    setTimeErr(false);
+    setStudentErr(false);
     axios
       .post(
         'https://music-mvp.herokuapp.com/api/lessons/',
@@ -50,7 +50,7 @@ export const LessonForm = ({ auth, setSubmitted, show, setShow }) => {
         }
       )
       .then((res) => {
-        if(res.status === 201) {
+        if (res.status === 201) {
           setSubmitted(true);
           setShow(true);
           setLessonDate('');
@@ -60,18 +60,20 @@ export const LessonForm = ({ auth, setSubmitted, show, setShow }) => {
         }
       })
       .catch((error) => {
-        if(error.response) {
-          console.log(error.response)
-          const err = error.response.data
-          if(err.lesson_date) {
-            setDateErr(true)
-          } if (err.lesson_time) {
-            setTimeErr(true)
-          } if (err.student){
-            setStudentErr(true)
-          } 
-        }  
-      })
+        if (error.response) {
+          console.log(error.response);
+          const err = error.response.data;
+          if (err.lesson_date) {
+            setDateErr(true);
+          }
+          if (err.lesson_time) {
+            setTimeErr(true);
+          }
+          if (err.student) {
+            setStudentErr(true);
+          }
+        }
+      });
   };
 
   const handleChange = (inputType, event) => {
@@ -91,18 +93,17 @@ export const LessonForm = ({ auth, setSubmitted, show, setShow }) => {
 
   return (
     <div className="Form-group">
-      <ConfirmModal show={show} setShow={setShow}/>
+      <ConfirmModal show={show} setShow={setShow} />
       <h4> Create a new lesson here! </h4>
       <Form className="form-lessonForm" onSubmit={handleSubmit}>
         <label className="label-lesson">Lesson Date: </label>
-          {dateErr ? 
-              <>
-                <div className="error-div">
-                  <p>Enter an upcoming date in the format MM/DD/YYYY</p>
-                </div>
-              </>
-            : null
-          }
+        {dateErr ? (
+          <>
+            <div className="error-div">
+              <p>Enter an upcoming date in the format MM/DD/YYYY</p>
+            </div>
+          </>
+        ) : null}
         <input
           className="input form-control"
           placeholder="Enter date of lesson"
@@ -112,14 +113,13 @@ export const LessonForm = ({ auth, setSubmitted, show, setShow }) => {
         />
 
         <label className="label-lesson">Lesson Time: </label>
-        {timeErr ? 
-              <>
-                <div className="error-div">
-                  <p>Enter a lesson time</p>
-                </div>
-              </>
-            : null
-          }
+        {timeErr ? (
+          <>
+            <div className="error-div">
+              <p>Enter a lesson time</p>
+            </div>
+          </>
+        ) : null}
         <input
           className="input form-control"
           type="time"
@@ -128,14 +128,13 @@ export const LessonForm = ({ auth, setSubmitted, show, setShow }) => {
         />
 
         <label className="label-lesson">Student:</label>
-        {studentErr ? 
-              <>
-                <div className="error-div">
-                  <p>Select a student</p>
-                </div>
-              </>
-            : null
-          }
+        {studentErr ? (
+          <>
+            <div className="error-div">
+              <p>Select a student</p>
+            </div>
+          </>
+        ) : null}
         <Form.Control
           required
           as="select"
@@ -162,11 +161,14 @@ export const LessonForm = ({ auth, setSubmitted, show, setShow }) => {
           value={plan}
           onChange={(e) => handleChange('plan', e)}
         />
-        
+
         <div>
           <button className="btn btn-general">Create Lesson</button>
         </div>
       </Form>
+      <div className="lessonBird">
+        <LessonBird />
+      </div>
     </div>
   );
 };
