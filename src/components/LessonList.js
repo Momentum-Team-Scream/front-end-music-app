@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { LessonForm } from './LessonForm';
 import { Lesson } from './Lesson';
+import { Loading } from './Loading'
 import '../styles/studentdash.css';
 
 export const LessonList = ({ auth, show, setShow }) => {

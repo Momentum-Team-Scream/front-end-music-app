@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Loading } from './Loading'
 
 export const AssignmentList = ({ auth }) => {
   const [assignments, setAssignments] = useState([]);
@@ -39,12 +40,7 @@ export const AssignmentList = ({ auth }) => {
 
   return isLoading ? (
     <>
-      <strong>Loading...</strong>
-      <div
-        className="spinner-border ms-auto"
-        role="status"
-        aria-hidden="true"
-      ></div>
+      <Loading />
     </>
   ) : (
     <>

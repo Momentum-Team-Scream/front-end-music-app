@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import TextTruncate from 'react-text-truncate';
+import { Loading } from './Loading'
 import '../styles/studetail.css'
 
 export const StudentDetail = ({auth, props}) => {
@@ -9,6 +10,7 @@ export const StudentDetail = ({auth, props}) => {
     const [upcomingLessons, setUpcomingLessons] = useState([])
     const [pastLessons, setPastLessons] = useState([])
     const [pk, setPk] = useState('')
+    const [isLoading, setIsLoading] = useState(true);
     const date = useState([new Date()]);
     const today = String(date[0]).slice(0, 16);
 
@@ -50,6 +52,7 @@ export const StudentDetail = ({auth, props}) => {
                                 })
                                 setUpcomingLessons(upLessons)
                                 setPastLessons(paLessons)
+                                setIsLoading(false)
                                 
                             }
                         }
@@ -68,7 +71,11 @@ export const StudentDetail = ({auth, props}) => {
     
 
 
-    return (
+    return isLoading ? (
+        <>
+            <Loading />
+        </>
+    ) : (
         <div>
             <header className="stu-header">
                 <h3>{student.first_name} {student.last_name}</h3>
