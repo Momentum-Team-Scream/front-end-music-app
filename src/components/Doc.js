@@ -60,6 +60,12 @@ export const Doc = ({ auth, studentList, doc, instructor }) => {
         });
     }
   };
+
+  const openInNewTab = (url) => {
+    const newWindow =window.open(url, '_blank', 'noopener,noreferrer')
+    if (newWindow) newWindow.opener = null
+  };
+
   return (
     <>
       <tr>
@@ -67,7 +73,7 @@ export const Doc = ({ auth, studentList, doc, instructor }) => {
 
         <td className="downloadCont">{doc.title}</td>
         <td>
-          <a href={doc.upload} download={doc.upload} className="iconLink">
+          <a onClick={() => openInNewTab(`${doc.upload}`)} className="iconLink">
             <img
               className="icon"
               src={'icons8download.png'}
