@@ -34,6 +34,7 @@ export const DocList = ({ auth, studentList, instructor }) => {
             <th scope="col">Title</th>
             <th scope="col">Download</th>
             {instructor ? <th scope="col">Shared With</th> : <></>}
+            {instructor ? <th scope="col">Delete</th> : <></>}
           </tr>
         </thead>
         <tbody>
@@ -43,6 +44,7 @@ export const DocList = ({ auth, studentList, instructor }) => {
               studentList={studentList}
               doc={doc}
               instructor={instructor}
+              setSubmitted={setSubmitted}
             />
           ))}
         </tbody>

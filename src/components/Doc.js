@@ -2,9 +2,25 @@ import { Dropdown, Form } from 'react-bootstrap';
 import '../styles/login.css';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
 
-export const Doc = ({ auth, studentList, doc, instructor }) => {
+export const Doc = ({ auth, studentList, doc, instructor, setsubmitted }) => {
   const history = useHistory();
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleDelete = (event) => {
+    const id = event.target.id;
+    return axios
+      .delete(`https://music-mvp.herokuapp.com/api/documents/${doc.pk}/`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `token ${auth}`,
+        },
+      })
+      .then((res) => {
+        setSubmitted(true);
+      });
+  };
 
   const handleCheck = (event, pk) => {
     event.preventDefault();
@@ -96,8 +112,27 @@ export const Doc = ({ auth, studentList, doc, instructor }) => {
         ) : (
           <></>
         )}
+        {instructor ? (
+          <td>
+            <button
+              className="delButton btn btn-destroy docdel"
+              id={doc.pk}
+              onClick={(e) => {
+                if (
+                  window.confirm(
+                    'Are you sure you want to delete this document?'
+                  )
+                )
+                  handleDelete(e);
+              }}
+            >
+              Delete
+            </button>
+          </td>
+        ) : (
+          <></>
+        )}
       </tr>
     </>
   );
 };
-
