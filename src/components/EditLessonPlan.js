@@ -3,7 +3,7 @@ import { useParams, useHistory, Link } from 'react-router-dom';
 import '../styles/studentdash.css';
 import axios from 'axios';
 
-export const EditLessonPlan = ({ auth, lesson }) => {
+export const EditLessonPlan = ({ auth, lesson, show, setShow }) => {
   const history = useHistory();
   const [lessonPk] = useState(lesson.pk);
   const [lessonDate, setLessonDate] = useState(lesson.lesson_date);
@@ -29,8 +29,12 @@ export const EditLessonPlan = ({ auth, lesson }) => {
         }
       )
       .then((res) => {
-        setPlan('');
-        history.push(`/lessons/${id}/`);
+        if(res.status === 200) {
+          setShow(true)
+          console.log(show)
+          setPlan('');
+          history.push(`/lessons/${id}/`);
+        }
       });
   };
 

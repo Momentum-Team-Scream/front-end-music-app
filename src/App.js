@@ -110,7 +110,7 @@ export const App = () => {
           />
           <Route
             path="/lessons/:pk"
-            component={(pk) => <LessonDetail props={pk} auth={auth} />}
+            component={(pk) => <LessonDetail props={pk} auth={auth} show={show} setShow={setShow}/>}
           />
           <Route
             path="/students"
@@ -132,13 +132,7 @@ export const App = () => {
           />
           <Route
             path="/mydocs"
-            component={() => (
-              <UploadDocs
-                auth={auth}
-                setAuth={setAuth}
-                instructor={instructor}
-              />
-            )}
+            component={() => <UploadDocs auth={auth} setAuth={setAuth} />}
           />
         </Switch>
       </div>
