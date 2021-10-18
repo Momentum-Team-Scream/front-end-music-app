@@ -50,7 +50,7 @@ export const EditAssignment = ({ auth, note, pk, noteId, setShow }) => {
         </div>
         <div className="card-footer">
           <button
-            className="btn detbtn btn-general"
+            className="btn btn-alert"
             id={pk}
             onClick={(e) => {
               handleEdit(e);

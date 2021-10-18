@@ -90,7 +90,7 @@ export const LessonDetail = ({ auth, props, pk, show, setShow, isLoading, setIsL
               window.open('/mydocs');
             }}
           >
-            <button type="button" className="btn detbtn btn-general">
+            <button type="button" className="btn detbtn btn-alert">
               Add doc
             </button>
           </a>
