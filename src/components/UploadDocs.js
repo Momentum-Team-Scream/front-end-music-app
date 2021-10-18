@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import { Form } from 'react-bootstrap';
 import '../styles/docs.css';
 import { DocList } from './DocList.js';
+import { BirdStaff } from '../svgComponents/BirdStaff';
 
 export const UploadDocs = ({ auth, instructor }) => {
   let fileInput = useRef(null);
@@ -119,13 +120,11 @@ export const UploadDocs = ({ auth, instructor }) => {
           </Form>
         </div>
       ) : (
-        <div className="musicbirdcont">
+        <div className="musicbirdcontlist">
           <h1 className="musicTitle">Your Music</h1>
-          <img
-            className="birdiconmusic"
-            src={'birdstaff.png'}
-            alt="bird mascot"
-          />
+          <div className="birdiconmusic">
+            <BirdStaff />
+          </div>
         </div>
       )}
       <br />
