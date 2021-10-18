@@ -137,7 +137,7 @@ export const LessonDetail = ({ auth, props, pk, show, setShow }) => {
           </div>
         </div>
         <div className="body-item col-lg-6">
-          <p> Assignment from last lesson on {previous.lesson_date}  </p>
+          <p> Assignment from last lesson on {previous.lesson_date} </p>
           <div className="prevAssign">
             {previous.note && previous.note.length ? (
               <div className="card">
