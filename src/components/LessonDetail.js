@@ -5,8 +5,6 @@ import userEvent from '@testing-library/user-event';
 import { AssignmentForm } from './AssignmentForm.js';
 import { EditAssignment } from './EditAssignment.js';
 import { EditLessonPlan } from './EditLessonPlan.js';
-import { LessonDetAlert } from './LessonDetAlert';
-import { Fade } from 'react-bootstrap'
 import { Loading } from './Loading';
 import '../styles/studentdash.css';
 
@@ -14,6 +12,7 @@ import '../styles/studentdash.css';
 export const LessonDetail = ({ auth, props, pk, show, setShow, isLoading, setIsLoading }) => {
   const [lesson, setLesson] = useState({});
   const [previous, setPrevious] = useState({});
+
   useEffect(() => {
     async function getLesson() {
       await axios
@@ -28,12 +27,9 @@ export const LessonDetail = ({ auth, props, pk, show, setShow, isLoading, setIsL
           }
         )
         .then((response) => {
-          console.log(response.data);
           setLesson(response.data);
-          console.log(lesson);
 
           if (response.status === 200) {
-            console.log('making new request');
             axios
               .get(
                 `https://music-mvp.herokuapp.com/api/assignments/${response.data.student}/previous/${response.data.pk}`,
@@ -47,9 +43,7 @@ export const LessonDetail = ({ auth, props, pk, show, setShow, isLoading, setIsL
               )
               .then((response) => {
                 setIsLoading(false)
-                console.log(response.data);
                 setPrevious(response.data[1]);
-                console.log(previous);
               });
           }
         });
@@ -63,56 +57,20 @@ export const LessonDetail = ({ auth, props, pk, show, setShow, isLoading, setIsL
     </>
     ) :(
     <>
-      <Fade in={show}>
-        <div>
-          <LessonDetAlert show={show} setShow={setShow}/> 
-        </div>
-      </Fade>
-
       <header className="dash-header">
         <h2> {lesson.student_name}'s lesson</h2>{' '}
         <h4>
           {lesson.lesson_date} at {lesson.lesson_time}{' '}
         </h4>
-        <div className="buttonCont">
-          {/* <a
-            onClick={() => {
-              window.open('https://meet.jit.si/AllegedOrangesPlayImpolitely');
-            }}
-          >
-            <button type="button" className="btn detbtn btn-general">
-              Start Lesson
-            </button>
-          </a> */}
-          <a
-            href
-            onClick={() => {
-              window.open('/mydocs');
-            }}
-          >
-            <button type="button" className="btn detbtn btn-general">
-              Add doc
-            </button>
-          </a>
-        </div>
       </header>
       <div className="dash-body col-xxl-12 row flex-lg-row justify-content-center">
         <div className="body-item col-lg-6">
-          <div div clasName="cardheader">
-            <h4>Lesson Plan</h4>
-            <p> (click below to edit) </p>
-          </div>
           <div className="plan">
             <EditLessonPlan auth={auth} lesson={lesson} show={show} setShow={setShow} />
           </div>
         </div>
 
         <div className="body-item col-lg-6">
-          <div div clasName="cardheader">
-            <h4>Student Assignment</h4>
-            <p> (click below to edit) </p>
-          </div>
-
           <div className="assignment">
             {lesson.note && !!lesson.note.length ? (
               String(lesson.note[0].body) && (
@@ -121,12 +79,13 @@ export const LessonDetail = ({ auth, props, pk, show, setShow, isLoading, setIsL
                   pk={lesson.pk}
                   note={lesson.note[0].body}
                   noteId={lesson.note[0].pk}
+                  show={show}
                   setShow={setShow}
                 />
               )
             ) : (
               <>
-                <AssignmentForm auth={auth} />
+                <AssignmentForm auth={auth} show={show} setShow={setShow} />
               </>
             )}
           </div>
@@ -134,23 +93,19 @@ export const LessonDetail = ({ auth, props, pk, show, setShow, isLoading, setIsL
       </div>
 
       <div className="dash-body col-xxl-12 row flex-lg-row justify-content-center">
-        <div className="body-item col-lg-6">
-          <p> Notes from last lesson on {previous.lesson_date} </p>
+        <div className="body-item-lesson-det col-lg-6">
+          <h5> Notes from last lesson on {previous.lesson_date} </h5>
           <div className="prevLsn">
-            <div className="card">
-              <p className="lessonTxt">{previous.plan}</p>
-            </div>
+            <p className="lessonTxt">{previous.plan}</p>
           </div>
         </div>
-        <div className="body-item col-lg-6">
-          <p> Assignment from last lesson on {previous.lesson_date} </p>
-          <div className="prevAssign">
+        <div className="body-item-lesson-det col-lg-6">
+          <h5> Assignment from last lesson on {previous.lesson_date} </h5>
+          <div className="prevLsn">
             {previous.note && previous.note.length ? (
-              <div className="card">
-                <p className="lessonTxt">{previous.note[0].body}</p>
-              </div>
+              <p className="lessonTxt">{previous.note[0].body}</p>
             ) : (
-              <p>no previous assignment exists</p>
+              <p className="lessonTxt">no previous assignment exists</p>
             )}
           </div>
         </div>

@@ -133,7 +133,38 @@ a:hover {
   max-width: 100%;
 }
 
-/* Save Successful Alert */
+/* Lesson Detail Cards */
 
-.alert-save {
+.card-header.lesson-plan {
+  background-color: #27292a;
+  color: #f5f5f5;
+  padding-top: 1em;
+}
+
+.card-header.assignment-form {
+  background-color: rgba(157, 172, 255, 0.5);
+  color: #27292a;
+  padding-top: 1em;
+}
+
+textarea.form-control.lesson-detail {
+  border-style: none;
+  border-color: Transparent;
+  overflow: auto;
+}
+
+.btn.btn-general.lesson-plan {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.btn.btn-alert.lesson-detail {
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-bottom: 1em;
+}
+
+.body-item-lesson-det h5 {
+  background-color: #e6e6e6;
+  padding: 1em;
 }

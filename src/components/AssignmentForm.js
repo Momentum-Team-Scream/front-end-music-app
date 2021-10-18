@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
+import { ConfirmModal } from './ConfirmModal'
 
-export const AssignmentForm = ({ auth }) => {
+export const AssignmentForm = ({ auth, show, setShow }) => {
   const [body, setBody] = useState('');
   const history = useHistory();
   const { pk } = useParams();
@@ -26,6 +27,7 @@ export const AssignmentForm = ({ auth }) => {
       )
       .then((res) => {
         setBody('');
+        setShow(true)
         history.push(`/lessons/${pk}/`);
       });
   };
@@ -38,23 +40,27 @@ export const AssignmentForm = ({ auth }) => {
 
   return (
     <>
-      <form className="form-group" onSubmit={handleSubmit}>
+      <ConfirmModal show={show} setShow={setShow} />
+      <div className="card">
+      <div div className="card-header assignment-form">
+          <h4>Homework for Student</h4>
+        </div>
+        <div class="form-group">
+      <form onSubmit={handleSubmit}>
         <textarea
-          className="form-control"
-          id="exampleFormControlTextarea1"
-          rows="3"
-          placeholder="Enter note for student here"
+          className="form-control lesson-detail"
+          placeholder="Click to enter note for student"
           type="text"
           value={body}
           onChange={(e) => handleChange('body', e)}
+          rows={5}
         ></textarea>
-
-        <div className="button">
-          <button type="submit" className="btn btn-gray">
-            Save Note
+          <button type="submit" className="btn btn-alert lesson-detail">
+            Send to Student
           </button>
-        </div>
       </form>
+      </div>
+      </div>
     </>
   );
 };

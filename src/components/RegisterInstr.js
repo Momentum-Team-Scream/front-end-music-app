@@ -96,7 +96,7 @@ export const RegisterInstructor = ({ setAuth, setInstructor }) => {
 
     return (
         <>
-            <form className='form register-form' onSubmit={handleSubmit}>
+            <form className='form register-form' onSubmit={handleSubmit} noValidate>
                 <h2>Create your Instructor Account</h2>
                 <div className="personal-info">
                     <p>Enter your contact information (this will be visible to your students)</p>

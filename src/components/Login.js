@@ -81,7 +81,7 @@ export const Login = ({ auth, setAuth, instructor, setInstructor }) => {
 
     return (
         <>
-            <form className='form login-form' onSubmit={handleSubmit}>
+            <form className='form login-form' onSubmit={handleSubmit} noValidate>
                 <label className="label">Username</label>
                 {userErr ? 
                     <>
