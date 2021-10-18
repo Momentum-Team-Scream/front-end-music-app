@@ -4,10 +4,11 @@ import { Link, useHistory } from 'react-router-dom';
 import { AssignmentList } from './AssignmentList';
 import { LogForm } from './LogForm';
 import { LogList } from './LogList';
+import { Loading } from './Loading';
 import birdnotesleft from '../birds/birdnotesleft.png';
 import '../styles/studentdash.css';
 
-export const StudentDashboard = ({ auth, show, setShow }) => {
+export const StudentDashboard = ({ auth, show, setShow, isLoading, setIsLoading }) => {
   const [user, setUser] = useState('');
   const history = useHistory();
 
@@ -25,6 +26,7 @@ export const StudentDashboard = ({ auth, show, setShow }) => {
           if (res.status === 200) {
             console.log(res.data);
             setUser(res.data);
+            setIsLoading(false)
           }
         }
       });
@@ -34,7 +36,11 @@ export const StudentDashboard = ({ auth, show, setShow }) => {
     };
   }, []);
 
-  return (
+  return isLoading ? (
+    <>
+        <Loading />
+    </>
+    ) : (
     <>
       <header className="dash-header">
         <div className="name-edit-links">

@@ -32,6 +32,7 @@ export const App = () => {
   const removeAuth = authStorageOptions['removeItem'];
   const removeInstructor = instructorStorageOptions['removeItem'];
   const [show, setShow] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
 
   const clearStorage = () => {
@@ -76,9 +77,9 @@ export const App = () => {
             path="/"
             render={() =>
               auth && instructor ? (
-                <LessonList auth={auth} show={show} setShow={setShow}/>
+                <LessonList auth={auth} show={show} setShow={setShow} isLoading={isLoading} setIsLoading={setIsLoading}/>
               ) : auth ? (
-                <StudentDashboard auth={auth} show={show} setShow={setShow}/>
+                <StudentDashboard auth={auth} show={show} setShow={setShow} isLoading={isLoading} setIsLoading={setIsLoading}/>
               ) : (
                 <Redirect to={{ pathname: '/login' }} />
               )
@@ -110,7 +111,7 @@ export const App = () => {
           />
           <Route
             path="/lessons/:pk"
-            component={(pk) => <LessonDetail props={pk} auth={auth} />}
+            component={(pk) => <LessonDetail props={pk} auth={auth} show={show} setShow={setShow} isLoading={isLoading} setIsLoading={setIsLoading}/>}
           />
           <Route
             path="/students"
@@ -128,17 +129,11 @@ export const App = () => {
           />
           <Route
             path="/users/:pk"
-            component={(pk) => <StudentDetail auth={auth} props={pk} />}
+            component={(pk) => <StudentDetail auth={auth} props={pk} isLoading={isLoading} setIsLoading={setIsLoading} />}
           />
           <Route
             path="/mydocs"
-            component={() => (
-              <UploadDocs
-                auth={auth}
-                setAuth={setAuth}
-                instructor={instructor}
-              />
-            )}
+            component={() => <UploadDocs auth={auth} setAuth={setAuth} />}
           />
         </Switch>
       </div>

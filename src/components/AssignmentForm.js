@@ -50,7 +50,7 @@ export const AssignmentForm = ({ auth }) => {
         ></textarea>
 
         <div className="button">
-          <button type="submit" className="btn detbtn btn-general">
+          <button type="submit" className="btn btn-gray">
             Save Note
           </button>
         </div>

@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import '../styles/studentdash.css';
 import userEvent from '@testing-library/user-event';
 import { AssignmentForm } from './AssignmentForm.js';
 import { EditAssignment } from './EditAssignment.js';
 import { EditLessonPlan } from './EditLessonPlan.js';
+import { LessonDetAlert } from './LessonDetAlert';
+import { Fade } from 'react-bootstrap'
+import { Loading } from './Loading';
+import '../styles/studentdash.css';
 
-export const LessonDetail = ({ auth, props, pk }) => {
+
+export const LessonDetail = ({ auth, props, pk, show, setShow, isLoading, setIsLoading }) => {
   const [lesson, setLesson] = useState({});
   const [previous, setPrevious] = useState({});
   useEffect(() => {
@@ -42,6 +46,7 @@ export const LessonDetail = ({ auth, props, pk }) => {
                 }
               )
               .then((response) => {
+                setIsLoading(false)
                 console.log(response.data);
                 setPrevious(response.data[1]);
                 console.log(previous);
@@ -52,8 +57,18 @@ export const LessonDetail = ({ auth, props, pk }) => {
     getLesson();
   }, [props, auth, pk]);
 
-  return (
+  return isLoading ? (
     <>
+        <Loading />
+    </>
+    ) :(
+    <>
+      <Fade in={show}>
+        <div>
+          <LessonDetAlert show={show} setShow={setShow}/> 
+        </div>
+      </Fade>
+
       <header className="dash-header">
         <h2> {lesson.student_name}'s lesson</h2>{' '}
         <h4>
@@ -81,14 +96,14 @@ export const LessonDetail = ({ auth, props, pk }) => {
           </a>
         </div>
       </header>
-      <div className="dash-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
+      <div className="dash-body col-xxl-12 row flex-lg-row justify-content-center">
         <div className="body-item col-lg-6">
           <div div clasName="cardheader">
             <h4>Lesson Plan</h4>
             <p> (click below to edit) </p>
           </div>
           <div className="plan">
-            <EditLessonPlan auth={auth} lesson={lesson} />
+            <EditLessonPlan auth={auth} lesson={lesson} show={show} setShow={setShow} />
           </div>
         </div>
 
@@ -106,6 +121,7 @@ export const LessonDetail = ({ auth, props, pk }) => {
                   pk={lesson.pk}
                   note={lesson.note[0].body}
                   noteId={lesson.note[0].pk}
+                  setShow={setShow}
                 />
               )
             ) : (
@@ -117,7 +133,7 @@ export const LessonDetail = ({ auth, props, pk }) => {
         </div>
       </div>
 
-      <div className="dash-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
+      <div className="dash-body col-xxl-12 row flex-lg-row justify-content-center">
         <div className="body-item col-lg-6">
           <p> Notes from last lesson on {previous.lesson_date} </p>
           <div className="prevLsn">

@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { LessonForm } from './LessonForm';
 import { Lesson } from './Lesson';
+import { Loading } from './Loading'
 import '../styles/studentdash.css';
 
-export const LessonList = ({ auth, show, setShow }) => {
+export const LessonList = ({ auth, show, setShow, isLoading, setIsLoading }) => {
   const [lessons, setLessons] = useState([]);
   const [submitted, setSubmitted] = useState(false);
   const date = useState([new Date()]);
@@ -21,12 +22,17 @@ export const LessonList = ({ auth, show, setShow }) => {
         })
         .then((res) => {
           setLessons(res.data);
+          setIsLoading(false)
         });
       setSubmitted(false);
     }
   }, [auth, submitted]);
 
-  return (
+  return isLoading ? (
+    <>
+        <Loading />
+    </>
+    ) :(
     <div className="dash-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
       <div className="body-item col-lg-6">
         {auth && <LessonForm auth={auth} setSubmitted={setSubmitted} show={show} setShow={setShow}/>}

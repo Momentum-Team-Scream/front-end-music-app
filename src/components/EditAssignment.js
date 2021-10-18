@@ -3,7 +3,7 @@ import { useParams, useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/studentdash.css';
 
-export const EditAssignment = ({ auth, note, pk, noteId }) => {
+export const EditAssignment = ({ auth, note, pk, noteId, setShow }) => {
   const lesson = pk;
   const [body, setBody] = useState(note);
   const history = useHistory();
@@ -27,6 +27,7 @@ export const EditAssignment = ({ auth, note, pk, noteId }) => {
         }
       )
       .then((res) => {
+        setShow(true)
         setBody('');
         history.push(`/lessons/${lesson}/`);
       });
