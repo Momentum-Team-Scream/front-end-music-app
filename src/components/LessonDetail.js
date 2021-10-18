@@ -7,10 +7,11 @@ import { EditAssignment } from './EditAssignment.js';
 import { EditLessonPlan } from './EditLessonPlan.js';
 import { LessonDetAlert } from './LessonDetAlert';
 import { Fade } from 'react-bootstrap'
+import { Loading } from './Loading';
 import '../styles/studentdash.css';
 
 
-export const LessonDetail = ({ auth, props, pk, show, setShow }) => {
+export const LessonDetail = ({ auth, props, pk, show, setShow, isLoading, setIsLoading }) => {
   const [lesson, setLesson] = useState({});
   const [previous, setPrevious] = useState({});
   useEffect(() => {
@@ -45,6 +46,7 @@ export const LessonDetail = ({ auth, props, pk, show, setShow }) => {
                 }
               )
               .then((response) => {
+                setIsLoading(false)
                 console.log(response.data);
                 setPrevious(response.data[1]);
                 console.log(previous);
@@ -55,7 +57,11 @@ export const LessonDetail = ({ auth, props, pk, show, setShow }) => {
     getLesson();
   }, [props, auth, pk]);
 
-  return (
+  return isLoading ? (
+    <>
+        <Loading />
+    </>
+    ) :(
     <>
       <Fade in={show}>
         <div>
