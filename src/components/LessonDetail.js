@@ -12,6 +12,7 @@ import '../styles/studentdash.css';
 export const LessonDetail = ({ auth, props, pk, show, setShow, isLoading, setIsLoading }) => {
   const [lesson, setLesson] = useState({});
   const [previous, setPrevious] = useState({});
+  
   useEffect(() => {
     async function getLesson() {
       await axios
@@ -26,12 +27,9 @@ export const LessonDetail = ({ auth, props, pk, show, setShow, isLoading, setIsL
           }
         )
         .then((response) => {
-          console.log(response.data);
           setLesson(response.data);
-          console.log(lesson);
 
           if (response.status === 200) {
-            console.log('making new request');
             axios
               .get(
                 `https://music-mvp.herokuapp.com/api/assignments/${response.data.student}/previous/${response.data.pk}`,
@@ -45,9 +43,7 @@ export const LessonDetail = ({ auth, props, pk, show, setShow, isLoading, setIsL
               )
               .then((response) => {
                 setIsLoading(false)
-                console.log(response.data);
                 setPrevious(response.data[1]);
-                console.log(previous);
               });
           }
         });
@@ -66,17 +62,6 @@ export const LessonDetail = ({ auth, props, pk, show, setShow, isLoading, setIsL
         <h4>
           {lesson.lesson_date} at {lesson.lesson_time}{' '}
         </h4>
-        <div className="buttonCont">
-          {/* <a
-            onClick={() => {
-              window.open('https://meet.jit.si/AllegedOrangesPlayImpolitely');
-            }}
-          >
-            <button type="button" className="btn detbtn btn-general">
-              Start Lesson
-            </button>
-          </a> */}
-        </div>
       </header>
       <div className="dash-body col-xxl-12 row flex-lg-row justify-content-center">
         <div className="body-item col-lg-6">
@@ -108,23 +93,19 @@ export const LessonDetail = ({ auth, props, pk, show, setShow, isLoading, setIsL
       </div>
 
       <div className="dash-body col-xxl-12 row flex-lg-row justify-content-center">
-        <div className="body-item col-lg-6">
-          <p> Notes from last lesson on {previous.lesson_date} </p>
+        <div className="body-item-lesson-det col-lg-6">
+          <h5> Notes from last lesson on {previous.lesson_date} </h5>
           <div className="prevLsn">
-            <div className="card">
-              <p className="lessonTxt">{previous.plan}</p>
-            </div>
+            <p className="lessonTxt">{previous.plan}</p>
           </div>
         </div>
-        <div className="body-item col-lg-6">
-          <p> Assignment from last lesson on {previous.lesson_date} </p>
-          <div className="prevAssign">
+        <div className="body-item-lesson-det col-lg-6">
+          <h5> Assignment from last lesson on {previous.lesson_date} </h5>
+          <div className="prevLsn">
             {previous.note && previous.note.length ? (
-              <div className="card">
-                <p className="lessonTxt">{previous.note[0].body}</p>
-              </div>
+              <p className="lessonTxt">{previous.note[0].body}</p>
             ) : (
-              <p>no previous assignment exists</p>
+              <p className="lessonTxt">no previous assignment exists</p>
             )}
           </div>
         </div>

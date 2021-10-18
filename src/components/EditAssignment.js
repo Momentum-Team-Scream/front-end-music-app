@@ -39,7 +39,7 @@ export const EditAssignment = ({ auth, note, pk, noteId, show, setShow }) => {
       <ConfirmModal show={show} setShow={setShow} />
       <div className="card">
         <div div className="card-header assignment-form">
-          <h4>Student Assignment</h4>
+          <h4>Homework for Student</h4>
         </div>
         <div class="form-group">
           <form

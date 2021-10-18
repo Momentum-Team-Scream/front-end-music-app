@@ -66,7 +66,7 @@ export const EditLessonPlan = ({ auth, lesson, show, setShow }) => {
                 handleEdit(e);
               }}
             >
-              Save Update
+              Update plan
             </button>
         </form>
       </div>
