@@ -12,7 +12,7 @@ import '../styles/studentdash.css';
 export const LessonDetail = ({ auth, props, pk, show, setShow, isLoading, setIsLoading }) => {
   const [lesson, setLesson] = useState({});
   const [previous, setPrevious] = useState({});
-  
+
   useEffect(() => {
     async function getLesson() {
       await axios
@@ -85,7 +85,7 @@ export const LessonDetail = ({ auth, props, pk, show, setShow, isLoading, setIsL
               )
             ) : (
               <>
-                <AssignmentForm auth={auth} />
+                <AssignmentForm auth={auth} show={show} setShow={setShow} />
               </>
             )}
           </div>
