@@ -42,28 +42,25 @@ export const EditLessonPlan = ({ auth, lesson, show, setShow }) => {
   return (
     <>
       <ConfirmModal show={show} setShow={setShow} />
-      <div className="card">
-        <form
-          onSubmit={(event) => {
-            handleEdit(event);
-          }}
-        >
-          <div div clasName="cardheader">
-            <h4>Lesson Plan</h4>
-            <p> (click below to edit) </p>
-          </div>
-          <div class="form-group">
+      <div className="card lesson-plan">
+        <div div className="card-header lesson-plan">
+          <h4>Lesson Plan</h4>
+        </div>
+        <div className="form-group">
+          <form
+            onSubmit={(event) => {
+              handleEdit(event);
+            }}
+          >
             <textarea
-              class="form-control"
+              className="form-control"
               defaultValue={lesson.plan}
               placeholder="Click to edit"
               onChange={(e) => setPlan(e.target.value)}
               rows={5}
             ></textarea>
-          </div>
-          <div>
             <button
-              className="btn detbtn btn-general"
+              className="btn btn-general lesson-plan"
               id={lesson.pk}
               onClick={(e) => {
                 handleEdit(e);
@@ -71,9 +68,10 @@ export const EditLessonPlan = ({ auth, lesson, show, setShow }) => {
             >
               Save Update
             </button>
-          </div>
         </form>
       </div>
+      </div>
+
     </>
   );
 };
