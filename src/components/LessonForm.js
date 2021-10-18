@@ -95,7 +95,7 @@ export const LessonForm = ({ auth, setSubmitted, show, setShow }) => {
     <div className="Form-group">
       <ConfirmModal show={show} setShow={setShow} />
       <h4> Create a new lesson here! </h4>
-      <Form className="form-lessonForm" onSubmit={handleSubmit}>
+      <Form className="form-lessonForm" onSubmit={handleSubmit} noValidate>
         <label className="label-lesson">Lesson Date: </label>
         {dateErr ? (
           <>

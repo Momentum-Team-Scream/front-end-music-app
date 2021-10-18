@@ -82,7 +82,7 @@ export const LessonDetail = ({ auth, props, pk, show, setShow, isLoading, setIsL
               window.open('/mydocs');
             }}
           >
-            <button type="button" className="btn detbtn btn-alert">
+            <button type="button" className="btn detbtn btn-gray">
               Add doc
             </button>
           </a>
@@ -90,10 +90,6 @@ export const LessonDetail = ({ auth, props, pk, show, setShow, isLoading, setIsL
       </header>
       <div className="dash-body col-xxl-12 row flex-lg-row justify-content-center">
         <div className="body-item col-lg-6">
-          <div div clasName="cardheader">
-            <h4>Lesson Plan</h4>
-            <p> (click below to edit) </p>
-          </div>
           <div className="plan">
             <EditLessonPlan auth={auth} lesson={lesson} show={show} setShow={setShow} />
           </div>
