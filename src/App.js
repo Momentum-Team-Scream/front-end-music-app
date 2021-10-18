@@ -34,7 +34,6 @@ export const App = () => {
   const [show, setShow] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-
   const clearStorage = () => {
     removeAuth();
     removeInstructor();
@@ -77,9 +76,21 @@ export const App = () => {
             path="/"
             render={() =>
               auth && instructor ? (
-                <LessonList auth={auth} show={show} setShow={setShow} isLoading={isLoading} setIsLoading={setIsLoading}/>
+                <LessonList
+                  auth={auth}
+                  show={show}
+                  setShow={setShow}
+                  isLoading={isLoading}
+                  setIsLoading={setIsLoading}
+                />
               ) : auth ? (
-                <StudentDashboard auth={auth} show={show} setShow={setShow} isLoading={isLoading} setIsLoading={setIsLoading}/>
+                <StudentDashboard
+                  auth={auth}
+                  show={show}
+                  setShow={setShow}
+                  isLoading={isLoading}
+                  setIsLoading={setIsLoading}
+                />
               ) : (
                 <Redirect to={{ pathname: '/login' }} />
               )
@@ -111,7 +122,16 @@ export const App = () => {
           />
           <Route
             path="/lessons/:pk"
-            component={(pk) => <LessonDetail props={pk} auth={auth} show={show} setShow={setShow} isLoading={isLoading} setIsLoading={setIsLoading}/>}
+            component={(pk) => (
+              <LessonDetail
+                props={pk}
+                auth={auth}
+                show={show}
+                setShow={setShow}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+              />
+            )}
           />
           <Route
             path="/students"
@@ -129,11 +149,24 @@ export const App = () => {
           />
           <Route
             path="/users/:pk"
-            component={(pk) => <StudentDetail auth={auth} props={pk} isLoading={isLoading} setIsLoading={setIsLoading} />}
+            component={(pk) => (
+              <StudentDetail
+                auth={auth}
+                props={pk}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+              />
+            )}
           />
           <Route
             path="/mydocs"
-            component={() => <UploadDocs auth={auth} setAuth={setAuth} instructor={instructor} />}
+            component={() => (
+              <UploadDocs
+                auth={auth}
+                setAuth={setAuth}
+                instructor={instructor}
+              />
+            )}
           />
         </Switch>
       </div>
