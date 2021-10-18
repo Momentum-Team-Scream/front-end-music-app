@@ -100,3 +100,4 @@ export const Doc = ({ auth, studentList, doc, instructor }) => {
     </>
   );
 };
+

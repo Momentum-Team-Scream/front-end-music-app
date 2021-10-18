@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
+import { ConfirmModal } from './ConfirmModal';
 
-export const LogForm = ({ auth }) => {
+export const LogForm = ({ auth, show, setShow }) => {
   const [body, setBody] = useState('');
   const [timePracticed, setTimePracticed] = useState('');
   const history = useHistory();
@@ -29,9 +30,11 @@ export const LogForm = ({ auth }) => {
         }
       )
       .then((res) => {
-        setBody('');
-        setTimePracticed('');
-        refreshPage();
+        if (res.status === 201){
+          setShow(true);
+          setBody('');
+          setTimePracticed('');
+        }
       });
   };
 
@@ -43,8 +46,10 @@ export const LogForm = ({ auth }) => {
       setTimePracticed(event.target.value);
     }
   };
+  
   return (
     <>
+      <ConfirmModal show={show} setShow={setShow}/>
       <form className="form-group" onSubmit={handleSubmit}>
         <h3>Add a Practice Log:</h3>
         <textarea
@@ -57,13 +62,17 @@ export const LogForm = ({ auth }) => {
           onChange={(e) => handleChange('body', e)}
         ></textarea>
         <div className="form-group-time">
-          <input
-            type="text"
-            value={timePracticed}
-            className="form-control"
-            placeholder="How long did you practice?"
-            onChange={(e) => handleChange('time_practiced', e)}
-          />
+          <label className="label">How long did you practice?</label>
+          <div className="input-group-text mb-3">
+            <input
+              type="text"
+              value={timePracticed}
+              className="form-control"
+              placeholder="30"
+              onChange={(e) => handleChange('time_practiced', e)}
+            />
+            <span class="input-group-text">minutes</span>
+          </div>
         </div>
         <div className="button">
           <button type="submit" className="btn btn-general">

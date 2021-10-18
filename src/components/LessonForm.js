@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../styles/studentdash.css';
 import { Form } from 'react-bootstrap';
+import { ConfirmModal } from './ConfirmModal';
+import '../styles/studentdash.css';
 
-export const LessonForm = ({ auth, setSubmitted }) => {
+export const LessonForm = ({ auth, setSubmitted, show, setShow }) => {
   const [lesson_date, setLessonDate] = useState('');
   const [lesson_time, setLessonTime] = useState('');
   const [student, setStudent] = useState('');
@@ -51,6 +52,7 @@ export const LessonForm = ({ auth, setSubmitted }) => {
       .then((res) => {
         if(res.status === 201) {
           setSubmitted(true);
+          setShow(true);
           setLessonDate('');
           setLessonTime('');
           setStudent('');
@@ -89,6 +91,7 @@ export const LessonForm = ({ auth, setSubmitted }) => {
 
   return (
     <div className="Form-group">
+      <ConfirmModal show={show} setShow={setShow}/>
       <h4> Create a new lesson here! </h4>
       <Form className="form-lessonForm" onSubmit={handleSubmit}>
         <label className="label-lesson">Lesson Date: </label>
@@ -136,10 +139,14 @@ export const LessonForm = ({ auth, setSubmitted }) => {
         <Form.Control
           required
           as="select"
+          defaultValue={''}
           onChange={(e) => handleChange('student', e)}
           className="input form-control"
           name="students"
         >
+          <option key="" value={''}>
+            click to select student
+          </option>
           {studentList.map((student, idx) => (
             <option key={idx} value={student.pk}>
               {student.first_name} {student.last_name}

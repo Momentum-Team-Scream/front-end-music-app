@@ -4,7 +4,7 @@ import { LessonForm } from './LessonForm';
 import { Lesson } from './Lesson';
 import '../styles/studentdash.css';
 
-export const LessonList = ({ auth }) => {
+export const LessonList = ({ auth, show, setShow }) => {
   const [lessons, setLessons] = useState([]);
   const [submitted, setSubmitted] = useState(false);
   const date = useState([new Date()]);
@@ -29,7 +29,7 @@ export const LessonList = ({ auth }) => {
   return (
     <div className="dash-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
       <div className="body-item col-lg-6">
-        {auth && <LessonForm auth={auth} setSubmitted={setSubmitted} />}
+        {auth && <LessonForm auth={auth} setSubmitted={setSubmitted} show={show} setShow={setShow}/>}
       </div>
       <div className="body-item col-lg-6">
         <h4>Today is {today}</h4>

@@ -16,6 +16,7 @@ export const UploadDocs = ({ auth, instructor }) => {
   const history = useHistory();
 
   useEffect(() => {
+
     axios
       .get(`https://music-mvp.herokuapp.com/instructor/studio/`, {
         headers: {
@@ -31,7 +32,7 @@ export const UploadDocs = ({ auth, instructor }) => {
   const submitFileData = (event) => {
     event.preventDefault();
     setFileErr(false);
-
+    if (fileInput.current.files[0] !== undefined )
     axios
       .post(
         `https://music-mvp.herokuapp.com/api/documents/`,
@@ -44,17 +45,20 @@ export const UploadDocs = ({ auth, instructor }) => {
         }
       )
       .then((res) => {
-        if (res.status === 201) {
-          const file = fileInput.current.files[0];
-
+        if (res.status === 201) 
+        {
+          console.log(res)
+          console.log(fileInput.current.files)
+          const file = fileInput.current.files[0]
+          console.log(file);
           axios
             .put(
               `https://music-mvp.herokuapp.com/api/documents/${res.data.pk}/upload/`,
-              { file },
+              file,
               {
                 headers: {
                   Authorization: `token ${auth}`,
-                  'Content-Type': `${file.type}`,
+                  'Content-Type': `application ${file.type}`,
                   'Content-Disposition': `attachment; filename=${file.name}`,
                 },
               }
@@ -62,17 +66,18 @@ export const UploadDocs = ({ auth, instructor }) => {
             .then((res) => {
               if (res.status === 201) {
                 alert('document uploaded');
+                history.go(0);
               }
-              history.push(`/mydocs/`);
+
             });
         }
       })
-      .catch((error) => {
-        if (error.response) {
+      .catch((err) => {
+        if (err.response) {
           setFileErr(true);
         }
       });
-  };
+      else (alert('you did not attach a file to upload'))};
 
   const handleChange = (inputType, event) => {
     if (inputType === 'student') {
@@ -98,14 +103,15 @@ export const UploadDocs = ({ auth, instructor }) => {
                 Select a student to share with (optional):
               </Form.Label>
               <Form.Control
-                required
+                optional
                 as="select"
+                defaultValue={''}
                 onChange={(e) => handleChange('student', e)}
                 className="input form-control"
                 name="students"
               >
-                <option key="" value="">
-                  {' '}
+                <option key="" value={''}>
+                click to select student
                 </option>
                 {studentList.map((student, idx) => (
                   <option key={idx} value={student.pk}>
@@ -114,7 +120,7 @@ export const UploadDocs = ({ auth, instructor }) => {
                 ))}
               </Form.Control>
               <div>
-                <button className="btn btn-general">Submit Data</button>
+                <button className="btn btn-general">Upload Doc</button>
               </div>
             </Form.Group>
           </Form>
