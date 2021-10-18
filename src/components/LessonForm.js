@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import { ConfirmModal } from './ConfirmModal';
 import '../styles/studentdash.css';
-import { LessonBird } from '../svgComponents/LessonBird';
 
 export const LessonForm = ({ auth, setSubmitted, show, setShow }) => {
   const [lesson_date, setLessonDate] = useState('');
@@ -166,9 +165,7 @@ export const LessonForm = ({ auth, setSubmitted, show, setShow }) => {
           <button className="btn btn-general">Create Lesson</button>
         </div>
       </Form>
-      <div className="lessonBird">
-        <LessonBird />
-      </div>
+      
     </div>
   );
 };

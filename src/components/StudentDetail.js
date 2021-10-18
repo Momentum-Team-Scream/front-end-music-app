@@ -3,9 +3,10 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import TextTruncate from 'react-text-truncate';
 import { Loading } from './Loading'
+import { LessonForm } from './LessonForm'
 import '../styles/studetail.css'
 
-export const StudentDetail = ({auth, props, isLoading, setIsLoading}) => {
+export const StudentDetail = ({auth, props, isLoading, setIsLoading, setSubmitted, show, setShow}) => {
     const [student, setStudent] = useState({})
     const [upcomingLessons, setUpcomingLessons] = useState([])
     const [pastLessons, setPastLessons] = useState([])
@@ -120,13 +121,14 @@ export const StudentDetail = ({auth, props, isLoading, setIsLoading}) => {
                 <div className="body-item col-lg-6">
                     <div className="add-lesson-div">
                         <h3>Today is {today}</h3>
-                        <Link to="/">
-                            <button className="btn btn-general">
-                                Create New Lesson
-                            </button>
-                        </Link>
+                        <button className="btn btn-general">
+                            Create New Lesson
+                        </button>
                     </div>
-                <div>
+                    <div>
+                        <LessonForm auth={auth} setSubmitted={setSubmitted} show={show} setShow={setShow} />
+                    </div>
+                    <div>
                         <h3>Past Lesson Plans:</h3>
                             {pastLessons.map((plesson, idx) => {
                                 return (

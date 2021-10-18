@@ -33,6 +33,8 @@ export const App = () => {
   const removeInstructor = instructorStorageOptions['removeItem'];
   const [show, setShow] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [submitted, setSubmitted] = useState(false);
+
 
 
   const clearStorage = () => {
@@ -77,7 +79,7 @@ export const App = () => {
             path="/"
             render={() =>
               auth && instructor ? (
-                <LessonList auth={auth} show={show} setShow={setShow} isLoading={isLoading} setIsLoading={setIsLoading}/>
+                <LessonList auth={auth} show={show} setShow={setShow} isLoading={isLoading} setIsLoading={setIsLoading} submitted={submitted} setSubmitted={setSubmitted} />
               ) : auth ? (
                 <StudentDashboard auth={auth} show={show} setShow={setShow} isLoading={isLoading} setIsLoading={setIsLoading}/>
               ) : (
@@ -129,7 +131,7 @@ export const App = () => {
           />
           <Route
             path="/users/:pk"
-            component={(pk) => <StudentDetail auth={auth} props={pk} isLoading={isLoading} setIsLoading={setIsLoading} />}
+            component={(pk) => <StudentDetail auth={auth} props={pk} isLoading={isLoading} setIsLoading={setIsLoading} setSubmitted={setSubmitted} show={show} setShow={setShow} />}
           />
           <Route
             path="/mydocs"

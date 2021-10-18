@@ -4,10 +4,11 @@ import { LessonForm } from './LessonForm';
 import { Lesson } from './Lesson';
 import { Loading } from './Loading'
 import '../styles/studentdash.css';
+import { LessonBird } from '../svgComponents/LessonBird';
 
-export const LessonList = ({ auth, show, setShow, isLoading, setIsLoading }) => {
+
+export const LessonList = ({ auth, show, setShow, isLoading, setIsLoading, submitted, setSubmitted }) => {
   const [lessons, setLessons] = useState([]);
-  const [submitted, setSubmitted] = useState(false);
   const date = useState([new Date()]);
   const today = String(date[0]).slice(0, 16);
 
@@ -43,6 +44,9 @@ export const LessonList = ({ auth, show, setShow, isLoading, setIsLoading }) => 
             setShow={setShow}
           />
         )}
+        <div className="lessonBird">
+          <LessonBird />
+        </div>
       </div>
       <div className="body-item col-lg-6">
         <h4>Today is {today}</h4>
