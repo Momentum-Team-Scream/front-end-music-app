@@ -53,7 +53,7 @@ export const EditLessonPlan = ({ auth, lesson, show, setShow }) => {
             }}
           >
             <textarea
-              className="form-control"
+              className="form-control lesson-detail"
               defaultValue={lesson.plan}
               placeholder="Click to edit"
               onChange={(e) => setPlan(e.target.value)}

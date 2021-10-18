@@ -76,16 +76,6 @@ export const LessonDetail = ({ auth, props, pk, show, setShow, isLoading, setIsL
               Start Lesson
             </button>
           </a> */}
-          <a
-            href
-            onClick={() => {
-              window.open('/mydocs');
-            }}
-          >
-            <button type="button" className="btn detbtn btn-gray">
-              Add doc
-            </button>
-          </a>
         </div>
       </header>
       <div className="dash-body col-xxl-12 row flex-lg-row justify-content-center">
@@ -96,11 +86,6 @@ export const LessonDetail = ({ auth, props, pk, show, setShow, isLoading, setIsL
         </div>
 
         <div className="body-item col-lg-6">
-          <div div clasName="cardheader">
-            <h4>Student Assignment</h4>
-            <p> (click below to edit) </p>
-          </div>
-
           <div className="assignment">
             {lesson.note && !!lesson.note.length ? (
               String(lesson.note[0].body) && (

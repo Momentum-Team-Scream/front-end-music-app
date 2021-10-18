@@ -38,31 +38,33 @@ export const EditAssignment = ({ auth, note, pk, noteId, show, setShow }) => {
     <>
       <ConfirmModal show={show} setShow={setShow} />
       <div className="card">
-        <form
+        <div div className="card-header assignment-form">
+          <h4>Student Assignment</h4>
+        </div>
+        <div class="form-group">
+          <form
           onSubmit={(event) => {
             handleEdit(event);
           }}
-        >
-          <div class="form-group">
+          >
             <textarea
-              class="form-control"
+              className="form-control lesson-detail"
               defaultValue={body}
+              placeholder="Click to edit"
               onChange={(e) => setBody(e.target.value)}
               rows={5}
             ></textarea>
-          </div>
-          <div className="card-footer">
             <button
-              className="btn btn-alert"
+              className="btn btn-alert lesson-detail"
               id={pk}
               onClick={(e) => {
                 handleEdit(e);
               }}
             >
-              Save Update
+              Send to Student
             </button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </>
   );

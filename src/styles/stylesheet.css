@@ -141,7 +141,13 @@ a:hover {
   padding-top: 1em;
 }
 
-textarea.form-control {
+.card-header.assignment-form {
+  background-color: rgba(157, 172, 255, 0.5);
+  color: #27292a;
+  padding-top: 1em;
+}
+
+textarea.form-control.lesson-detail {
   border-style: none;
   border-color: Transparent;
   overflow: auto;
@@ -150,4 +156,10 @@ textarea.form-control {
 .btn.btn-general.lesson-plan {
   margin-left: 1em;
   margin-right: 1em;
+}
+
+.btn.btn-alert.lesson-detail {
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-bottom: 1em;
 }
