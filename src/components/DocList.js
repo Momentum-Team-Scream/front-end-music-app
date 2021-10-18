@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-
+import _ from 'lodash';
 import { Doc } from './Doc.js';
 import '../styles/StudentList.css';
 import { Dropdown, Table, Container, Form } from 'react-bootstrap';
@@ -8,6 +8,7 @@ import { Dropdown, Table, Container, Form } from 'react-bootstrap';
 export const DocList = ({ auth, studentList, instructor }) => {
   const [docs, setDocs] = useState([]);
   const [submitted, setSubmitted] = useState(false);
+  const [search, setSearch] = useState([]);
 
   useEffect(() => {
     if (auth || submitted) {
@@ -25,8 +26,53 @@ export const DocList = ({ auth, studentList, instructor }) => {
     }
   }, [auth, submitted]);
 
+  
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    axios
+      .get(
+        `https://music-mvp.herokuapp.com/api/documents/?search=${search}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `token ${auth}`,
+          },
+        }
+      )
+      .then((res) => {
+        setDocs(res.data);
+        setSearch('');
+      });
+  };
+
+  const handleChange = (inputType, event) => {
+    if (inputType === 'search') {
+      setSearch(event.target.value);
+    }
+  };
+  
+  
   return (
     <div>
+      <Form className="form-documentSearchForm" onSubmit={handleSubmit}>
+              <Form.Group className="mb-3" controlId="documentSearchForm">
+                <Form.Label>
+                  <h4>Search for a document</h4>
+                </Form.Label>
+                <Form.Control
+                  input="text"
+                  placeholder="enter document name here"
+                  className="input form-control"
+                  value={search}
+                  onChange={(e) => handleChange('search', e)}
+                ></Form.Control>
+                <div>
+                  <button className="btn btn-general" type="submit">
+                    Search
+                  </button>
+                </div>
+              </Form.Group>
+            </Form>
       <Table responsive="sm">
         <thead>
           <tr>
