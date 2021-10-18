@@ -4,12 +4,10 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import React, { useState } from 'react';
 
-export const Doc = ({ auth, studentList, doc, instructor, setsubmitted }) => {
+export const Doc = ({ auth, studentList, doc, instructor }) => {
   const history = useHistory();
-  const [submitted, setSubmitted] = useState(false);
 
   const handleDelete = (event) => {
-    const id = event.target.id;
     return axios
       .delete(`https://music-mvp.herokuapp.com/api/documents/${doc.pk}/`, {
         headers: {
@@ -18,7 +16,7 @@ export const Doc = ({ auth, studentList, doc, instructor, setsubmitted }) => {
         },
       })
       .then((res) => {
-        setSubmitted(true);
+        history.go(0);
       });
   };
 
