@@ -44,7 +44,7 @@ export const LogList = ({ auth, setShow }) => {
 
   return (
     <>
-      <h3>Past Practice Logs:</h3>
+      <h3>Past Practice Logs</h3>
       <div>
         {logs.map((log, idx) => {
           return (
