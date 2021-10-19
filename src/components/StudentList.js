@@ -53,21 +53,6 @@ export const StudentList = ({ auth, pk }) => {
     }
   };
 
-  const handleRemove = (pk) => {
-    axios.patch(
-      `https://music-mvp.herokuapp.com/instructor/studio/${pk}/`,
-      {
-        active_in_studio: false,
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `token ${auth}`,
-        },
-      }
-    );
-  };
-
   return (
     <>
       <Container>
@@ -109,7 +94,6 @@ export const StudentList = ({ auth, pk }) => {
                 <th scope="col">Phone</th>
                 <th scope="col">Email</th>
                 <th scope="col">Student Since</th>
-                <th scope="col">Remove from Studio</th>
               </tr>
             </thead>
             <tbody>
@@ -127,23 +111,6 @@ export const StudentList = ({ auth, pk }) => {
                       <td>{student.phone}</td>
                       <td>{student.email}</td>
                       <td>{student.created_at}</td>
-                      <td>
-                        <button
-                          className="delButton btn btn-destroy docdel"
-                          id={student.pk}
-                          onClick={(e) => {
-                            if (
-                              window.confirm(
-                                'Are you sure you want to remove this student?'
-                              )
-                            )
-                              handleRemove(student.pk);
-                            history.go(0);
-                          }}
-                        >
-                          Remove Student
-                        </button>
-                      </td>
                     </tr>
                   );
                 })
