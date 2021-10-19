@@ -9,6 +9,14 @@
   margin-bottom: 0em;
 }
 
+.dash-header a {
+  color: #27292a;
+}
+
+.dash-header a:hover {
+  color: #f4d325;
+}
+
 .dash-body {
   padding: 2em;
 }

@@ -6,11 +6,13 @@ import { LogForm } from './LogForm';
 import { LogList } from './LogList';
 import { Loading } from './Loading';
 import { ConfirmModal } from './ConfirmModal';
+import { ProfileModal } from './ProfileModal';
 import birdnotesleft from '../birds/birdnotesleft.png';
 import '../styles/studentdash.css';
 
 export const StudentDashboard = ({ auth, show, setShow, isLoading, setIsLoading, modalTitle, setModalTitle }) => {
   const [user, setUser] = useState('');
+  const [toggle, setToggle] = useState(false)
   const history = useHistory();
 
   useEffect(() => {
@@ -44,14 +46,13 @@ export const StudentDashboard = ({ auth, show, setShow, isLoading, setIsLoading,
     ) : (
     <>
       <ConfirmModal show={show} setShow={setShow} modalTitle={modalTitle}/>
+      <ProfileModal auth={auth} user={user} setShow={setShow} toggle={toggle} setToggle={setToggle} setModalTitle={setModalTitle}/>
       <header className="dash-header">
         <div className="name-edit-links">
           <h2>
             {user.first_name} {user.last_name}
           </h2>
-          <Link to="/profile">
-            <p>Edit Info</p>
-          </Link>
+            <a onClick={() => setToggle(true)}>Edit Info</a>
         </div>
         <div className="student-info">
           <div className="">

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import '../styles/profile.css';
 
-export const EditProfile = ({ auth, profile }) => {
+export const EditProfile = ({ auth, profile, setShow, setModalTitle }) => {
   const [firstName, setFirstName] = useState(profile.first_name);
   const [lastName, setLastName] = useState(profile.last_name);
 
@@ -81,7 +81,9 @@ export const EditProfile = ({ auth, profile }) => {
           type="submit"
           onClick={function (event) {
             handleEdit();
-            refreshPage();
+            setModalTitle('Profile updated!')
+            setShow(true)
+            // refreshPage();
           }}
         >
           Save
