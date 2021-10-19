@@ -11,6 +11,7 @@ import birdnotesleft from '../birds/birdnotesleft.png';
 import '../styles/studentdash.css';
 import { Container } from 'react-bootstrap';
 import { HeadphonesBird1 } from '../svgComponents/Headphones-bird-1';
+
 export const StudentDashboard = ({
   auth,
   instructor,
