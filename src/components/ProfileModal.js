@@ -3,7 +3,7 @@ import { Modal } from 'react-bootstrap';
 import { EditProfile } from './EditProfile'
 
 
-export const ProfileModal = ({ auth, user, setShow, toggle, setToggle, setModalTitle }) => {
+export const ProfileModal = ({ auth, user, instructor, setShow, toggle, setToggle, setModalTitle }) => {
 
     const handleClose = () => setToggle(false);
 
@@ -15,13 +15,8 @@ export const ProfileModal = ({ auth, user, setShow, toggle, setToggle, setModalT
                     <Modal.Title>Create a New Lesson</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <EditProfile auth={auth} profile={user} setShow={setShow}  setModalTitle={setModalTitle} />
+                    <EditProfile auth={auth} profile={user} instructor={instructor} setShow={setShow}  setModalTitle={setModalTitle} setToggle={setToggle} />
                 </Modal.Body>
-                <Modal.Footer>
-                    <button onClick={handleClose} className='btn btn-gray'>
-                        Cancel
-                    </button>                              
-                </Modal.Footer>
             </Modal>
         </>
     );

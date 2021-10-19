@@ -17,11 +17,6 @@ export const FormModal = ({ auth, setSubmitted, setShow, toggle, setToggle, setM
                 <Modal.Body>
                     <LessonForm auth={auth} setSubmitted={setSubmitted} setShow={setShow}  setModalTitle={setModalTitle} />
                 </Modal.Body>
-                <Modal.Footer>
-                    <button onClick={handleClose} className='btn btn-gray'>
-                        Cancel
-                    </button>                              
-                </Modal.Footer>
             </Modal>
         </>
     );

@@ -10,7 +10,7 @@ import { ProfileModal } from './ProfileModal';
 import birdnotesleft from '../birds/birdnotesleft.png';
 import '../styles/studentdash.css';
 
-export const StudentDashboard = ({ auth, show, setShow, isLoading, setIsLoading, modalTitle, setModalTitle }) => {
+export const StudentDashboard = ({ auth, instructor, show, setShow, isLoading, setIsLoading, modalTitle, setModalTitle }) => {
   const [user, setUser] = useState('');
   const [toggle, setToggle] = useState(false)
   const history = useHistory();
@@ -45,14 +45,14 @@ export const StudentDashboard = ({ auth, show, setShow, isLoading, setIsLoading,
     </>
     ) : (
     <>
+      <ProfileModal auth={auth} user={user} instructor={instructor} setShow={setShow} toggle={toggle} setToggle={setToggle} setModalTitle={setModalTitle}/>
       <ConfirmModal show={show} setShow={setShow} modalTitle={modalTitle}/>
-      <ProfileModal auth={auth} user={user} setShow={setShow} toggle={toggle} setToggle={setToggle} setModalTitle={setModalTitle}/>
       <header className="dash-header">
         <div className="name-edit-links">
           <h2>
             {user.first_name} {user.last_name}
           </h2>
-            <a onClick={() => setToggle(true)}>Edit Info</a>
+            <a className="header-a" onClick={() => setToggle(true)}>Edit Info</a>
         </div>
         <div className="student-info">
           <div className="">
@@ -62,8 +62,6 @@ export const StudentDashboard = ({ auth, show, setShow, isLoading, setIsLoading,
             <p>
               <i class="bi bi-envelope-fill general"></i> {user.email}
             </p>
-            <p>Emergency Contact: {user.emergency_contact_name}</p>
-            <p>Emergency Phone: {user.emergency_contact_phone}</p>
           </div>
         </div>
       </header>

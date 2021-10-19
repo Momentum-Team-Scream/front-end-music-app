@@ -26,7 +26,7 @@ export const LogList = ({ auth, show, setShow }) => {
           setLogs(res.data)
         });
     }
-  }, [logs]);
+  }, []);
 
   const handleDelete = (event) => {
     const pk = event.target.id;

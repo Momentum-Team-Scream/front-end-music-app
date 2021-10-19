@@ -50,7 +50,7 @@ export const LogForm = ({ auth, setShow, setModalTitle }) => {
   
   return (
     <>
-      <form className="form-group" onSubmit={handleSubmit}>
+      <form className="form-group" onSubmit={handleSubmit} noValidate>
         <h3>Add a Practice Log:</h3>
         <textarea
           className="form-control"

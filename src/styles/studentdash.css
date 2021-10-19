@@ -9,11 +9,11 @@
   margin-bottom: 0em;
 }
 
-.dash-header a {
+.header-a a {
   color: #27292a;
 }
 
-.dash-header a:hover {
+.header-a a:hover {
   color: #f4d325;
 }
 

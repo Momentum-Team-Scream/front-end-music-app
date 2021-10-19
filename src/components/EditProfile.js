@@ -3,12 +3,13 @@ import { useState } from 'react';
 import axios from 'axios';
 import '../styles/profile.css';
 
-export const EditProfile = ({ auth, profile, setShow, setModalTitle }) => {
+export const EditProfile = ({ auth, profile, setShow, setModalTitle, setToggle }) => {
   const [firstName, setFirstName] = useState(profile.first_name);
   const [lastName, setLastName] = useState(profile.last_name);
-
   const [phone, setPhone] = useState(profile.phone);
   const [email, setEmail] = useState(profile.email);
+  const [emerName, setEmerName] = useState('')
+  const [emerNumber, setEmerNumber] = useState('')
 
   const handleEdit = (event) => {
     axios.patch(
@@ -16,9 +17,11 @@ export const EditProfile = ({ auth, profile, setShow, setModalTitle }) => {
       {
         first_name: firstName,
         last_name: lastName,
-
         phone: phone,
         email: email,
+        "emergency_contact_phone": emerNumber,
+        "emergency_contact_name": emerName
+
       },
       {
         headers: {
@@ -75,6 +78,8 @@ export const EditProfile = ({ auth, profile, setShow, setModalTitle }) => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
+      
+
 
         <button
           className="btn detbtn btn-general"
@@ -82,6 +87,7 @@ export const EditProfile = ({ auth, profile, setShow, setModalTitle }) => {
           onClick={function (event) {
             handleEdit();
             setModalTitle('Profile updated!')
+            setToggle(false)
             setShow(true)
             // refreshPage();
           }}
