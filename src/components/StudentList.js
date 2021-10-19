@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { Table, Card, Button, Container, Form } from 'react-bootstrap';
 import '../styles/StudentList.css';
@@ -7,11 +7,11 @@ import '../styles/docs.css';
 import _ from 'lodash';
 import { BirdStaff } from '../svgComponents/BirdStaff';
 
-export const StudentList = ({ auth }) => {
+export const StudentList = ({ auth, pk }) => {
   const [students, setStudents] = useState([]);
   const [submitted, setSubmitted] = useState(false);
   const [search, setSearch] = useState([]);
-
+  const history = useHistory();
   useEffect(() => {
     if (auth) {
       axios
@@ -50,6 +50,21 @@ export const StudentList = ({ auth }) => {
     if (inputType === 'search') {
       setSearch(event.target.value);
     }
+  };
+
+  const handleRemove = (pk) => {
+    axios.patch(
+      `https://music-mvp.herokuapp.com/instructor/studio/${pk}/`,
+      {
+        active_in_studio: false,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `token ${auth}`,
+        },
+      }
+    );
   };
 
   return (
@@ -112,7 +127,19 @@ export const StudentList = ({ auth }) => {
                       <td>{student.email}</td>
                       <td>{student.created_at}</td>
                       <td>
-                        <button className="delButton btn btn-destroy docdel">
+                        <button
+                          className="delButton btn btn-destroy docdel"
+                          id={student.pk}
+                          onClick={(e) => {
+                            if (
+                              window.confirm(
+                                'Are you sure you want to remove this student?'
+                              )
+                            )
+                              handleRemove(student.pk);
+                            history.go(0);
+                          }}
+                        >
                           Remove Student
                         </button>
                       </td>
