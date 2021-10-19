@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Loading } from './Loading'
+import { Loading } from './Loading';
 
 export const AssignmentList = ({ auth }) => {
   const [assignments, setAssignments] = useState([]);
@@ -44,19 +44,17 @@ export const AssignmentList = ({ auth }) => {
     </>
   ) : (
     <>
-      <h3>Your Assignments</h3>
-        {assignments.map((assign, idx) => {
-          return (
-            <div className="card card-list" key={idx}>
-              <div className="card-header header-gray">
-                {assign.created_at}
-              </div>
-              <div className="card-body cd-body">
-                <p className="card-title">{assign.body}</p>
-              </div>
+      <h3>Lesson Notes</h3>
+      {assignments.map((assign, idx) => {
+        return (
+          <div className="card card-list" key={idx}>
+            <div className="card-header header-gray">{assign.created_at}</div>
+            <div className="card-body cd-body">
+              <p className="card-title">{assign.body}</p>
             </div>
-          );
-        })}
+          </div>
+        );
+      })}
     </>
   );
 };

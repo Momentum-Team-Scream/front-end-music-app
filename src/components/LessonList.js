@@ -2,14 +2,29 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { LessonForm } from './LessonForm';
 import { Lesson } from './Lesson';
+<<<<<<< HEAD
 import { Loading } from './Loading'
 import { ConfirmModal } from './ConfirmModal'
 import Container from 'react-bootstrap/Container';
+=======
+import { Loading } from './Loading';
+import { ConfirmModal } from './ConfirmModal';
+>>>>>>> 69e4743e2b7ae455b7a3de990a5ee1e298ea5b99
 import '../styles/studentdash.css';
 import { LessonBird } from '../svgComponents/LessonBird';
+import { Container } from 'react-bootstrap';
 
-
-export const LessonList = ({ auth, show, setShow, isLoading, setIsLoading, submitted, setSubmitted, modalTitle, setModalTitle }) => {
+export const LessonList = ({
+  auth,
+  show,
+  setShow,
+  isLoading,
+  setIsLoading,
+  submitted,
+  setSubmitted,
+  modalTitle,
+  setModalTitle,
+}) => {
   const [lessons, setLessons] = useState([]);
   const date = useState([new Date()]);
   const today = String(date[0]).slice(0, 16);
@@ -25,7 +40,7 @@ export const LessonList = ({ auth, show, setShow, isLoading, setIsLoading, submi
         })
         .then((res) => {
           setLessons(res.data);
-          setIsLoading(false)
+          setIsLoading(false);
         });
       setSubmitted(false);
     }
@@ -33,8 +48,9 @@ export const LessonList = ({ auth, show, setShow, isLoading, setIsLoading, submi
 
   return isLoading ? (
     <>
-        <Loading />
+      <Loading />
     </>
+<<<<<<< HEAD
     ) :(
     <>
       <ConfirmModal show={show} setShow={setShow} modalTitle={modalTitle} />
@@ -70,5 +86,44 @@ export const LessonList = ({ auth, show, setShow, isLoading, setIsLoading, submi
         </div>
       </Container>
     </>
+=======
+  ) : (
+    <Container>
+      <div className="dash-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
+        <div className="body-item col-lg-6">
+          <h4> Create a new lesson here! </h4>
+          <ConfirmModal show={show} setShow={setShow} modalTitle={modalTitle} />
+          {auth && (
+            <LessonForm
+              auth={auth}
+              setSubmitted={setSubmitted}
+              show={show}
+              setShow={setShow}
+              setModalTitle={setModalTitle}
+            />
+          )}
+          <div className="lessonBird">
+            <LessonBird />
+          </div>
+        </div>
+        <div className="body-item col-lg-6">
+          <h4>Today is {today}</h4>
+          <p>Here are your lessons for today:</p>
+          {lessons.map((lesson, index) => (
+            <div className="lessonCard" key={index}>
+              {' '}
+              {auth && (
+                <Lesson
+                  lesson={lesson}
+                  auth={auth}
+                  setSubmitted={setSubmitted}
+                />
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </Container>
+>>>>>>> 69e4743e2b7ae455b7a3de990a5ee1e298ea5b99
   );
 };
