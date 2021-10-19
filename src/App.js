@@ -34,34 +34,14 @@ export const App = () => {
   const [show, setShow] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [submitted, setSubmitted] = useState(false);
+  const [modalTitle, setModalTitle] = useState('');
+
 
 
   const clearStorage = () => {
     removeAuth();
     removeInstructor();
   };
-
-  // const [auth, setAuth, { removeItem }] = useLocalStorageState('token', '');
-  // const [username, setUsername] = useState('');
-  // const [user, setUser] = useLocalStorageState('user', {});
-
-  // useEffect(() => {
-  //   console.log(auth);
-  //   if (auth) {
-  //     axios
-  //       .get('https://music-mvp.herokuapp.com/api/auth/users/me', {
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //           Authorization: `token ${auth}`,
-  //         },
-  //       })
-  //       .then((response) => {
-  //         setUser(response.data);
-  //         setUsername(response.data[0].username);
-  //       });
-  //     console.log(user);
-  //   }
-  // }, [auth],);
 
   return (
     <Router>
@@ -78,7 +58,7 @@ export const App = () => {
             path="/"
             render={() =>
               auth && instructor ? (
-                <LessonList auth={auth} show={show} setShow={setShow} isLoading={isLoading} setIsLoading={setIsLoading} submitted={submitted} setSubmitted={setSubmitted} />
+                <LessonList auth={auth} show={show} setShow={setShow} isLoading={isLoading} setIsLoading={setIsLoading} submitted={submitted} setSubmitted={setSubmitted} modalTitle={modalTitle} setModalTitle={setModalTitle} />
               ) : auth ? (
                 <StudentDashboard
                   auth={auth}
@@ -126,6 +106,8 @@ export const App = () => {
                 setShow={setShow}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
+                modalTitle={modalTitle}
+                setModalTitle={setModalTitle}
               />
             )}
           />

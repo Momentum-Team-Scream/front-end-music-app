@@ -8,9 +8,8 @@ import '../styles/studentdash.css';
 import { LessonBird } from '../svgComponents/LessonBird';
 
 
-export const LessonList = ({ auth, show, setShow, isLoading, setIsLoading, submitted, setSubmitted }) => {
+export const LessonList = ({ auth, show, setShow, isLoading, setIsLoading, submitted, setSubmitted, modalTitle, setModalTitle }) => {
   const [lessons, setLessons] = useState([]);
-  const [modalTitle, setModalTitle] = useState('');
   const date = useState([new Date()]);
   const today = String(date[0]).slice(0, 16);
 
