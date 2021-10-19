@@ -134,8 +134,11 @@ export const App = () => {
             component={() => (
               <UploadDocs
                 auth={auth}
-                setAuth={setAuth}
                 instructor={instructor}
+                show={show} 
+                setShow={setShow} 
+                modalTitle={modalTitle} 
+                setModalTitle={setModalTitle}
               />
             )}
           />

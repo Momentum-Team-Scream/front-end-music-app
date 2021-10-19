@@ -4,11 +4,12 @@ import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import { Form } from 'react-bootstrap';
+import { ConfirmModal } from './ConfirmModal';
 import '../styles/docs.css';
 import { DocList } from './DocList.js';
 import { BirdStaff } from '../svgComponents/BirdStaff';
 
-export const UploadDocs = ({ auth, instructor }) => {
+export const UploadDocs = ({ auth, instructor, show, setShow, modalTitle, setModalTitle }) => {
   let fileInput = useRef(null);
   const [student, setStudent] = useState([]);
   const [studentList, setStudentList] = useState([]);
@@ -63,8 +64,8 @@ export const UploadDocs = ({ auth, instructor }) => {
               )
               .then((res) => {
                 if (res.status === 201) {
-                  alert('document uploaded');
-                  history.go(0);
+                  setShow(true)
+                  setModalTitle('Upload successful!')
                 }
               });
           }
@@ -74,7 +75,9 @@ export const UploadDocs = ({ auth, instructor }) => {
             setFileErr(true);
           }
         });
-    else alert('you did not attach a file to upload');
+    else 
+      setShow(true)
+      setModalTitle('you did not attach a file to upload');
   };
 
   const handleChange = (inputType, event) => {
@@ -84,61 +87,64 @@ export const UploadDocs = ({ auth, instructor }) => {
   };
 
   return (
-    <Container>
-      {instructor ? (
-        <div>
-          <h4> Upload documents to share! </h4>
-          <Form className="form-docUploadForm" onSubmit={submitFileData}>
-            <Form.Group controlId="uploadDocs">
-              <Form.Label>Click button to add a file:</Form.Label>
-              {fileErr ? (
-                <>
-                  <p>you did not attach a file</p>
-                </>
-              ) : null}
-              <Form.Control type="file" ref={fileInput} type="file" />
-              <Form.Label>
-                Select a student to share with (optional):
-              </Form.Label>
-              <Form.Control
-                optional
-                as="select"
-                defaultValue={''}
-                onChange={(e) => handleChange('student', e)}
-                className="input form-control"
-                name="students"
-              >
-                <option key="" value={''}>
-                  click to select student
-                </option>
-                {studentList.map((student, idx) => (
-                  <option key={idx} value={student.pk}>
-                    {student.first_name} {student.last_name}
+    <>
+      <ConfirmModal show={show} setShow={setShow} modalTitle={modalTitle} />
+      <Container>
+        {instructor ? (
+          <div>
+            <h4> Upload documents to share! </h4>
+            <Form className="form-docUploadForm" onSubmit={submitFileData}>
+              <Form.Group controlId="uploadDocs">
+                <Form.Label>Click button to add a file:</Form.Label>
+                {fileErr ? (
+                  <>
+                    <p>you did not attach a file</p>
+                  </>
+                ) : null}
+                <Form.Control type="file" ref={fileInput} type="file" />
+                <Form.Label>
+                  Select a student to share with (optional):
+                </Form.Label>
+                <Form.Control
+                  optional
+                  as="select"
+                  defaultValue={''}
+                  onChange={(e) => handleChange('student', e)}
+                  className="input form-control"
+                  name="students"
+                >
+                  <option key="" value={''}>
+                    click to select student
                   </option>
-                ))}
-              </Form.Control>
-              <div>
-                <button className="btn btn-general">Upload Doc</button>
-              </div>
-            </Form.Group>
-          </Form>
-        </div>
-      ) : (
-        <div className="musicbirdcontlist">
-          <h1 className="musicTitle">Your Music</h1>
-          <div className="birdiconmusic">
-            <BirdStaff />
+                  {studentList.map((student, idx) => (
+                    <option key={idx} value={student.pk}>
+                      {student.first_name} {student.last_name}
+                    </option>
+                  ))}
+                </Form.Control>
+                <div>
+                  <button className="btn btn-general">Upload Doc</button>
+                </div>
+              </Form.Group>
+            </Form>
           </div>
+        ) : (
+          <div className="musicbirdcontlist">
+            <h1 className="musicTitle">Your Music</h1>
+            <div className="birdiconmusic">
+              <BirdStaff />
+            </div>
+          </div>
+        )}
+        <br />
+        <div>
+          <DocList
+            auth={auth}
+            studentList={studentList}
+            instructor={instructor}
+          />
         </div>
-      )}
-      <br />
-      <div>
-        <DocList
-          auth={auth}
-          studentList={studentList}
-          instructor={instructor}
-        />
-      </div>
-    </Container>
+      </Container>
+    </>
   );
 };
