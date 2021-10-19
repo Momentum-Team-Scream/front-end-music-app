@@ -3,8 +3,7 @@ import { Modal } from 'react-bootstrap';
 import { StudentRegEmailForm } from './StudentRegEmailForm.js';
 
 
-export const EmailFormModal = ({ auth, pk, setSubmitted, show, setShow, toggle, setToggle, setModalTitle }) => {
-    console.log(pk)
+export const EmailFormModal = ({ auth, pk, setSubmitted, setShow, toggle, setToggle, setModalTitle }) => {
     const handleClose = () => setToggle(false);
     // const handleShow = () => setShow(true);
 
@@ -16,7 +15,7 @@ export const EmailFormModal = ({ auth, pk, setSubmitted, show, setShow, toggle, 
                     <Modal.Title>New Student Registration</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <StudentRegEmailForm auth={auth} pk={pk} setSubmitted={setSubmitted} setShow={setShow}  setModalTitle={setModalTitle} />
+                    <StudentRegEmailForm auth={auth} pk={pk} setSubmitted={setSubmitted} setShow={setShow} setModalTitle={setModalTitle} />
                 </Modal.Body>
             </Modal>
         </>

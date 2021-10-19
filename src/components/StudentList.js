@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { Table, Card, Button, Container, Form } from 'react-bootstrap';
 import { EmailFormModal } from './EmailFormModal.js';
-import { ConfirmModal } from './ConfirmModal';
+import { ConfirmModal } from './ConfirmModal.js';
 import '../styles/StudentList.css';
 import '../styles/docs.css';
 import '../styles/login.css';
@@ -29,7 +29,6 @@ export const StudentList = ({ auth, show, setShow, modalTitle, setModalTitle }) 
           },
         })
         .then((res) => {
-          console.log(res)
           setStudents(res.data);
           setInstructorid(res.data[0].instructor);
 
@@ -88,8 +87,7 @@ export const StudentList = ({ auth, show, setShow, modalTitle, setModalTitle }) 
             </button>
             <EmailFormModal auth={auth} pk={instructorid} setSubmitted={setSubmitted} setShow={setShow} toggle={toggle} setToggle={setToggle} setModalTitle={setModalTitle}/>
         </div>
-
-          <h1 className="musicTitle">Your Studio</h1>
+        <h1 className="musicTitle">Your Studio</h1>
           <div className="studioBird">
             <StudioBirds />
           </div>

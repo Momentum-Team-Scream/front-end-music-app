@@ -37,13 +37,16 @@ export const InstrProfile = ({ auth, instructor }) => {
           {/* <button className="btn btn-gray">
             Generate Student Invite Link
           </button> */}
-          <div className="link-div" id="link">
+
+          {/* <div className="link-div" id="link">
             <p>Copy and share this invite link with your students:</p>
             <p>http://localhost:3000/student-invite/{profile.id}</p>
-          </div>
-          <div>
+          </div> */}
+
+          {/* <div>
             <StudentRegEmailForm auth={auth} pk={profile.id}/>
-          </div>
+          </div> */}
+
         </>
         : null
       }

@@ -7,19 +7,18 @@ import { Form } from 'react-bootstrap';
 import '../styles/docs.css';
 
 
-export const StudentRegEmailForm = ({ auth, setSubmitted, pk, setShow }) => {
+export const StudentRegEmailForm = ({ auth, setSubmitted, pk, setShow, setModalTitle }) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [instructor_url] = "`https://music-mvp.herokuapp.com/api/student-invite/${pk}/`";
     const [nameErr, setNameErr] = useState(false);
     const [emailErr, setEmailErr] = useState(false);
-    // const [instructor_urlErr, setInstructor_urlErr] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setNameErr(false);
     setEmailErr(false);
-    // setInstructor_urlErr(false);
+
     axios
       .post(
         'https://music-mvp.herokuapp.com/api/mail/send/',
@@ -27,7 +26,7 @@ export const StudentRegEmailForm = ({ auth, setSubmitted, pk, setShow }) => {
           "name": name,
           "email": email,
         //   "instructor_url": `https://music-mvp.herokuapp.com/api/student-invite/${instructor}/`
-          "instructor_url": `http://localhost:3000/api/student-invite/${pk}/`
+          "instructor_url": `http://localhost:3000/student-invite/${pk}/`
 
         },
         {
@@ -38,10 +37,10 @@ export const StudentRegEmailForm = ({ auth, setSubmitted, pk, setShow }) => {
         }
       )
       .then((res) => {
-        if (res.status === 200) {
+        if (res.status === 200){
           setSubmitted(true);
           setShow(true);
-        //   setModalTitle('Lesson Added!')
+          setModalTitle('Student invited!');
           setName('');
           setEmail('');
         }
@@ -56,9 +55,6 @@ export const StudentRegEmailForm = ({ auth, setSubmitted, pk, setShow }) => {
           if (err.email) {
             setEmailErr(true);
           }
-        //   if (err.instructor_url) {
-        //     setInstructor_urlErr(true);
-        //   }
         }
       });
   };
@@ -70,16 +66,12 @@ export const StudentRegEmailForm = ({ auth, setSubmitted, pk, setShow }) => {
     if (inputType === 'email') {
       setEmail(event.target.value);
     }
-    // if (inputType === 'instructor_url') {
-    //   setInstructor_url(event.target.value);
-    // }
   };
 
 
   return (
     <Container>
         <div>
-          <h4> Student Registration Link </h4>
           <Form className="form-emailStuRegForm" onSubmit={handleSubmit}>
             <Form.Group controlId="studentInfo">
               <Form.Label>Student's name:</Form.Label>
@@ -93,8 +85,6 @@ export const StudentRegEmailForm = ({ auth, setSubmitted, pk, setShow }) => {
               type="text"
               value={name}
               onChange={(e) => handleChange('name', e)}/>
-
-
               <Form.Label>Student's email address:</Form.Label>
               {emailErr ? (
                 <>

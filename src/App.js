@@ -113,11 +113,12 @@ export const App = () => {
           />
           <Route
             path="/students"
-            component={() => <StudentList 
+            component={() => (<StudentList 
               auth={auth} setAuth={setAuth} show={show}
+              
             setShow={setShow}
             modalTitle={modalTitle}
-            setModalTitle={setModalTitle} />}
+            setModalTitle={setModalTitle} />)}
           />
           <Route
             path="/profile"
