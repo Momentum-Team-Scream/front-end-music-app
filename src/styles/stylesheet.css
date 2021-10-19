@@ -163,12 +163,13 @@ textarea.form-control.lesson-detail {
   overflow: auto;
 }
 
-.btn.btn-general.lesson-plan {
+.btn.btn-gray.lesson-plan {
   margin-left: 1em;
   margin-right: 1em;
+  margin-bottom: 1em;
 }
 
-.btn.btn-gray.lesson-detail {
+.btn.btn-general.lesson-detail {
   margin-left: 1em;
   margin-right: 1em;
   margin-bottom: 1em;
@@ -200,4 +201,8 @@ textarea.form-control.lesson-detail {
 .form-label {
   margin-bottom: 0px;
   margin-top: 1em;
+}
+
+.form-button {
+  float: right;
 }

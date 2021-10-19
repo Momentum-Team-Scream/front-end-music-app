@@ -54,7 +54,7 @@ export const AssignmentForm = ({ auth, setShow, setModalTitle }) => {
           onChange={(e) => handleChange('body', e)}
           rows={5}
         ></textarea>
-          <button type="submit" className="btn btn-gray lesson-detail">
+          <button type="submit" className="btn btn-general lesson-detail">
             Send to Student
           </button>
       </form>
