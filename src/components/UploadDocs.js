@@ -102,7 +102,7 @@ export const UploadDocs = ({ auth, instructor, show, setShow, modalTitle, setMod
                 ) : null}
                 <Form.Control type="file" ref={fileInput} type="file" />
                 <Form.Label>
-                  Select a student to share with (optional):
+                  Share with a student:
                 </Form.Label>
                 <Form.Control
                   optional
@@ -113,7 +113,7 @@ export const UploadDocs = ({ auth, instructor, show, setShow, modalTitle, setMod
                   name="students"
                 >
                   <option key="" value={''}>
-                    click to select student
+                    (optional)
                   </option>
                   {studentList.map((student, idx) => (
                     <option key={idx} value={student.pk}>
