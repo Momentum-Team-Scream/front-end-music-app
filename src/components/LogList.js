@@ -23,7 +23,7 @@ export const LogList = ({ auth, setShow }) => {
           },
         })
         .then((res) => {
-          setLogs(res.data)
+          setLogs(res.data);
         });
     }
   }, []);
