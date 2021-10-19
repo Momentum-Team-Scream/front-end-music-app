@@ -3,9 +3,8 @@ import axios from 'axios';
 import { Form } from 'react-bootstrap';
 import { ConfirmModal } from './ConfirmModal';
 import '../styles/studentdash.css';
-import { LessonBird } from '../svgComponents/LessonBird';
 
-export const LessonForm = ({ auth, setSubmitted, show, setShow }) => {
+export const LessonForm = ({ auth, setSubmitted, setShow, setModalTitle }) => {
   const [lesson_date, setLessonDate] = useState('');
   const [lesson_time, setLessonTime] = useState('');
   const [student, setStudent] = useState('');
@@ -53,6 +52,7 @@ export const LessonForm = ({ auth, setSubmitted, show, setShow }) => {
         if (res.status === 201) {
           setSubmitted(true);
           setShow(true);
+          setModalTitle('Lesson Added!')
           setLessonDate('');
           setLessonTime('');
           setStudent('');
@@ -93,8 +93,6 @@ export const LessonForm = ({ auth, setSubmitted, show, setShow }) => {
 
   return (
     <div className="Form-group">
-      <ConfirmModal show={show} setShow={setShow} />
-      <h4> Create a new lesson here! </h4>
       <Form className="form-lessonForm" onSubmit={handleSubmit} noValidate>
         <label className="label-lesson">Lesson Date: </label>
         {dateErr ? (
@@ -166,9 +164,7 @@ export const LessonForm = ({ auth, setSubmitted, show, setShow }) => {
           <button className="btn btn-general">Create Lesson</button>
         </div>
       </Form>
-      <div className="lessonBird">
-        <LessonBird />
-      </div>
+      
     </div>
   );
 };

@@ -3,13 +3,16 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import TextTruncate from 'react-text-truncate';
 import { Loading } from './Loading'
+import { FormModal } from './FormModal';
+import { ConfirmModal } from './ConfirmModal';
 import '../styles/studetail.css'
 
-export const StudentDetail = ({auth, props, isLoading, setIsLoading}) => {
+export const StudentDetail = ({auth, props, isLoading, setIsLoading, setSubmitted, show, setShow, modalTitle, setModalTitle}) => {
     const [student, setStudent] = useState({})
     const [upcomingLessons, setUpcomingLessons] = useState([])
     const [pastLessons, setPastLessons] = useState([])
     const [pk, setPk] = useState('')
+    const [toggle, setToggle] = useState(false)
     const date = useState([new Date()]);
     const today = String(date[0]).slice(0, 16);
 
@@ -120,13 +123,15 @@ export const StudentDetail = ({auth, props, isLoading, setIsLoading}) => {
                 <div className="body-item col-lg-6">
                     <div className="add-lesson-div">
                         <h3>Today is {today}</h3>
-                        <Link to="/">
-                            <button className="btn btn-general">
+                        <div>
+                            <ConfirmModal show={show} setShow={setShow} modalTitle={modalTitle} />
+                            <button className="btn btn-general" onClick={() => setToggle(!toggle)}>
                                 Create New Lesson
                             </button>
-                        </Link>
+                            <FormModal auth={auth} setSubmitted={setSubmitted} setShow={setShow} toggle={toggle} setToggle={setToggle} setModalTitle={setModalTitle}/>
+                        </div>
                     </div>
-                <div>
+                    <div>
                         <h3>Past Lesson Plans:</h3>
                             {pastLessons.map((plesson, idx) => {
                                 return (

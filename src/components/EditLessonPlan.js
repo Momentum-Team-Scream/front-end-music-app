@@ -4,7 +4,7 @@ import { ConfirmModal } from './ConfirmModal.js';
 import '../styles/studentdash.css';
 import axios from 'axios';
 
-export const EditLessonPlan = ({ auth, lesson, show, setShow }) => {
+export const EditLessonPlan = ({ auth, lesson, show, setShow, modalTitle, setModalTitle }) => {
   const history = useHistory();
   const [lessonPk] = useState(lesson.pk);
   const [lessonDate, setLessonDate] = useState(lesson.lesson_date);
@@ -32,7 +32,7 @@ export const EditLessonPlan = ({ auth, lesson, show, setShow }) => {
       .then((res) => {
         if(res.status === 200) {
           setShow(true)
-          console.log(show)
+          setModalTitle('Lesson plan updated!')
           setPlan('');
           history.push(`/lessons/${id}/`);
         }
@@ -41,7 +41,7 @@ export const EditLessonPlan = ({ auth, lesson, show, setShow }) => {
 
   return (
     <>
-      <ConfirmModal show={show} setShow={setShow} />
+      
       <div className="card lesson-plan">
         <div div className="card-header lesson-plan">
           <h4>Lesson Plan</h4>
