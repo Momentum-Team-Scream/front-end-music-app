@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
 import { ConfirmModal } from './ConfirmModal';
+import { Form } from 'react-bootstrap';
 
 export const LogForm = ({ auth, show, setShow }) => {
   const [body, setBody] = useState('');
@@ -63,15 +64,29 @@ export const LogForm = ({ auth, show, setShow }) => {
         ></textarea>
         <div className="form-group-time">
           <label className="label">How long did you practice?</label>
-          <div className="input-group-text mb-3">
-            <input
-              type="text"
-              value={timePracticed}
-              className="form-control"
-              placeholder="30"
-              onChange={(e) => handleChange('time_practiced', e)}
-            />
-            <span class="input-group-text">minutes</span>
+          <div className="input-group-text mb-3" onChange={(e) => handleChange('time_practiced', e)}>
+          <Form.Control
+            required
+          as="select"
+          defaultValue={''}
+          onChange={(e) => handleChange('time_practiced', e)}
+          className="input form-control"
+          name="students"
+          >
+            <option key="" value=''>
+              click to select time practiced!
+            </option>
+            <option value='15'>15 minutes</option>
+            <option value='20'>20 minutes</option>
+            <option value='30'>30 minutes</option>
+            <option value='60'>1 hour</option>
+            <option value='90'>1.5 hours</option>
+            <option value='120'>2 hours</option>
+            <option value='150'>2.5 hours</option>
+            <option value='180'>3 hours</option>
+            <option value='210'>3.5 hours</option>
+            <option value='240'>4 hours</option>
+          </Form.Control>
           </div>
         </div>
         <div className="button">
