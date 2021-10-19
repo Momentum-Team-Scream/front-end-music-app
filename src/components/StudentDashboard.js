@@ -5,10 +5,11 @@ import { AssignmentList } from './AssignmentList';
 import { LogForm } from './LogForm';
 import { LogList } from './LogList';
 import { Loading } from './Loading';
+import { ConfirmModal } from './ConfirmModal';
 import birdnotesleft from '../birds/birdnotesleft.png';
 import '../styles/studentdash.css';
 
-export const StudentDashboard = ({ auth, show, setShow, isLoading, setIsLoading }) => {
+export const StudentDashboard = ({ auth, show, setShow, isLoading, setIsLoading, modalTitle, setModalTitle }) => {
   const [user, setUser] = useState('');
   const history = useHistory();
 
@@ -42,6 +43,7 @@ export const StudentDashboard = ({ auth, show, setShow, isLoading, setIsLoading 
     </>
     ) : (
     <>
+      <ConfirmModal show={show} setShow={setShow} modalTitle={modalTitle}/>
       <header className="dash-header">
         <div className="name-edit-links">
           <h2>
@@ -50,9 +52,6 @@ export const StudentDashboard = ({ auth, show, setShow, isLoading, setIsLoading 
           <Link to="/profile">
             <p>Edit Info</p>
           </Link>
-          <button type="button" class="ms-auto stu-dash-btn btn btn-gray">
-            Contact Instructor
-          </button>
         </div>
         <div className="student-info">
           <div className="">
@@ -69,7 +68,7 @@ export const StudentDashboard = ({ auth, show, setShow, isLoading, setIsLoading 
       </header>
       <div className="dash-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
         <div className="body-item col-lg-6">
-          <LogForm auth={auth} show={show} setShow={setShow} />
+          <LogForm auth={auth} show={show} setShow={setShow} setModalTitle={setModalTitle} />
           <LogList auth={auth} />
           <img className="bird" src={birdnotesleft} alt="bird"></img>
         </div>

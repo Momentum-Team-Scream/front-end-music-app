@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
-import { ConfirmModal } from './ConfirmModal';
 import { Form } from 'react-bootstrap';
 
-export const LogForm = ({ auth, show, setShow }) => {
+export const LogForm = ({ auth, setShow, setModalTitle }) => {
   const [body, setBody] = useState('');
   const [timePracticed, setTimePracticed] = useState('');
   const history = useHistory();
@@ -33,6 +32,7 @@ export const LogForm = ({ auth, show, setShow }) => {
       .then((res) => {
         if (res.status === 201){
           setShow(true);
+          setModalTitle('Practice recorded!')
           setBody('');
           setTimePracticed('');
         }
@@ -50,7 +50,6 @@ export const LogForm = ({ auth, show, setShow }) => {
   
   return (
     <>
-      <ConfirmModal show={show} setShow={setShow}/>
       <form className="form-group" onSubmit={handleSubmit}>
         <h3>Add a Practice Log:</h3>
         <textarea
