@@ -3,6 +3,7 @@ import axios from 'axios';
 import { LessonForm } from './LessonForm';
 import { Lesson } from './Lesson';
 import { Loading } from './Loading'
+import { ConfirmModal } from './ConfirmModal'
 import '../styles/studentdash.css';
 import { LessonBird } from '../svgComponents/LessonBird';
 
@@ -36,6 +37,8 @@ export const LessonList = ({ auth, show, setShow, isLoading, setIsLoading, submi
     ) :(
     <div className="dash-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
       <div className="body-item col-lg-6">
+      <h4> Create a new lesson here! </h4>
+      <ConfirmModal show={show} setShow={setShow} />
         {auth && (
           <LessonForm
             auth={auth}

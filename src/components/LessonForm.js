@@ -4,7 +4,7 @@ import { Form } from 'react-bootstrap';
 import { ConfirmModal } from './ConfirmModal';
 import '../styles/studentdash.css';
 
-export const LessonForm = ({ auth, setSubmitted, show, setShow }) => {
+export const LessonForm = ({ auth, setSubmitted, setShow }) => {
   const [lesson_date, setLessonDate] = useState('');
   const [lesson_time, setLessonTime] = useState('');
   const [student, setStudent] = useState('');
@@ -92,8 +92,6 @@ export const LessonForm = ({ auth, setSubmitted, show, setShow }) => {
 
   return (
     <div className="Form-group">
-      <ConfirmModal show={show} setShow={setShow} />
-      <h4> Create a new lesson here! </h4>
       <Form className="form-lessonForm" onSubmit={handleSubmit} noValidate>
         <label className="label-lesson">Lesson Date: </label>
         {dateErr ? (
