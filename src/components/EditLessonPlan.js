@@ -60,7 +60,7 @@ export const EditLessonPlan = ({ auth, lesson, show, setShow, modalTitle, setMod
               rows={5}
             ></textarea>
             <button
-              className="btn btn-general lesson-plan"
+              className="btn btn-gray lesson-plan"
               id={lesson.pk}
               onClick={(e) => {
                 handleEdit(e);

@@ -44,15 +44,15 @@ export const AssignmentList = ({ auth }) => {
     </>
   ) : (
     <>
-      <h3>Your Assignments:</h3>
+      <h3>Your Assignments</h3>
         {assignments.map((assign, idx) => {
           return (
             <div className="card card-list" key={idx}>
               <div className="card-header header-gray">
-                Assignment from {assign.created_at}
+                {assign.created_at}
               </div>
               <div className="card-body cd-body">
-                <h5 className="card-title">{assign.body}</h5>
+                <p className="card-title">{assign.body}</p>
               </div>
             </div>
           );

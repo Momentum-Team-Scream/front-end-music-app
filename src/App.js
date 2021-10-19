@@ -62,10 +62,13 @@ export const App = () => {
               ) : auth ? (
                 <StudentDashboard
                   auth={auth}
+                  instructor={instructor}
                   show={show}
                   setShow={setShow}
                   isLoading={isLoading}
                   setIsLoading={setIsLoading}
+                  modalTitle={modalTitle}
+                  setModalTitle={setModalTitle}
                 />
               ) : (
                 <Redirect to={{ pathname: '/login' }} />

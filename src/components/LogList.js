@@ -5,7 +5,7 @@ import { Accordion, Card } from 'react-bootstrap';
 import { LogForm } from './LogForm.js';
 import '../styles/studentdash.css';
 
-export const LogList = ({ auth, show, setShow }) => {
+export const LogList = ({ auth, setShow }) => {
   const [logs, setLogs] = useState([]);
   const history = useHistory();
 
@@ -49,10 +49,10 @@ export const LogList = ({ auth, show, setShow }) => {
         {logs.map((log, idx) => {
           return (
             <div className="card card-list" key={idx}>
-              <div className="card-header header-gray">
-                Practice Log From {log.created_at}
+              <div className="card-header header-practice">
+                {log.created_at}
               </div>
-              <div className="card-body cd-body">
+              <div className="card-body practice">
                 <h5 className="card-title">
                   <strong>I practiced: </strong>
                   {log.body}

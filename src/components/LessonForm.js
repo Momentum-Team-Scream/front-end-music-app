@@ -160,7 +160,7 @@ export const LessonForm = ({ auth, setSubmitted, setShow, setModalTitle }) => {
           onChange={(e) => handleChange('plan', e)}
         />
 
-        <div>
+        <div className="form-button">
           <button className="btn btn-general">Create Lesson</button>
         </div>
       </Form>

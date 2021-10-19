@@ -44,7 +44,7 @@ export const InstrProfile = ({ auth, instructor }) => {
       }
       <div className="profileBody">
         {showEdit ? (
-          <EditProfile profile={profile} auth={auth} />
+          <EditProfile profile={profile} auth={auth}/>
         ) : (
           <>
             <Card>

@@ -19,7 +19,7 @@ export const ConfirmModal = ({ show, setShow, modalTitle }) => {
                     <img className="modal-img" src={birdtextright} alt="helpful-bird"></img>
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={handleClose} className='btn btn-alert'>
+                    <button onClick={handleClose} className='btn btn-general'>
                         Close
                     </button>                              
                 </Modal.Footer>

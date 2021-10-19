@@ -3,10 +3,9 @@ import { useState } from 'react';
 import axios from 'axios';
 import '../styles/profile.css';
 
-export const EditProfile = ({ auth, profile }) => {
+export const EditProfile = ({ auth, profile, setShow, setModalTitle, setToggle }) => {
   const [firstName, setFirstName] = useState(profile.first_name);
   const [lastName, setLastName] = useState(profile.last_name);
-
   const [phone, setPhone] = useState(profile.phone);
   const [email, setEmail] = useState(profile.email);
 
@@ -16,7 +15,6 @@ export const EditProfile = ({ auth, profile }) => {
       {
         first_name: firstName,
         last_name: lastName,
-
         phone: phone,
         email: email,
       },
@@ -75,13 +73,15 @@ export const EditProfile = ({ auth, profile }) => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-
         <button
           className="btn detbtn btn-general"
           type="submit"
           onClick={function (event) {
             handleEdit();
-            refreshPage();
+            setModalTitle('Profile updated!')
+            setToggle(false)
+            setShow(true)
+            // refreshPage();
           }}
         >
           Save

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
-import { LessonForm } from './LessonForm'
+import { EditProfile } from './EditProfile'
 
 
-export const FormModal = ({ auth, setSubmitted, setShow, toggle, setToggle, setModalTitle }) => {
+export const ProfileModal = ({ auth, user, instructor, setShow, toggle, setToggle, setModalTitle }) => {
 
     const handleClose = () => setToggle(false);
 
@@ -15,7 +15,7 @@ export const FormModal = ({ auth, setSubmitted, setShow, toggle, setToggle, setM
                     <Modal.Title>Create a New Lesson</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <LessonForm auth={auth} setSubmitted={setSubmitted} setShow={setShow}  setModalTitle={setModalTitle} />
+                    <EditProfile auth={auth} profile={user} instructor={instructor} setShow={setShow}  setModalTitle={setModalTitle} setToggle={setToggle} />
                 </Modal.Body>
             </Modal>
         </>

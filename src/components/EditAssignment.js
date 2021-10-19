@@ -54,7 +54,7 @@ export const EditAssignment = ({ auth, note, pk, noteId, setShow, setModalTitle 
               rows={5}
             ></textarea>
             <button
-              className="btn btn-alert lesson-detail"
+              className="btn btn-general lesson-detail"
               id={pk}
               onClick={(e) => {
                 handleEdit(e);
