@@ -54,3 +54,7 @@
   padding-top: 40px;
   padding-bottom: 40px;
 }
+.dropdown-menu {
+  height: 205px;
+  overflow-y: scroll;
+}
