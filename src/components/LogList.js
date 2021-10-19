@@ -23,10 +23,10 @@ export const LogList = ({ auth, show, setShow }) => {
           },
         })
         .then((res) => {
-          setLogs(res.data)
+          setLogs(res.data);
         });
     }
-  }, [logs]);
+  }, []);
 
   const handleDelete = (event) => {
     const pk = event.target.id;
