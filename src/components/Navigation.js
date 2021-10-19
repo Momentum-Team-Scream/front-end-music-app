@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import '../styles/navigation.css';
+import { Logo } from '../svgComponents/Logo';
 
 export const Navigation = ({ auth, setAuth, clearStorage, instructor }) => {
   return (
@@ -12,11 +13,11 @@ export const Navigation = ({ auth, setAuth, clearStorage, instructor }) => {
             <Container>
               {instructor ? (
                 <Navbar.Brand as={Link} to={'/'}>
-                  <img className="logo" src={'NoteJAM.png'} alt="logo" />
+                  <Logo />
                 </Navbar.Brand>
               ) : (
                 <Navbar.Brand as={Link} to={'/'}>
-                  <img className="logo" src={'NoteJAM.png'} alt="logo" />
+                  <Logo />
                 </Navbar.Brand>
               )}
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -68,7 +69,7 @@ export const Navigation = ({ auth, setAuth, clearStorage, instructor }) => {
           <Navbar collapseOnSelect expand="lg" bg="general" variant="dark">
             <Container>
               <Navbar.Brand as={Link} to={'/'}>
-                <img className="logo" src={'NoteJAM.png'} alt="logo" />
+                <Logo />
               </Navbar.Brand>
             </Container>
           </Navbar>
