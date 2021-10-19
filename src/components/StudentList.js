@@ -4,8 +4,9 @@ import axios from 'axios';
 import { Table, Card, Button, Container, Form } from 'react-bootstrap';
 import '../styles/StudentList.css';
 import '../styles/docs.css';
+import '../styles/login.css';
 import _ from 'lodash';
-import { BirdStaff } from '../svgComponents/BirdStaff';
+import { StudioBirds } from '../svgComponents/StudioBirds';
 
 export const StudentList = ({ auth, pk }) => {
   const [students, setStudents] = useState([]);
@@ -70,10 +71,10 @@ export const StudentList = ({ auth, pk }) => {
   return (
     <>
       <Container>
-        <div className="musicbirdcontlist">
+        <div className="studioCont">
           <h1 className="musicTitle">Your Studio</h1>
-          <div className="birdiconmusic">
-            <BirdStaff />
+          <div className="studioBird">
+            <StudioBirds />
           </div>
         </div>
         <div className="StudentCont">
