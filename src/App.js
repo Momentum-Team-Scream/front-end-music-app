@@ -36,7 +36,6 @@ export const App = () => {
   const [submitted, setSubmitted] = useState(false);
 
 
-
   const clearStorage = () => {
     removeAuth();
     removeInstructor();
@@ -81,7 +80,13 @@ export const App = () => {
               auth && instructor ? (
                 <LessonList auth={auth} show={show} setShow={setShow} isLoading={isLoading} setIsLoading={setIsLoading} submitted={submitted} setSubmitted={setSubmitted} />
               ) : auth ? (
-                <StudentDashboard auth={auth} show={show} setShow={setShow} isLoading={isLoading} setIsLoading={setIsLoading}/>
+                <StudentDashboard
+                  auth={auth}
+                  show={show}
+                  setShow={setShow}
+                  isLoading={isLoading}
+                  setIsLoading={setIsLoading}
+                />
               ) : (
                 <Redirect to={{ pathname: '/login' }} />
               )
@@ -113,7 +118,16 @@ export const App = () => {
           />
           <Route
             path="/lessons/:pk"
-            component={(pk) => <LessonDetail props={pk} auth={auth} show={show} setShow={setShow} isLoading={isLoading} setIsLoading={setIsLoading}/>}
+            component={(pk) => (
+              <LessonDetail
+                props={pk}
+                auth={auth}
+                show={show}
+                setShow={setShow}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+              />
+            )}
           />
           <Route
             path="/students"
@@ -135,7 +149,13 @@ export const App = () => {
           />
           <Route
             path="/mydocs"
-            component={() => <UploadDocs auth={auth} setAuth={setAuth} instructor={instructor} />}
+            component={() => (
+              <UploadDocs
+                auth={auth}
+                setAuth={setAuth}
+                instructor={instructor}
+              />
+            )}
           />
         </Switch>
       </div>
