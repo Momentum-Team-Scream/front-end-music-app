@@ -16,26 +16,26 @@ export const Navigation = ({ auth, setAuth, clearStorage, instructor }) => {
                 </Navbar.Brand>
               ) : (
                 <Navbar.Brand as={Link} to={'/'}>
-                  <img className="icon" src={'NoteJAM.png'} alt="logo" />
+                  <img className="logo" src={'NoteJAM.png'} alt="logo" />
                 </Navbar.Brand>
               )}
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
                   {instructor ? (
-                    <Nav.Link className="navlink" as={Link} to={'/students'}>
+                    <Nav.Link className="navlinks" as={Link} to={'/students'}>
                       Students
                     </Nav.Link>
                   ) : (
                     <></>
                   )}
 
-                  <Nav.Link className="navlink" as={Link} to={'/mydocs'}>
+                  <Nav.Link className="navlinks" as={Link} to={'/mydocs'}>
                     Docs
                   </Nav.Link>
 
                   {instructor ? (
-                    <Nav.Link className="navlink" as={Link} to={'/profile'}>
+                    <Nav.Link className="navlinks" as={Link} to={'/profile'}>
                       Profile
                     </Nav.Link>
                   ) : null}
