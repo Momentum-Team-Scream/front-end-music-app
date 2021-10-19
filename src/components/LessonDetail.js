@@ -12,6 +12,8 @@ import '../styles/studentdash.css';
 export const LessonDetail = ({ auth, props, pk, show, setShow, isLoading, setIsLoading, modalTitle, setModalTitle }) => {
   const [lesson, setLesson] = useState({});
   const [previous, setPrevious] = useState({});
+  const [shown, setShown] = useState(false);
+  const [showing, setShowing] = useState(false);
 
   useEffect(() => {
     async function getLesson() {
@@ -66,7 +68,7 @@ export const LessonDetail = ({ auth, props, pk, show, setShow, isLoading, setIsL
       <div className="dash-body col-xxl-12 row flex-lg-row justify-content-center">
         <div className="body-item col-lg-6">
           <div className="plan">
-            <EditLessonPlan auth={auth} lesson={lesson} show={show} setShow={setShow} modalTitle={modalTitle} setModalTitle={setModalTitle}/>
+            <EditLessonPlan auth={auth} lesson={lesson} shown={shown} setShown={setShown} modalTitle={modalTitle} setModalTitle={setModalTitle}/>
           </div>
         </div>
 
@@ -87,7 +89,7 @@ export const LessonDetail = ({ auth, props, pk, show, setShow, isLoading, setIsL
               )
             ) : (
               <>
-                <AssignmentForm auth={auth} show={show} setShow={setShow} modalTitle={modalTitle} setModalTitle={setModalTitle} />
+                <AssignmentForm auth={auth} showing={showing} setShowing={setShowing} modalTitle={modalTitle} setModalTitle={setModalTitle} />
               </>
             )}
           </div>
