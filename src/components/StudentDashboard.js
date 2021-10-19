@@ -62,6 +62,9 @@ export const StudentDashboard = ({ auth, instructor, show, setShow, isLoading, s
             <p>
               <i class="bi bi-envelope-fill general"></i> {user.email}
             </p>
+            <p>
+              <i class="bi bi-telephone-fill"></i> {user.phone}
+            </p>
           </div>
           <img className="bird-student" src={birdnotesleft} alt="bird"></img>
         </div>

@@ -109,8 +109,8 @@ export const StudentDetail = ({
           <p>
             <i class="bi bi-envelope-fill"></i> {student.email}
           </p>
-          <p>Emergency Contact: {student.emergency_contact_name}</p>
-          <p>Emergency Phone: {student.emergency_contact_phone}</p>
+          <p><i class="bi bi-person-lines-fill"></i> Emergency Contact: {student.emergency_contact_name}</p>
+          <p><i class="bi bi-telephone-fill"></i> Emergency Phone: {student.emergency_contact_phone}</p>
 
           <button
             className="delButton btn btn-destroy studentRemove"
@@ -150,7 +150,7 @@ export const StudentDetail = ({
                   <div className="card-body">
                     <h5 className="card-title">{lesson.lesson_date}</h5>
                     <Link to={`/lessons/${lesson.pk}`}>
-                      <button className="btn btn-gray">Edit Lesson Plan</button>
+                      <button className="btn btn-general stu-detail">Edit Lesson Plan</button>
                     </Link>
                   </div>
                 </div>
