@@ -26,7 +26,7 @@ export const LogList = ({ auth, show, setShow }) => {
           setLogs(res.data)
         });
     }
-  }, [logs]);
+  }, [auth]);
 
   const handleDelete = (event) => {
     const pk = event.target.id;
@@ -44,13 +44,13 @@ export const LogList = ({ auth, show, setShow }) => {
 
   return (
     <>
-      <h3>Past Practice Logs:</h3>
+      <h3>Practice Logs</h3>
       <div>
         {logs.map((log, idx) => {
           return (
             <div className="card card-list" key={idx}>
               <div className="card-header header-gray">
-                Practice Log From {log.created_at}
+                {log.created_at}
               </div>
               <div className="card-body cd-body">
                 <h5 className="card-title">

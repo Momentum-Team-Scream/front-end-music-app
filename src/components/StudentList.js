@@ -2,17 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { Table, Card, Button, Container, Form } from 'react-bootstrap';
+import { EmailFormModal } from './EmailFormModal.js';
+import { ConfirmModal } from './ConfirmModal';
 import '../styles/StudentList.css';
 import '../styles/docs.css';
 import '../styles/login.css';
 import _ from 'lodash';
 import { StudioBirds } from '../svgComponents/StudioBirds';
 
-export const StudentList = ({ auth, pk }) => {
+export const StudentList = ({ auth, show, setShow, modalTitle, setModalTitle }) => {
   const [students, setStudents] = useState([]);
   const [submitted, setSubmitted] = useState(false);
   const [search, setSearch] = useState([]);
+  const [instructorid, setInstructorid] = useState()
+    const [toggle, setToggle] = useState(false)
   const history = useHistory();
+  
+  
   useEffect(() => {
     if (auth) {
       axios
@@ -23,7 +29,10 @@ export const StudentList = ({ auth, pk }) => {
           },
         })
         .then((res) => {
+          console.log(res)
           setStudents(res.data);
+          setInstructorid(res.data[0].instructor);
+
         });
       setSubmitted(false);
     }
@@ -72,6 +81,14 @@ export const StudentList = ({ auth, pk }) => {
     <>
       <Container>
         <div className="studioCont">
+        <div>
+            <ConfirmModal show={show} setShow={setShow} modalTitle={modalTitle} />
+            <button className="btn btn-general" onClick={() => setToggle(!toggle)}>
+                Add new student
+            </button>
+            <EmailFormModal auth={auth} pk={instructorid} setSubmitted={setSubmitted} setShow={setShow} toggle={toggle} setToggle={setToggle} setModalTitle={setModalTitle}/>
+        </div>
+
           <h1 className="musicTitle">Your Studio</h1>
           <div className="studioBird">
             <StudioBirds />

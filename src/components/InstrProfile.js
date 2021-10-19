@@ -4,6 +4,7 @@ import '../styles/profile.css';
 import { Card } from 'react-bootstrap';
 import { LogForm } from './LogForm.js';
 import { EditProfile } from './EditProfile.js';
+import { StudentRegEmailForm } from './StudentRegEmailForm.js'
 
 export const InstrProfile = ({ auth, instructor }) => {
   const [profile, setProfile] = useState([]);
@@ -20,6 +21,7 @@ export const InstrProfile = ({ auth, instructor }) => {
           },
         })
         .then((res) => {
+          console.log(res)
           setProfile(res.data);
         });
       setSubmitted(false);
@@ -38,6 +40,9 @@ export const InstrProfile = ({ auth, instructor }) => {
           <div className="link-div" id="link">
             <p>Copy and share this invite link with your students:</p>
             <p>http://localhost:3000/student-invite/{profile.id}</p>
+          </div>
+          <div>
+            <StudentRegEmailForm auth={auth} pk={profile.id}/>
           </div>
         </>
         : null

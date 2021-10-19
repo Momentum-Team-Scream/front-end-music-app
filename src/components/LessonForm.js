@@ -151,10 +151,10 @@ export const LessonForm = ({ auth, setSubmitted, setShow, setModalTitle }) => {
           ))}
         </Form.Control>
 
-        <label className="label-lesson">*optional* Lesson Plan: </label>
+        <label className="label-lesson">Lesson Plan: </label>
         <textarea
           className="input form-control"
-          placeholder="Enter lesson plan notes"
+          placeholder="Enter lesson plan notes (optional)"
           type="text"
           value={plan}
           onChange={(e) => handleChange('plan', e)}
