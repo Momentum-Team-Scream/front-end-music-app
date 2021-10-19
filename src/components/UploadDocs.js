@@ -89,13 +89,12 @@ export const UploadDocs = ({ auth, instructor, show, setShow, modalTitle, setMod
   return (
     <>
       <ConfirmModal show={show} setShow={setShow} modalTitle={modalTitle} />
-      <Container>
+      <Container className="docs-container">
         {instructor ? (
           <div>
-            <h4> Upload documents to share! </h4>
+            <h4> Upload documents to share </h4>
             <Form className="form-docUploadForm" onSubmit={submitFileData}>
               <Form.Group controlId="uploadDocs">
-                <Form.Label>Click button to add a file:</Form.Label>
                 {fileErr ? (
                   <>
                     <p>you did not attach a file</p>

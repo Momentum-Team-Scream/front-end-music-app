@@ -55,19 +55,19 @@ export const DocList = ({ auth, studentList, instructor }) => {
   return (
     <div>
       <Form className="form-documentSearchForm" onSubmit={handleSubmit}>
-              <Form.Group className="mb-3" controlId="documentSearchForm">
+              <Form.Group className="mb-3 doc-search-div" controlId="documentSearchForm">
                 <Form.Label>
                   <h4>Search for a document</h4>
                 </Form.Label>
-                <Form.Control
-                  input="text"
-                  placeholder="enter document name here"
-                  className="input form-control"
-                  value={search}
-                  onChange={(e) => handleChange('search', e)}
-                ></Form.Control>
-                <div>
-                  <button className="btn btn-general" type="submit">
+                <div className="doc-search">
+                  <Form.Control
+                    input="text"
+                    placeholder="enter document name here"
+                    className="input form-control"
+                    value={search}
+                    onChange={(e) => handleChange('search', e)}
+                  ></Form.Control>
+                  <button className="btn btn-gray doc-search" type="submit">
                     Search
                   </button>
                 </div>
