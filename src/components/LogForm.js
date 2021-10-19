@@ -35,6 +35,7 @@ export const LogForm = ({ auth, setShow, setModalTitle }) => {
           setModalTitle('Practice recorded!')
           setBody('');
           setTimePracticed('');
+          history.go(0)
         }
       });
   };
@@ -50,8 +51,8 @@ export const LogForm = ({ auth, setShow, setModalTitle }) => {
   
   return (
     <>
-      <form className="form-group" onSubmit={handleSubmit} noValidate>
-        <h3>Add a Practice Log:</h3>
+      <form className="form-group" onSubmit={handleSubmit}>
+        <h3>Add a Practice Log</h3>
         <textarea
           className="form-control"
           id="exampleFormControlTextarea1"

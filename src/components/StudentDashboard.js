@@ -63,13 +63,13 @@ export const StudentDashboard = ({ auth, instructor, show, setShow, isLoading, s
               <i class="bi bi-envelope-fill general"></i> {user.email}
             </p>
           </div>
+          <img className="bird-student" src={birdnotesleft} alt="bird"></img>
         </div>
       </header>
       <div className="dash-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
         <div className="body-item col-lg-6">
           <LogForm auth={auth} show={show} setShow={setShow} setModalTitle={setModalTitle} />
-          <LogList auth={auth} />
-          <img className="bird" src={birdnotesleft} alt="bird"></img>
+          <LogList auth={auth} setShow={setShow}/>
         </div>
         <div className="body-item col-lg-6">
           <AssignmentList auth={auth} />

@@ -8,8 +8,6 @@ export const EditProfile = ({ auth, profile, setShow, setModalTitle, setToggle }
   const [lastName, setLastName] = useState(profile.last_name);
   const [phone, setPhone] = useState(profile.phone);
   const [email, setEmail] = useState(profile.email);
-  const [emerName, setEmerName] = useState('')
-  const [emerNumber, setEmerNumber] = useState('')
 
   const handleEdit = (event) => {
     axios.patch(
@@ -19,9 +17,6 @@ export const EditProfile = ({ auth, profile, setShow, setModalTitle, setToggle }
         last_name: lastName,
         phone: phone,
         email: email,
-        "emergency_contact_phone": emerNumber,
-        "emergency_contact_name": emerName
-
       },
       {
         headers: {
@@ -78,9 +73,6 @@ export const EditProfile = ({ auth, profile, setShow, setModalTitle, setToggle }
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-      
-
-
         <button
           className="btn detbtn btn-general"
           type="submit"
