@@ -4,7 +4,7 @@ import { Form } from 'react-bootstrap';
 import { ConfirmModal } from './ConfirmModal';
 import '../styles/studentdash.css';
 
-export const LessonForm = ({ auth, setSubmitted, setShow }) => {
+export const LessonForm = ({ auth, setSubmitted, setShow, setModalTitle }) => {
   const [lesson_date, setLessonDate] = useState('');
   const [lesson_time, setLessonTime] = useState('');
   const [student, setStudent] = useState('');
@@ -52,6 +52,7 @@ export const LessonForm = ({ auth, setSubmitted, setShow }) => {
         if (res.status === 201) {
           setSubmitted(true);
           setShow(true);
+          setModalTitle('Lesson Added!')
           setLessonDate('');
           setLessonTime('');
           setStudent('');

@@ -10,6 +10,7 @@ import { LessonBird } from '../svgComponents/LessonBird';
 
 export const LessonList = ({ auth, show, setShow, isLoading, setIsLoading, submitted, setSubmitted }) => {
   const [lessons, setLessons] = useState([]);
+  const [modalTitle, setModalTitle] = useState('');
   const date = useState([new Date()]);
   const today = String(date[0]).slice(0, 16);
 
@@ -38,13 +39,14 @@ export const LessonList = ({ auth, show, setShow, isLoading, setIsLoading, submi
     <div className="dash-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
       <div className="body-item col-lg-6">
       <h4> Create a new lesson here! </h4>
-      <ConfirmModal show={show} setShow={setShow} />
+      <ConfirmModal show={show} setShow={setShow} modalTitle={modalTitle} />
         {auth && (
           <LessonForm
             auth={auth}
             setSubmitted={setSubmitted}
             show={show}
             setShow={setShow}
+            setModalTitle={setModalTitle}
           />
         )}
         <div className="lessonBird">
