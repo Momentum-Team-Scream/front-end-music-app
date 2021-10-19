@@ -84,7 +84,7 @@ body {
 
 /* Styling for icons */
 i {
-  color: #9dacff;
+  color: #f4d325;
 }
 
 /* Styling for links */
@@ -115,13 +115,13 @@ a:hover {
 .card-header.alert {
   margin-bottom: 0;
   padding: 0.5em, 1em, 0.5em, 1em;
-  background-color: rgba(157, 172, 255, 0.5);
+  background-color: rgba(244, 211, 37, 0.4);
 }
 
 /* Modal Styling */
 
 .modal-header {
-  background-color: rgba(157, 172, 255, 0.5);
+  background-color: rgba(244, 211, 37, 0.4);
 }
 
 .input-group-text.mb-3 {
@@ -152,7 +152,7 @@ a:hover {
 }
 
 .card-header.assignment-form {
-  background-color: rgba(157, 172, 255, 0.5);
+  background-color: rgba(244, 211, 37, 0.4);
   color: #27292a;
   padding-top: 1em;
 }
@@ -168,7 +168,7 @@ textarea.form-control.lesson-detail {
   margin-right: 1em;
 }
 
-.btn.btn-alert.lesson-detail {
+.btn.btn-gray.lesson-detail {
   margin-left: 1em;
   margin-right: 1em;
   margin-bottom: 1em;
