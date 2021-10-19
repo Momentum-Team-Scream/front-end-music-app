@@ -69,7 +69,7 @@ export const Doc = ({ auth, studentList, doc, instructor }) => {
   return (
     <>
       <tr>
-        <td>{doc.uploaded_at}</td>
+        {instructor ? <td>{doc.uploaded_at}</td> : <></>}
 
         <td className="downloadCont">{doc.title}</td>
         <td>
