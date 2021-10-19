@@ -172,3 +172,26 @@ textarea.form-control.lesson-detail {
   background-color: #e6e6e6;
   padding: 1em;
 }
+
+/* Doc Search */
+
+.doc-search-div {
+  padding-bottom: 2em;
+}
+
+.doc-search {
+  display: flex;
+}
+
+.btn.btn-gray.doc-search {
+  margin: 0px;
+  padding-left: 5em;
+  padding-right: 5em;
+}
+
+/* General form styles */
+
+.form-label {
+  margin-bottom: 0px;
+  margin-top: 1em;
+}

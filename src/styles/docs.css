@@ -1,22 +1,7 @@
-@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
 
-.btn-general {
-  background-color: #f9a826;
-  color: #27292a;
-  font-weight: 500;
-}
-
-.btn-general:hover {
-  background-color: #eb9a18;
-  color: #27292a;
-  font-weight: 500;
-}
-
-.btn-general::selection {
-  background-color: #f9a826;
-  color: #27292a;
-  font-weight: 500;
-  border: 5px solid rgba(249, 168, 38, 0.5);
+.docs-container {
+  padding-top: 3em;
 }
 
 .docUploadDiv {
