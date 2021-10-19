@@ -7,7 +7,7 @@ import { FormModal } from './FormModal';
 import { ConfirmModal } from './ConfirmModal';
 import '../styles/studetail.css'
 
-export const StudentDetail = ({auth, props, isLoading, setIsLoading, setSubmitted, show, setShow}) => {
+export const StudentDetail = ({auth, props, isLoading, setIsLoading, setSubmitted, show, setShow, modalTitle, setModalTitle}) => {
     const [student, setStudent] = useState({})
     const [upcomingLessons, setUpcomingLessons] = useState([])
     const [pastLessons, setPastLessons] = useState([])
@@ -124,11 +124,11 @@ export const StudentDetail = ({auth, props, isLoading, setIsLoading, setSubmitte
                     <div className="add-lesson-div">
                         <h3>Today is {today}</h3>
                         <div>
-                            <ConfirmModal show={show} setShow={setShow} />
+                            <ConfirmModal show={show} setShow={setShow} modalTitle={modalTitle} />
                             <button className="btn btn-general" onClick={() => setToggle(!toggle)}>
                                 Create New Lesson
                             </button>
-                            <FormModal auth={auth} setSubmitted={setSubmitted} setShow={setShow} toggle={toggle} setToggle={setToggle}/>
+                            <FormModal auth={auth} setSubmitted={setSubmitted} setShow={setShow} toggle={toggle} setToggle={setToggle} setModalTitle={setModalTitle}/>
                         </div>
                     </div>
                     <div>

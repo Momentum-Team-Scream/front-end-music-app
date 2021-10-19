@@ -127,7 +127,7 @@ export const App = () => {
           />
           <Route
             path="/users/:pk"
-            component={(pk) => <StudentDetail auth={auth} props={pk} isLoading={isLoading} setIsLoading={setIsLoading} setSubmitted={setSubmitted} show={show} setShow={setShow} />}
+            component={(pk) => <StudentDetail auth={auth} props={pk} isLoading={isLoading} setIsLoading={setIsLoading} setSubmitted={setSubmitted} show={show} setShow={setShow} modalTitle={modalTitle} setModalTitle={setModalTitle} />}
           />
           <Route
             path="/mydocs"
