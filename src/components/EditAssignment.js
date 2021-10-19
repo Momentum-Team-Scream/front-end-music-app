@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
-import { ConfirmModal } from './ConfirmModal';
 import '../styles/studentdash.css';
 
-export const EditAssignment = ({ auth, note, pk, noteId, show, setShow, modalTitle, setModalTitle }) => {
+export const EditAssignment = ({ auth, note, pk, noteId, setShow, setModalTitle }) => {
   const lesson = pk;
   const [body, setBody] = useState(note);
   const history = useHistory();
@@ -37,7 +36,6 @@ export const EditAssignment = ({ auth, note, pk, noteId, show, setShow, modalTit
 
   return (
     <>
-      <ConfirmModal show={show} setShow={setShow} modalTitle={modalTitle} />
       <div className="card">
         <div div className="card-header assignment-form">
           <h4>Homework for Student</h4>

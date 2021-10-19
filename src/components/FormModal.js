@@ -19,7 +19,7 @@ export const FormModal = ({ auth, setSubmitted, setShow, toggle, setToggle }) =>
                     <LessonForm auth={auth} setSubmitted={setSubmitted} setShow={setShow} />
                 </Modal.Body>
                 <Modal.Footer>
-                    <button onClick={handleClose} className='btn btn-alert'>
+                    <button onClick={handleClose} className='btn btn-gray'>
                         Cancel
                     </button>                              
                 </Modal.Footer>

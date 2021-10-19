@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
-import { ConfirmModal } from './ConfirmModal'
 
-export const AssignmentForm = ({ auth, showing, setShowing, modalTitle, setModalTitle }) => {
+export const AssignmentForm = ({ auth, setShow, setModalTitle }) => {
   const [body, setBody] = useState('');
   const history = useHistory();
   const { pk } = useParams();
@@ -27,7 +26,7 @@ export const AssignmentForm = ({ auth, showing, setShowing, modalTitle, setModal
       )
       .then((res) => {
         setBody('');
-        setShowing(true)
+        setShow(true)
         setModalTitle('Homework note added!')
         history.push(`/lessons/${pk}/`);
       });
@@ -41,7 +40,6 @@ export const AssignmentForm = ({ auth, showing, setShowing, modalTitle, setModal
 
   return (
     <>
-      <ConfirmModal show={showing} setShow={setShowing} modalTitle={modalTitle} />
       <div className="card">
       <div div className="card-header assignment-form">
           <h4>Homework for Student</h4>
