@@ -75,9 +75,7 @@ export const UploadDocs = ({ auth, instructor, show, setShow, modalTitle, setMod
             setFileErr(true);
           }
         });
-    else 
-      setShow(true)
-      setModalTitle('you did not attach a file to upload');
+    else alert('you did not attach a file to upload');
   };
 
   const handleChange = (inputType, event) => {
