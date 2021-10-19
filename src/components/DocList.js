@@ -90,6 +90,7 @@ export const DocList = ({ auth, studentList, instructor }) => {
               studentList={studentList}
               doc={doc}
               instructor={instructor}
+              setSubmitted={setSubmitted}
             />
           ))}
         </tbody>

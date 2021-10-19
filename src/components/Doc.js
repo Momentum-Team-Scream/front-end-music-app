@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import React, { useState } from 'react';
 
-export const Doc = ({ auth, studentList, doc, instructor }) => {
+export const Doc = ({ auth, studentList, doc, instructor, setSubmitted }) => {
   const history = useHistory();
 
   const handleDelete = (event) => {
@@ -38,7 +38,8 @@ export const Doc = ({ auth, studentList, doc, instructor }) => {
           }
         )
         .then(() => {
-          history.go(0);
+          setSubmitted(true);
+          // history.go(0);
         });
     } else {
       const shared = doc.students;
@@ -56,7 +57,8 @@ export const Doc = ({ auth, studentList, doc, instructor }) => {
           }
         )
         .then(() => {
-          history.go(0);
+          setSubmitted(true);
+          // history.go(0);
         });
     }
   };
