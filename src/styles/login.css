@@ -45,3 +45,12 @@
 .birdiconmusic {
   margin-left: 40px;
 }
+
+.studioCont {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
