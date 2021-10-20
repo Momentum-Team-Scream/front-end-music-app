@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 
-export const LogForm = ({ auth, setShow, setModalTitle }) => {
+export const LogForm = ({ auth, setShow, setSubmitted, setModalTitle }) => {
   const [body, setBody] = useState('');
   const [timePracticed, setTimePracticed] = useState('');
   const history = useHistory();
@@ -31,11 +31,12 @@ export const LogForm = ({ auth, setShow, setModalTitle }) => {
       )
       .then((res) => {
         if (res.status === 201){
+          setSubmitted(true);
           setShow(true);
           setModalTitle('Practice recorded!')
           setBody('');
           setTimePracticed('');
-          history.go(0)
+          // history.go(0)
         }
       });
   };

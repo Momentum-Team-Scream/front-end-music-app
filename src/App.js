@@ -69,6 +69,7 @@ export const App = () => {
                   setIsLoading={setIsLoading}
                   modalTitle={modalTitle}
                   setModalTitle={setModalTitle}
+                  setSubmitted={setSubmitted}
                 />
               ) : (
                 <Redirect to={{ pathname: '/login' }} />

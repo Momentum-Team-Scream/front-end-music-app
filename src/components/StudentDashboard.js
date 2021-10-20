@@ -10,7 +10,7 @@ import { ProfileModal } from './ProfileModal';
 import birdnotesleft from '../birds/birdnotesleft.png';
 import '../styles/studentdash.css';
 
-export const StudentDashboard = ({ auth, instructor, show, setShow, isLoading, setIsLoading, modalTitle, setModalTitle }) => {
+export const StudentDashboard = ({ auth, instructor, show, setShow, isLoading, setIsLoading, modalTitle, setSubmitted, setModalTitle }) => {
   const [user, setUser] = useState('');
   const [toggle, setToggle] = useState(false)
   const history = useHistory();
@@ -68,8 +68,8 @@ export const StudentDashboard = ({ auth, instructor, show, setShow, isLoading, s
       </header>
       <div className="dash-body col-xxl-12 row flex-lg-row-reverse justify-content-center">
         <div className="body-item col-lg-6">
-          <LogForm auth={auth} show={show} setShow={setShow} setModalTitle={setModalTitle} />
-          <LogList auth={auth} setShow={setShow}/>
+          <LogForm auth={auth} show={show} setShow={setShow} setSubmitted={setSubmitted} setModalTitle={setModalTitle} />
+          <LogList auth={auth} setShow={setShow} />
         </div>
         <div className="body-item col-lg-6">
           <AssignmentList auth={auth} />

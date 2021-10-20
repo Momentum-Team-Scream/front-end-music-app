@@ -5,7 +5,7 @@ import { Accordion, Card } from 'react-bootstrap';
 import { LogForm } from './LogForm.js';
 import '../styles/studentdash.css';
 
-export const LogList = ({ auth, setShow }) => {
+export const LogList = ({ auth, submitted, setSubmitted, setShow }) => {
   const [logs, setLogs] = useState([]);
   const history = useHistory();
 
@@ -14,7 +14,7 @@ export const LogList = ({ auth, setShow }) => {
   };
 
   useEffect(() => {
-    if (auth) {
+    if (auth || submitted) {
       axios
         .get(`https://music-mvp.herokuapp.com/api/practices/`, {
           headers: {
@@ -25,8 +25,9 @@ export const LogList = ({ auth, setShow }) => {
         .then((res) => {
           setLogs(res.data);
         });
+        setSubmitted(false);
     }
-  }, []);
+  }, [auth, submitted]);
 
   const handleDelete = (event) => {
     const pk = event.target.id;
