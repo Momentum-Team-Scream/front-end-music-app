@@ -206,3 +206,23 @@ textarea.form-control.lesson-detail {
 .form-button {
   float: right;
 }
+
+.btn-general.stu-detail {
+  margin: 1em 0 0 0;
+}
+/* Lesson List Cards */
+
+.card-header p {
+  font-size: 1.2rem;
+  margin-bottom: 0px;
+  /* padding: 0.5em 0em 0.5em 0em; */
+}
+
+.card-body.lesson-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn.detbtn.btn-general {
+  margin-right: 0.2em;
+}

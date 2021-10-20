@@ -36,7 +36,6 @@ export const LogForm = ({ auth, setShow, setModalTitle }) => {
           setModalTitle('Practice recorded!');
           setBody('');
           setTimePracticed('');
-          history.go(0);
         }
       });
   };

@@ -12,7 +12,7 @@ export const ProfileModal = ({ auth, user, instructor, setShow, toggle, setToggl
         <>
             <Modal show={toggle} onHide={handleClose} dialogClassName={'primary-modal'}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Create a New Lesson</Modal.Title>
+                    <Modal.Title>Update profile</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <EditProfile auth={auth} profile={user} instructor={instructor} setShow={setShow}  setModalTitle={setModalTitle} setToggle={setToggle} />
