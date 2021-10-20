@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import userEvent from '@testing-library/user-event';
 import { AssignmentForm } from './AssignmentForm.js';
 import { EditAssignment } from './EditAssignment.js';
 import { EditLessonPlan } from './EditLessonPlan.js';
@@ -23,7 +21,6 @@ export const LessonDetail = ({
 }) => {
   const [lesson, setLesson] = useState({});
   const [previous, setPrevious] = useState({});
-  const [showing, setShowing] = useState(false);
 
   useEffect(() => {
     async function getLesson() {

@@ -6,7 +6,6 @@ import { LessonForm } from './LessonForm'
 export const FormModal = ({ auth, setSubmitted, setShow, toggle, setToggle, setModalTitle }) => {
 
     const handleClose = () => setToggle(false);
-
     
     return (
         <>

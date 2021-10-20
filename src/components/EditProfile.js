@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import axios from 'axios';
 import '../styles/profile.css';
 
@@ -26,9 +25,7 @@ export const EditProfile = ({ auth, profile, setShow, setModalTitle, setToggle }
       }
     );
   };
-  const refreshPage = () => {
-    window.location.reload();
-  };
+  
   return (
     <div>
       <form
@@ -81,7 +78,6 @@ export const EditProfile = ({ auth, profile, setShow, setModalTitle, setToggle }
             setModalTitle('Profile updated!')
             setToggle(false)
             setShow(true)
-            // refreshPage();
           }}
         >
           Save

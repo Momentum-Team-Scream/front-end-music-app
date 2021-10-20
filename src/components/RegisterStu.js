@@ -17,14 +17,11 @@ export const RegisterStu = ({ setAuth, props }) => {
     const [pk, setPk] = useState('')
     const history = useHistory()
 
-    console.log(props)
-
 
     useEffect(() => {
         let isMounted = true
 
         const newArr = props.location.pathname.split('/');
-        console.log(newArr)
         setPk(newArr.pop())
 
         return () => {
@@ -80,7 +77,6 @@ export const RegisterStu = ({ setAuth, props }) => {
             "emergency_contact_name": emerName
         }).then(res => {
             if (res.status === 201){
-                console.log('user created!')
                 return axios.post('https://music-mvp.herokuapp.com/auth/token/login/', {
                     username: username,
                     password: password
@@ -90,9 +86,7 @@ export const RegisterStu = ({ setAuth, props }) => {
                         history.push('/')
                     }
                 })
-            } else {
-                console.log('something went wrong, please try again')
-            }
+            } 
         })
     }
 

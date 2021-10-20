@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
-import { useParams, useHistory, Link } from 'react-router-dom';
-import { ConfirmModal } from './ConfirmModal.js';
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import '../styles/studentdash.css';
 import axios from 'axios';
 
-export const EditLessonPlan = ({ auth, lesson, show, setShow, modalTitle, setModalTitle }) => {
+export const EditLessonPlan = ({ auth, lesson, setShow, setModalTitle }) => {
   const history = useHistory();
   const [lessonPk] = useState(lesson.pk);
   const [lessonDate, setLessonDate] = useState(lesson.lesson_date);
@@ -15,7 +14,6 @@ export const EditLessonPlan = ({ auth, lesson, show, setShow, modalTitle, setMod
 
   const handleEdit = (event) => {
     const id = event.target.id;
-    console.log(id);
     event.preventDefault();
     axios
       .patch(

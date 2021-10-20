@@ -41,7 +41,6 @@ export const Login = ({ auth, setAuth, instructor, setInstructor }) => {
             })
             .catch(error => {
                 if(error.response) {
-                    console.log(error.response)
                     const err = error.response.data
                     if (err.username) {
                         setUserErr(true)
@@ -64,7 +63,6 @@ export const Login = ({ auth, setAuth, instructor, setInstructor }) => {
         })
         .then(res => {
             if (isMounted){
-                console.log(res.data.is_instructor)
                 if (res.status === 200){
                     if (res.data.is_instructor === true){
                         setInstructor(true)

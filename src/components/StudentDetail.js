@@ -33,7 +33,6 @@ export const StudentDetail = ({
 
     const newArr = props.location.pathname.split('/');
     setPk(newArr.pop());
-    console.log(pk);
 
     await axios
       .get(`https://music-mvp.herokuapp.com/api/users/${pk}`, {
@@ -56,7 +55,6 @@ export const StudentDetail = ({
                 if (isMounted) {
                   if (res.status === 200) {
                     const lessons = res.data;
-                    console.log(res.data);
                     let upLessons = [];
                     let paLessons = [];
                     lessons.forEach((lesson) => {

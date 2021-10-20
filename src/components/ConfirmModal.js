@@ -6,7 +6,6 @@ import birdtextright from '../birds/birdtextright.png'
 export const ConfirmModal = ({ show, setShow, modalTitle }) => {
 
     const handleClose = () => setShow(false);
-    // const handleShow = () => setShow(true);
 
     
     return (

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { Table, Card, Button, Container, Form } from 'react-bootstrap';
+import { Table, Container, Form } from 'react-bootstrap';
 import '../styles/StudentList.css';
 import '../styles/docs.css';
 import '../styles/login.css';
@@ -12,7 +12,7 @@ export const StudentList = ({ auth, pk }) => {
   const [students, setStudents] = useState([]);
   const [submitted, setSubmitted] = useState(false);
   const [search, setSearch] = useState([]);
-  const history = useHistory();
+
   useEffect(() => {
     if (auth) {
       axios

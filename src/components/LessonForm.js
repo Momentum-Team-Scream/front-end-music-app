@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Form } from 'react-bootstrap';
-import { ConfirmModal } from './ConfirmModal';
 import '../styles/studentdash.css';
 
 export const LessonForm = ({ auth, setSubmitted, setShow, setModalTitle }) => {
@@ -61,7 +60,6 @@ export const LessonForm = ({ auth, setSubmitted, setShow, setModalTitle }) => {
       })
       .catch((error) => {
         if (error.response) {
-          console.log(error.response);
           const err = error.response.data;
           if (err.lesson_date) {
             setDateErr(true);

@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,7 +6,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import useLocalStorageState from 'use-local-storage-state';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { RegisterInstructor } from './components/RegisterInstr';
 import { Login } from './components/Login';
 import { LessonList } from './components/LessonList.js';
@@ -17,13 +16,8 @@ import { StudentList } from './components/StudentList.js';
 import { InstrProfile } from './components/InstrProfile.js';
 import { RegisterStu } from './components/RegisterStu';
 import { StudentDashboard } from './components/StudentDashboard';
-import { LogList } from './components/LogList.js';
 import { StudentDetail } from './components/StudentDetail';
-import { DocList } from './components/DocList.js';
 import { UploadDocs } from './components/UploadDocs.js';
-import { ConfirmModal } from './components/ConfirmModal';
-
-// import { AssignmentForm } from './components/AssignmentForm.js';
 
 export const App = () => {
   const [auth, setAuth, authStorageOptions] = useLocalStorageState('auth', '');
@@ -35,7 +29,6 @@ export const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [submitted, setSubmitted] = useState(false);
   const [modalTitle, setModalTitle] = useState('');
-
 
 
   const clearStorage = () => {

@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useParams, useHistory, Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/studentdash.css';
 
@@ -7,12 +7,8 @@ export const EditAssignment = ({ auth, note, pk, noteId, setShow, setModalTitle 
   const lesson = pk;
   const [body, setBody] = useState(note);
   const history = useHistory();
-  console.log(pk);
-  console.log(noteId);
-  console.log(lesson);
 
   const handleEdit = (event, id) => {
-    console.log(id);
     event.preventDefault();
     axios
       .patch(

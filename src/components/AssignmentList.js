@@ -36,8 +36,6 @@ export const AssignmentList = ({ auth }) => {
     };
   }, [auth]);
 
-  console.log(assignments);
-
   return isLoading ? (
     <>
       <Loading />

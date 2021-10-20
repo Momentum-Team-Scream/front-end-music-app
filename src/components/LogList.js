@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { Accordion, Card } from 'react-bootstrap';
-import { LogForm } from './LogForm.js';
 import '../styles/studentdash.css';
 
-export const LogList = ({ auth, setShow }) => {
+export const LogList = ({ auth }) => {
   const [logs, setLogs] = useState([]);
-  const history = useHistory();
 
   const refreshPage = () => {
     window.location.reload(false);
