@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom'
 import axios from 'axios'
+import birdmusicnotesright from '../birds/birdmusicnotesright.png'
+import { Container } from 'react-bootstrap';
 import '../styles/login.css'
 
 
@@ -81,49 +83,51 @@ export const Login = ({ auth, setAuth, instructor, setInstructor }) => {
 
     return (
         <>
-            <form className='form login-form' onSubmit={handleSubmit} noValidate>
-                <label className="label">Username</label>
-                {userErr ? 
-                    <>
-                        <div className="error-div">
-                            <p>Username must not be empty</p>
-                        </div>
-                    </>
-                    : null
-                }
-                <input 
-                    className="input form-control"
-                    type="text"
-                    value={username}
-                    onChange={(event) => handleChange('username', event)}
-                />
-                <label className="label">Password</label>
-                {passErr ? 
-                    <>
-                        <div className="error-div">
-                            <p>Password must not be empty</p>
-                        </div>
-                    </>
-                    : null
-                }
-                <input 
-                    className="input form-control"
-                    type="password"
-                    value={password}
-                    onChange={(event) => handleChange('password', event)}
-                />
-                {valErr ? 
-                    <>
-                        <div className="error-div">
-                            <p>Incorrect username/password combo</p>
-                        </div>
-                    </>
-                    : null
-                }
-                <button className="btn btn-general" type="submit">Login</button>
-            </form>
-            <div className="redirect-text">New to NoteJam? Register for your instructor account <Link to="/register">here.</Link></div>
-            
+            <Container>
+                <form className='form login-form' onSubmit={handleSubmit} noValidate>
+                    <label className="label">Username</label>
+                    {userErr ? 
+                        <>
+                            <div className="error-div">
+                                <p>Username must not be empty</p>
+                            </div>
+                        </>
+                        : null
+                    }
+                    <input 
+                        className="input form-control"
+                        type="text"
+                        value={username}
+                        onChange={(event) => handleChange('username', event)}
+                    />
+                    <label className="label">Password</label>
+                    {passErr ? 
+                        <>
+                            <div className="error-div">
+                                <p>Password must not be empty</p>
+                            </div>
+                        </>
+                        : null
+                    }
+                    <input 
+                        className="input form-control"
+                        type="password"
+                        value={password}
+                        onChange={(event) => handleChange('password', event)}
+                    />
+                    {valErr ? 
+                        <>
+                            <div className="error-div">
+                                <p>Incorrect username/password combo</p>
+                            </div>
+                        </>
+                        : null
+                    }
+                    <button className="btn btn-general" type="submit">Login</button>
+                </form>
+                <div className="redirect-text">New to NoteJam? Register for your instructor account <Link to="/register">here.</Link></div>
+                <img className="login-img" src={birdmusicnotesright} alt="bird-notes"></img>
+            </Container>
         </>
     );
 }

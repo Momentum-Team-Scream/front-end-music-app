@@ -85,3 +85,18 @@
   float: right;
   margin-top: 40px;
 }
+.practiceLogTitle {
+  margin-bottom: 40px;
+}
+
+.what-did-you-practice {
+  margin-top: 24px;
+}
+
+form {
+  padding-top: 8px;
+}
+
+.form-group {
+  padding-top: 0px;
+}

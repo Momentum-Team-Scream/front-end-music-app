@@ -1,4 +1,4 @@
-@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
 
 .stu-header {
   padding: 2em;
@@ -27,7 +27,9 @@
   flex-direction: column;
 }
 
-.studentRemove {
-  width: 150px;
-  margin-left: 80%;
+.name-del-links {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
 }

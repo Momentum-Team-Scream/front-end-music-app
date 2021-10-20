@@ -7,6 +7,8 @@ import { FormModal } from './FormModal';
 import { ConfirmModal } from './ConfirmModal';
 import '../styles/studetail.css';
 import { useHistory } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
+
 export const StudentDetail = ({
   auth,
   props,
@@ -77,6 +79,7 @@ export const StudentDetail = ({
       isMounted = false;
     };
   }, [pk]);
+
   const handleRemove = (pk) => {
     axios.patch(
       `https://music-mvp.herokuapp.com/instructor/studio/${pk}/`,
@@ -97,11 +100,29 @@ export const StudentDetail = ({
       <Loading />
     </>
   ) : (
+    <>
+    <Container>
     <div>
       <header className="stu-header">
-        <h3>
-          {student.first_name} {student.last_name}
-        </h3>
+        <div className="name-del-links">
+          <h3>
+            {student.first_name} {student.last_name}
+          </h3>
+          <button
+          className="delButton btn btn-destroy studentRemove"
+          id={student.pk}
+          onClick={(e) => {
+            if (
+              window.confirm('Are you sure you want to remove this student?')
+            )
+              handleRemove(student.pk);
+            history.push(`/students`);
+            history.go(0);
+          }}
+          >
+            Remove Student
+          </button>
+        </div>
         <div className="studentDetailHeaderCont">
           <p>
             <i class="bi bi-person-circle"></i> {student.username}
@@ -109,23 +130,10 @@ export const StudentDetail = ({
           <p>
             <i class="bi bi-envelope-fill"></i> {student.email}
           </p>
-          <p>Emergency Contact: {student.emergency_contact_name}</p>
-          <p>Emergency Phone: {student.emergency_contact_phone}</p>
+          <p><i class="bi bi-person-lines-fill"></i> Emergency Contact: {student.emergency_contact_name}</p>
+          <p><i class="bi bi-telephone-fill"></i> Emergency Phone: {student.emergency_contact_phone}</p>
 
-          <button
-            className="delButton btn btn-destroy studentRemove"
-            id={student.pk}
-            onClick={(e) => {
-              if (
-                window.confirm('Are you sure you want to remove this student?')
-              )
-                handleRemove(student.pk);
-              history.push(`/students`);
-              history.go(0);
-            }}
-          >
-            Remove Student
-          </button>
+          
         </div>
       </header>
       <body className="stu-body col-xxl-12 row flex-lg-row justify-content-center">
@@ -150,7 +158,7 @@ export const StudentDetail = ({
                   <div className="card-body">
                     <h5 className="card-title">{lesson.lesson_date}</h5>
                     <Link to={`/lessons/${lesson.pk}`}>
-                      <button className="btn btn-gray">Edit Lesson Plan</button>
+                      <button className="btn btn-general stu-detail">Edit Lesson Plan</button>
                     </Link>
                   </div>
                 </div>
@@ -205,5 +213,7 @@ export const StudentDetail = ({
         </div>
       </body>
     </div>
+    </Container>
+    </>
   );
 };
