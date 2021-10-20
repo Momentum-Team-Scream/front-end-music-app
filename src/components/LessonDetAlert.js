@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Alert, Fade } from 'react-bootstrap';
+import { Alert } from 'react-bootstrap';
 
 
 export const LessonDetAlert = ({ show, setShow }) => {

@@ -46,10 +46,7 @@ export const UploadDocs = ({ auth, instructor, show, setShow, modalTitle, setMod
         )
         .then((res) => {
           if (res.status === 201) {
-            console.log(res);
-            console.log(fileInput.current.files);
             const file = fileInput.current.files[0];
-            console.log(file);
             axios
               .put(
                 `https://music-mvp.herokuapp.com/api/documents/${res.data.pk}/upload/`,

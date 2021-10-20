@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/profile.css';
 import { Card } from 'react-bootstrap';
-import { LogForm } from './LogForm.js';
 import { EditProfile } from './EditProfile.js';
 
-export const InstrProfile = ({ auth, instructor }) => {
+export const InstrProfile = ({ auth }) => {
   const [profile, setProfile] = useState([]);
   const [submitted, setSubmitted] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
@@ -30,18 +29,6 @@ export const InstrProfile = ({ auth, instructor }) => {
   return (
     <>
       <h1 className="profileTitle">{profile.username}'s Profile</h1>
-      { instructor ? 
-        <>
-          {/* <button className="btn btn-gray">
-            Generate Student Invite Link
-          </button> */}
-          <div className="link-div" id="link">
-            <p>Copy and share this invite link with your students:</p>
-            <p>http://localhost:3000/student-invite/{profile.id}</p>
-          </div>
-        </>
-        : null
-      }
       <div className="profileBody">
         {showEdit ? (
           <EditProfile profile={profile} auth={auth}/>

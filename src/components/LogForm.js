@@ -7,12 +7,6 @@ import '../styles/studentdash.css';
 export const LogForm = ({ auth, setShow, setModalTitle }) => {
   const [body, setBody] = useState('');
   const [timePracticed, setTimePracticed] = useState('');
-  const history = useHistory();
-  const { pk } = useParams();
-
-  const refreshPage = () => {
-    window.location.reload(false);
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();

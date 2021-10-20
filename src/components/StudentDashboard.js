@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { AssignmentList } from './AssignmentList';
 import { LogForm } from './LogForm';
 import { LogList } from './LogList';
 import { Loading } from './Loading';
 import { ConfirmModal } from './ConfirmModal';
 import { ProfileModal } from './ProfileModal';
-import birdnotesleft from '../birds/birdnotesleft.png';
 import '../styles/studentdash.css';
 import { Container } from 'react-bootstrap';
 import { HeadphonesBird1 } from '../svgComponents/Headphones-bird-1';
@@ -24,7 +23,6 @@ export const StudentDashboard = ({
 }) => {
   const [user, setUser] = useState('');
   const [toggle, setToggle] = useState(false);
-  const history = useHistory();
 
   useEffect(() => {
     let isMounted = true;
@@ -38,7 +36,6 @@ export const StudentDashboard = ({
       .then((res) => {
         if (isMounted) {
           if (res.status === 200) {
-            console.log(res.data);
             setUser(res.data);
             setIsLoading(false);
           }

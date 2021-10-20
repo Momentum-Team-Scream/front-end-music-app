@@ -62,7 +62,6 @@ export const RegisterInstructor = ({ setAuth, setInstructor }) => {
             "emergency_contact_name": 'unknown'
         }).then(res => {
             if (res.status === 201){
-                console.log('user created!')
                 return axios.post('https://music-mvp.herokuapp.com/auth/token/login/', {
                     username: username,
                     password: password
@@ -73,13 +72,9 @@ export const RegisterInstructor = ({ setAuth, setInstructor }) => {
                         history.push('/')
                     }
                 })
-            } else {
-                console.log('something went wrong, please try again')
-            }
-            console.log(res)
+            } 
         }).catch(error => {
             if(error.response) {
-                console.log(error.response)
                 const err = error.response.data
                 if (err.first_name) {
                     setFirstErr(err.first_name)

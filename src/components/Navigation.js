@@ -4,7 +4,7 @@ import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import '../styles/navigation.css';
 import { Logo } from '../svgComponents/Logo';
 
-export const Navigation = ({ auth, setAuth, clearStorage, instructor }) => {
+export const Navigation = ({ auth, clearStorage, instructor }) => {
   return (
     <>
       {auth ? (
